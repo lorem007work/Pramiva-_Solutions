@@ -27,29 +27,30 @@ Everything is `[DRAFT]`, `[BLOCKED]` or `[RISK]` until the manager returns the q
 
 ---
 
-## 1. Company name — `[BLOCKED]` 🔴 HIGHEST PRIORITY
-
-Three spellings appear across the sources:
+## 1. Company name — mostly resolved ✅
 
 | Spelling | Source | Weight |
 |---|---|---|
-| **Pramiva** Solutions | Official logo asset [logo.png](../logo.png) | Designed artwork |
-| **Promeva** Solutions Private Limited | Spoken audio + transcript, stated as the legal name | Claimed legal entity |
-| **Promea** | Spoken audio, occasional | Likely mishearing |
+| **Pramiva** Solutions | Official logo [logo.png](../logo.png) | Designed artwork |
+| **pramivasolutions**.com.np | **Registered domain** | Official registration |
+| **Promeva** Solutions Private Limited | Spoken audio + transcript | Claimed legal entity |
+| **Promea** | Spoken audio, occasional | Mishearing |
 
-**This blocks more than copy.** It blocks:
+**Two independent official artefacts — the logo and the registered domain — agree on "Pramiva".** The transcript's "Promeva" is almost certainly a mishearing of the audio. The website uses **Pramiva Solutions**.
 
-- Domain purchase — buying the wrong spelling wastes the registration and any early SEO
-- Email addresses on the verified sending domain
-- Every page title, meta description, and `Organization` JSON-LD
-- The logo asset itself, if the logo is the one that is wrong
-- The repository folder name (currently `pramiva`)
+### The one part still open
 
-**One of these artefacts is wrong and someone has to say which.** If the registered legal entity is *Promeva Solutions Private Limited*, the logo carries a typo and needs re-issuing. If the logo is right, the transcript is a mishearing and the legal name needs checking against the registration certificate.
+Whether the **registered legal entity** matches. `.com.np` registration requires submitting company documents, so whoever registered the domain saw the certificate — ask them which name was on it.
 
-**Do not accept a verbal answer.** Ask for a photo of the company registration document. This is a 30-second request that prevents a category of mistake that is expensive to undo.
+If the certificate reads *Promeva Solutions Private Limited* while the domain and logo read *Pramiva*, the public brand and the legal name differ. That is survivable — trading names differ from registered names routinely — but it matters for:
 
-Until resolved: the name lives **only** in `src/data/site.ts`. Nothing hardcodes it anywhere else. One string changes when the answer arrives.
+- Privacy Policy and Terms, which name the legal entity
+- Invoices and contracts
+- `Organization` JSON-LD, which should carry the legal name
+
+Not a build blocker. Worth one message to confirm.
+
+The name still lives **only** in `src/data/site.ts`, so a correction remains a one-line change.
 
 ---
 

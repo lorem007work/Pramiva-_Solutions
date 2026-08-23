@@ -9,14 +9,19 @@
 
 export const site = {
   /**
-   * 🔴 Q0 UNRESOLVED — the company name is disputed.
+   * Q0 — settled for web purposes.
    *
-   *   logo.png            → "Pramiva Solutions"
-   *   induction material  → "Promeva Solutions Private Limited"
+   *   logo.png                   → "Pramiva Solutions"
+   *   registered domain          → pramivasolutions.com.np
+   *   induction material claimed → "Promeva Solutions Private Limited"
    *
-   * The value below is taken from the logo because that is the only official
-   * artefact we hold. It is NOT confirmed. Management must verify against the
-   * company registration certificate.
+   * Two independent official artefacts (the logo and the registered domain)
+   * agree on "Pramiva", so that is what the website uses. The transcript's
+   * "Promeva" is most likely a mishearing.
+   *
+   * Still open: whether the REGISTERED LEGAL ENTITY matches. If the
+   * certificate reads "Promeva", the website address and the legal name
+   * differ — survivable, but management should know it.
    *
    * This constant is the single point of change. Never type either spelling
    * anywhere else — not in metadata, JSON-LD, headings, alt text, or comments.

@@ -25,13 +25,19 @@ Draft content extracted from internal induction material lives in [CONTENT-INVEN
 
 ---
 
-## 🔴 Blocker Q0 — the company name
+## Q0 — company name: resolved for the website ✅
 
-The logo asset spells the company **Pramiva Solutions**. The stated legal entity is **Promeva Solutions Private Limited**. Internal audio also renders it "Promea".
+The registered domain is **pramivasolutions.com.np**, which agrees with the logo. Two official artefacts against one transcript — the site uses **Pramiva Solutions**.
 
-This outranks every other question in this document. It blocks the domain purchase, the sending email address, every page title, the JSON-LD, and potentially the logo artwork itself. Resolve it against the company registration certificate — not verbally.
+Still open, low priority: whether the registered legal entity also reads *Pramiva*. Affects the legal pages and JSON-LD, not the build. See [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §1.
 
-Full detail: [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §1.
+## 🔴 Q12 — the domain does not resolve
+
+`pramivasolutions.com.np` returns **SERVFAIL** from public resolvers *and* from the `.com.np` registry's own authoritative nameservers. A control lookup (`worldlink.com.np`) resolves normally, so this is specific to this domain, not a network fault.
+
+Nothing is hosted there. Good news for deployment — there is no existing site to overwrite — but the domain is **not usable yet**. Likely either registration still pending manual approval (`.com.np` applications are reviewed by hand and can take days) or nameservers not yet pointed at the cPanel host.
+
+Blocks Phase 9 only. Everything up to that point proceeds normally.
 
 ---
 
@@ -214,7 +220,7 @@ Owner is management unless stated. Full text and suggested defaults in [MANAGER-
 
 | # | Question | Blocks | Priority |
 |---|---|---|---|
-| **0** | **Company name — Pramiva or Promeva?** | **Domain, email, all copy, metadata, logo** | **🔴 Highest** |
+| 0 | Company name spelling | RESOLVED ✅ — domain + logo both read *Pramiva*. Legal entity name still to confirm. | Low |
 | 1 | Primary business goal of the site | Copy direction, CTA choice | Blocker |
 | 2 | Target audience / markets / industries | Tone, compliance, copy | Blocker |
 | 3 | Required pages | Sitemap, nav, routing | Blocker |
@@ -226,7 +232,7 @@ Owner is management unless stated. Full text and suggested defaults in [MANAGER-
 | 9 | Display address | Footer, Contact, JSON-LD | Blocker |
 | 10 | Enquiry destination inbox | Form delivery | Blocker |
 | 11 | Social media accounts | Footer | Non-blocking |
-| 12 | Domain owned? | ANSWERED — .com.np registered. Exact name still needed. | Blocker |
+| 12 | Domain | ANSWERED ✅ `pramivasolutions.com.np` — but it does **not resolve**. See above. | 🔴 Phase 9 |
 | 13 | Who controls DNS | Deployment | Blocker at Phase 9 |
 | 14 | Analytics required? | Consent, scripts | Non-blocking |
 | 15 | Logo in SVG/AI format | Nav, favicon quality | High — PNG degrades on retina |
