@@ -1,69 +1,90 @@
-import Image from "next/image";
+import { site } from "@/data/site";
 
+/**
+ * PHASE 2 PLACEHOLDER — foundation verification only.
+ *
+ * This is not the homepage. It exists to prove the design tokens, fluid type
+ * scale, fonts and static export all work before Phase 3 builds real
+ * components on top of them. Phase 4 replaces it entirely.
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main id="main" className="mx-auto w-full max-w-page px-5 py-section md:px-8 lg:px-16">
+      <p className="text-eyebrow uppercase text-ink-subtle">
+        Phase 2 — foundation
+      </p>
+
+      <h1 className="mt-block text-display">
+        Design system
+        <br />
+        <span className="text-brand">verification</span>
+      </h1>
+
+      <p className="mt-block max-w-[65ch] text-lead text-ink-muted">
+        Placeholder page. Confirms tokens, the fluid type scale and the static
+        export are working before real components are built on top.
+      </p>
+
+      <section className="mt-section-sm">
+        <h2 className="text-h2">Type scale</h2>
+        <div className="mt-block space-y-4 border-t border-line pt-block">
+          <p className="text-h1">Heading one</p>
+          <p className="text-h2">Heading two</p>
+          <p className="text-h3">Heading three</p>
+          <p className="text-lead">Lead paragraph</p>
+          <p>Body copy at the base size, set at a 1.6 line height.</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="mt-section-sm">
+        <h2 className="text-h2">Colour</h2>
+        <div className="mt-block grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {[
+            { name: "brand", cls: "bg-brand", note: "4.95:1 — AA" },
+            { name: "brand-deep", cls: "bg-brand-deep", note: "7.43:1 — AAA" },
+            { name: "accent", cls: "bg-accent", note: "3.52:1 — decorative only" },
+            { name: "accent-text", cls: "bg-accent-text", note: "5.70:1 — AA" },
+            { name: "slate", cls: "bg-slate", note: "10.77:1" },
+            { name: "ink", cls: "bg-ink", note: "19.8:1" },
+          ].map((swatch) => (
+            <div key={swatch.name}>
+              <div className={`h-20 rounded-2xl ${swatch.cls}`} />
+              <p className="mt-2 text-sm font-medium">{swatch.name}</p>
+              <p className="text-sm text-ink-subtle">{swatch.note}</p>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+        <p className="mt-block max-w-[65ch] text-sm text-ink-muted">
+          <strong className="text-ink">accent</strong> is 3.52:1 on white — it
+          fails WCAG AA for text, and white text on it fails too. Decorative use
+          only. Use <strong className="text-ink">accent-text</strong> when green
+          must carry text.
+        </p>
+      </section>
+
+      <section className="mt-section-sm border-t border-line pt-block">
+        <h2 className="text-h2">Data layer</h2>
+        <p className="mt-block max-w-[65ch] text-ink-muted">
+          Values below come from <code>src/data/site.ts</code>. Every visible
+          placeholder is a question still open with management — that is the
+          intended state, not a bug.
+        </p>
+        <dl className="mt-block space-y-2 text-sm">
+          {[
+            ["Name", site.name],
+            ["Tagline", site.tagline],
+            ["Description", site.description],
+            ["Email", site.email],
+            ["Phone", site.phone],
+            ["Address", site.address],
+          ].map(([label, value]) => (
+            <div key={label} className="flex flex-col gap-1 sm:flex-row sm:gap-4">
+              <dt className="w-32 shrink-0 font-medium">{label}</dt>
+              <dd className="text-ink-muted">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    </main>
   );
 }

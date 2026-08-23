@@ -178,12 +178,24 @@ Default if unanswered: **Cloudflare Web Analytics** — free, cookieless, a sing
 | Area | Requirement | Verified by |
 |---|---|---|
 | Performance | Lighthouse mobile ≥ 95; LCP < 2.0s; CLS < 0.05; INP < 200ms | Lighthouse CI on staging |
-| JS budget | < 100KB gzipped first-load JS on `/` | `next build` output |
+| JS budget | **≤ 185 KB gzipped** first-load JS on `/` — see note | measured from `out/` |
 | Accessibility | WCAG 2.1 AA. Zero critical axe violations. Full keyboard operation. Visible focus on every interactive element. | axe DevTools + manual keyboard pass |
 | Responsive | Designed layouts at 360 / 768 / 1024 / 1440 / 1920. Mobile prioritised. | Manual device testing |
 | Browsers | Latest 2 versions of Chrome, Safari, Firefox, Edge. iOS Safari and Chrome Android. | Manual |
 | Type safety | TypeScript strict. Zero `any` in application code. Build fails on type error. | `npm run build` |
 | Dependencies | Every package justified in [ARCHITECTURE.md](ARCHITECTURE.md). No package added because an AI suggested it. | Review at each phase gate |
+
+### Note on the JS budget — measured, Phase 2
+
+The original target was 100 KB gzipped. **That was wrong, and measuring early is why we know.**
+
+A bare Next.js 16.3.2 + React 19.2.8 page with *zero* interactivity — no client components, no motion library, nothing — already ships **168.8 KB gzipped across six executed script tags**. That is the framework baseline, not our code. It cannot be reduced by writing better components.
+
+The budget is therefore **185 KB gz**, leaving roughly 16 KB of headroom for Framer Motion via `LazyMotion` (~5 KB), Lenis (~3 KB), and the four permitted client components.
+
+**What this does not change:** the Server-Component-by-default rule still matters. The baseline is fixed, but careless `"use client"` on a page root would add our own content on top of it — and that part *is* controllable.
+
+**Escape hatch if Lighthouse falls short:** Next.js 15 has a materially lower baseline. Nothing is built yet, so pinning back is cheap now and expensive later. Decide at Phase 6, when motion lands and the number is real — not before.
 
 ## 8. Content governance `[CONFIRMED]`
 

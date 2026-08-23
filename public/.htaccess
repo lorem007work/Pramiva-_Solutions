@@ -1,0 +1,63 @@
+# Apache/LiteSpeed rules for cPanel.
+# Lives in public/ so `next build` copies it into out/ automatically.
+#
+# ⚠ cPanel File Manager HIDES dotfiles until Settings → Show Hidden Files is
+# enabled. A missing .htaccess is a silent failure: no HTTPS redirect, no 404
+# page, no caching. Verify it after every upload.
+
+# --- Force HTTPS ------------------------------------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Custom error page ------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --- Caching ----------------------------------------------------------------
+# Next.js content-hashes asset filenames, so they can be cached indefinitely.
+# HTML must NOT be cached, or a deploy appears to do nothing for returning
+# visitors.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/javascript         "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/avif              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|woff2|webp|avif|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Baseline security headers
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# --- Compression ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript
+  AddOutputFilterByType DEFLATE image/svg+xml application/json
+</IfModule>
+
+# --- Protect the mail config, belt and braces -------------------------------
+# The real protection is that it lives OUTSIDE public_html. This is a backstop
+# in case it is ever misplaced.
+<FilesMatch "config\.php$">
+  Require all denied
+</FilesMatch>
+
+# Block dotfiles from being served
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
