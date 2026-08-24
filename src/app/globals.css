@@ -271,3 +271,34 @@ p {
     transparent 60%
   );
 }
+
+/* ---------------------------------------------------------------------------
+   Optional background artwork on a ground.
+
+   Set --ground-image on the section and the artwork renders BEHIND the brand
+   washes and grain, never above them.
+
+   The scrim is the important part. Whatever artwork arrives, body copy must
+   still clear WCAG AA, so the ground's own colour is laid over the image at
+   72% and the type sits above that. White on brand-deep is 7.4:1 before the
+   image and stays close to it after, because the image can only lighten the
+   ground by the remaining 28%. That is what stops a background making the
+   page unreadable — the guarantee is in the CSS, not in the artwork brief.
+   --------------------------------------------------------------------------- */
+
+.ground-art {
+  background-image: var(--ground-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ground-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: inherit;
+  opacity: 0.72;
+}

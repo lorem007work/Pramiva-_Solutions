@@ -10,6 +10,15 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
   spacing?: SectionSpacing;
   containerClassName?: string;
   reveal?: boolean;
+  /**
+   * Optional abstract artwork behind the ground, e.g. "/images/brand/hero-bg.webp".
+   *
+   * Only valid on a dark tone. The `.ground-art` scrim lays the tone's own
+   * colour over the artwork at 72%, so body copy keeps its contrast ratio no
+   * matter what the image turns out to look like — the accessibility guarantee
+   * lives in the CSS rather than in whoever briefs the artwork.
+   */
+  backgroundImage?: string;
 };
 
 /**
@@ -41,6 +50,8 @@ export function Section({
   tone = "canvas",
   spacing = "default",
   reveal = false,
+  backgroundImage,
+  style,
   ...props
 }: SectionProps) {
   const content = (
@@ -49,7 +60,17 @@ export function Section({
 
   return (
     <section
-      className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}
+      className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${
+        backgroundImage ? "ground-art" : ""
+      } ${className}`}
+      style={
+        backgroundImage
+          ? ({
+              ...style,
+              "--ground-image": `url(${backgroundImage})`,
+            } as React.CSSProperties)
+          : style
+      }
       {...props}
     >
       {reveal ? <Reveal>{content}</Reveal> : content}
