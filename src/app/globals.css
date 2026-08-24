@@ -165,3 +165,28 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Staggered children.
+
+   When a revealed block contains a list, animating the whole block at once
+   reads as a single slab moving. Staggering the items by 70ms each makes the
+   group assemble instead, which is what gives it a crafted feel.
+
+   Delay is carried by --stagger-index, set once per item in the markup, so the
+   rule scales to any list length without a chain of :nth-child selectors.
+
+   Only opacity and transform animate — both compositor-only, so this stays
+   smooth on mid-range phones.
+   --------------------------------------------------------------------------- */
+
+.reveal[data-reveal-state="visible"] [data-stagger] {
+  animation: reveal-in 600ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--stagger-index, 0) * 70ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal[data-reveal-state="visible"] [data-stagger] {
+    animation: none;
+  }
+}

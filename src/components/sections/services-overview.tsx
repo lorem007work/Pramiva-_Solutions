@@ -51,7 +51,11 @@ export function ServicesOverview() {
           const number = String(index + 1).padStart(2, "0");
 
           return (
-            <li key={service.title}>
+            <li
+              key={service.title}
+              data-stagger
+              style={{ "--stagger-index": index } as React.CSSProperties}
+            >
               <Link
                 href="/services"
                 className="group flex h-full flex-col rounded-2xl border border-line bg-canvas p-8 transition-[border-color,transform] duration-300 hover:border-ink-subtle motion-safe:hover:-translate-y-1 motion-safe:active:scale-[0.99]"

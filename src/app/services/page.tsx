@@ -64,16 +64,32 @@ export default function ServicesPage() {
                   </h3>
                 </div>
 
-                <ul className="grid gap-block sm:grid-cols-2 md:col-span-8 lg:col-span-9">
+                {/*
+                  Editorial rows, not a card grid.
+
+                  The groups hold 3, 2 and 1 services. In the previous
+                  two-column card grid that left the third card of group 01
+                  alone on its own row and "Future direction" sitting beside a
+                  large void, so the page read as though a card were missing.
+
+                  Full-width rows cannot go ragged at any group size, and they
+                  use the container width the cards were wasting: each
+                  description now runs on one or two lines instead of four.
+                */}
+                <ul className="md:col-span-8 lg:col-span-9">
                   {group.services.map((service) => (
                     <li
                       key={service.title}
-                      className="rounded-2xl border border-line bg-canvas p-8"
+                      className="group border-b border-line py-block first:pt-0 last:border-b-0 last:pb-0"
                     >
-                      <h4 className="text-h3">{service.title}</h4>
-                      <p className="mt-4 max-w-[65ch] text-ink-muted">
-                        {service.description}
-                      </p>
+                      <div className="grid gap-4 md:grid-cols-12">
+                        <h4 className="text-h3 transition-colors duration-150 group-hover:text-brand md:col-span-5">
+                          {service.title}
+                        </h4>
+                        <p className="max-w-[65ch] text-ink-muted md:col-span-7">
+                          {service.description}
+                        </p>
+                      </div>
                     </li>
                   ))}
                 </ul>
