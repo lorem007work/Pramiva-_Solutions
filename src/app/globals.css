@@ -300,5 +300,8 @@ p {
   z-index: -1;
   pointer-events: none;
   background-color: inherit;
-  opacity: 0.72;
+  /* 0.55 rather than 0.72: the supplied artwork is already near-black where
+     text sits, so a heavier scrim only hid the arcs without buying contrast.
+     Measured on the rendered page after the change - see the commit. */
+  opacity: 0.55;
 }

@@ -38,13 +38,15 @@ export function Hero() {
 
   return (
     <Section
+      tone="ink"
+      backgroundImage="/images/brand/hero-bg.webp"
       aria-labelledby="home-hero-title"
       className="relative overflow-hidden"
       containerClassName="relative"
     >
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="relative z-10 lg:col-span-9">
-          <p className="text-eyebrow uppercase text-ink-subtle">
+          <p className="text-eyebrow uppercase text-line-strong">
             {site.descriptor}
           </p>
 
@@ -64,18 +66,20 @@ export function Hero() {
         </div>
 
         <div className="lg:col-span-8">
-          <p className="max-w-[60ch] text-lead text-ink-muted">
+          <p className="max-w-[60ch] text-lead text-canvas/70">
             {site.summary}
           </p>
 
           <div className="mt-block">
-            <Button href={primaryCta.href}>{primaryCta.label}</Button>
+            <Button href={primaryCta.href} variant="inverse">
+              {primaryCta.label}
+            </Button>
           </div>
         </div>
       </div>
 
       <figure className="mt-section-sm">
-        <div className="overflow-hidden rounded-2xl border border-line">
+        <div className="overflow-hidden rounded-2xl border border-canvas/15">
           <Image
             src={photo.src}
             alt={photo.alt}
@@ -86,7 +90,7 @@ export function Hero() {
             className="w-full object-cover"
           />
         </div>
-        <figcaption className="mt-4 text-sm text-ink-subtle">
+        <figcaption className="mt-4 text-sm text-canvas/60">
           {photo.caption}
         </figcaption>
       </figure>

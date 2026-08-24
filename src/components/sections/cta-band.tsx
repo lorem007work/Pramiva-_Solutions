@@ -21,6 +21,7 @@ export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
   return (
     <Section
       tone="ink"
+      backgroundImage="/images/brand/cta-bg.webp"
       spacing="compact"
       reveal
       aria-labelledby={id}
