@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/cta-band";
+import { Team } from "@/components/sections/team";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { about } from "@/data/about";
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
  * About page. Content stays server-rendered; Section adds a narrow Reveal
  * boundary around selected below-the-fold content.
  *
- * Confirmed facts only. The values cards and the capability statement were
- * removed on 2026-08-24; see data/about.ts for why each went.
+ * Team photographs are included for local review. Client names, internal
+ * process copy and induction-derived values remain outside the public page.
  */
 export default function AboutPage() {
   const { header, story, vision, cta } = about;
@@ -70,6 +71,8 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <Team />
+
       <Section
         tone="ink"
         reveal
@@ -81,7 +84,7 @@ export default function AboutPage() {
             {vision.eyebrow}
           </p>
           <p aria-hidden="true" className="text-h2 text-accent">
-            02
+            03
           </p>
         </div>
 

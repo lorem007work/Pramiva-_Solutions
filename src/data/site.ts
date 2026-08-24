@@ -7,10 +7,8 @@
  *  - `grep -rn "PLACEHOLDER:" src/` must return nothing before launch.
  *
  * Everything not marked PLACEHOLDER below was confirmed for publication on
- * 2026-08-24. The confidential list from the same instruction — client
- * relationships, how work is divided, offshore or cost framing, internal
- * workflows, the academy, team size — must never appear in this file or any
- * other. It is not a matter of wording; those subjects do not go on the site.
+ * 2026-08-24. Client relationships, internal workflows, academy rules and
+ * employee counts remain outside public source unless separately approved.
  */
 
 export const site = {

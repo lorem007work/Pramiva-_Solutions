@@ -3,20 +3,9 @@ import { site } from "@/data/site";
 /**
  * About page copy.
  *
- * Rewritten 2026-08-24 against the confirmed information set. Two blocks were
- * deleted outright rather than reworded:
- *
- *  - The **anonymised capability statement** — "six consumer brands ... for an
- *    Australian partner". Client relationships are confidential in any form,
- *    named or not, so there is no version of that sentence that can ship.
- *  - The **values cards** — honesty, pride in work, clear communication. They
- *    came from induction material, they are not in the confirmed set, and
- *    induction material is not a source of public copy. Q28 stays open; if
- *    management approves wording, the block comes back.
- *
- * Everything below is confirmed fact: business type, founding year, location,
- * markets, the vision and the motto. No benefits, no results, no claims about
- * how the work is performed.
+ * The public page uses confirmed company facts and genuine team photographs.
+ * Client relationships, internal workflows, induction rules and employee
+ * counts remain omitted pending separate publication approval.
  */
 
 export const about = {
@@ -36,14 +25,42 @@ export const about = {
     ],
   },
 
+  people: {
+    eyebrow: "02 — Our people",
+    title: "The people behind the work.",
+    description: `Meet the team working from ${site.location}.`,
+    photos: {
+      /**
+       * Re-cropped from the full-resolution original, not from an existing
+       * downsample. Captions describe what is actually in the frame: this is a
+       * team meal with laptops, not a boardroom, and saying otherwise would be
+       * inventing a scene onto a real photograph.
+       */
+      main: {
+        src: "/images/team/team-table.webp",
+        width: 1600,
+        height: 767,
+        alt: "The team seated along a long wooden table with laptops, in a warm room with tall shuttered windows",
+        caption: "Team members together in Lalitpur.",
+      },
+      culture: {
+        src: "/images/team/team-rooftop.webp",
+        width: 620,
+        height: 750,
+        alt: "Part of the team around a rooftop table, with the Kathmandu valley behind them",
+        caption: "Team members together on a rooftop.",
+      },
+    },
+  },
+
   vision: {
-    eyebrow: "02 — Vision",
+    eyebrow: "03 — Vision",
     /** CONFIRMED — verbatim. Do not paraphrase or shorten. */
     statement: site.vision,
   },
 
   cta: {
-    eyebrow: "03 — Start a conversation",
+    eyebrow: "04 — Start a conversation",
     title: "Tell us what you need handled.",
     description:
       "Send an enquiry and we will come back to you with a practical next step.",

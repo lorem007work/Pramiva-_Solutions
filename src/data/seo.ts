@@ -34,6 +34,11 @@ export const seo: Record<string, RouteSeo> = {
     description:
       "Digital marketing, customer systems and customer service for businesses in Nepal and internationally.",
   },
+  careers: {
+    title: "Careers",
+    description:
+      "Join a young, growing business and operations team in Lalitpur, Nepal.",
+  },
   contact: {
     title: "Contact",
     description: "Send an enquiry or find our contact details.",

@@ -26,7 +26,11 @@ export const metadata: Metadata = {
     siteName: site.name,
     type: "website",
     locale: "en",
+    // JPEG, not PNG or WebP: every OG consumer supports it, LinkedIn does not
+    // reliably render WebP, and platforms composite on white so alpha is moot.
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: site.name }],
   },
+  twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
