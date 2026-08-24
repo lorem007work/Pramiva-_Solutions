@@ -106,22 +106,21 @@ Suited to an About or Culture page. Low publication risk — these assert nothin
 
 ---
 
-## 5. Services — `[DRAFT]`
+## 5. Services — `[CONFIRMED]` ✅
 
-Matches the list already in brief §3, with clearer grouping. Each line needs a Yes/No plus approved wording from the manager (Questionnaire A5).
+Approved by management on 2026-08-24. Keep these descriptions concise; do not expand them into benefits, performance claims, or internal process detail without a new approval.
 
 ### Digital marketing
-- Search & content marketing
-- Social media management
-- Paid advertising — Google and Facebook campaign management
+- **Search and content marketing** — Create useful, search-friendly content that helps people discover and understand a business online.
+- **Social media management** — Plan, publish and manage social content that keeps a business active and connected with its audience.
+- **Google and Facebook paid advertising** — Set up and manage targeted advertising campaigns across Google and Facebook to reach relevant audiences.
 
-### Operations & customer support
-- Customer system setup & management (CRM)
-- Multi-channel customer service — phone, text, email
-- Back-office administration — admin tasks, reporting, operational support
+### Customer systems and service
+- **Customer-system setup and management** — Set up and maintain customer systems so contact details, conversations and follow-up information stay organised.
+- **Customer service through calls, text and email** — Handle customer enquiries through calls, text and email with clear, professional communication.
 
-### In development
-- AI and automation solutions, to make client businesses faster and smarter
+### Future direction
+- **AI and automation solutions** — A future service direction focused on practical AI and automation for suitable business tasks.
 
 **Note the tension with §7 below:** the company sells AI and automation services while its own training academy bans AI tools during assessments. Both positions are defensible, but they should not appear on the same website without a sentence reconciling them.
 
@@ -201,7 +200,7 @@ Two cautions before this goes on a public page:
 
 ## 8. What this changes
 
-**Now answerable without the manager** — Q2 partially (Nepal-based, serving Australia/international), Q5 draft list, Q6 draft description, plus values and academy content.
+**Confirmed by the manager** — Q5: six public service titles, concise descriptions and the short Services overview (2026-08-24).
 
 **New blockers created** — the name spelling (§1), which outranks every other open question, and the client-brand disclosure decision (§6).
 

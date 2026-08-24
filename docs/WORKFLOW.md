@@ -85,6 +85,7 @@ Branch per phase, merge to `main` on green.
 - [ ] Send WhatsApp Message 2 once Message 1 is answered
 - [ ] Get the registration certificate photo (Q0)
 - [ ] Get a decision on naming client brands (Q24)
+- [x] Confirm Q5 public service titles and concise descriptions (2026-08-24)
 - [ ] Update [PRD.md](PRD.md) tags as answers arrive
 
 **Exit check:** Q5 and Q6 confirmed. Phase 2 can start without the rest — the induction material supplies working answers for goal, audience and services.
@@ -151,7 +152,7 @@ Build in this order — each depends on the last:
 |---|---|---|
 | 4.1 | Hero | ✅ Complete — text LCP, no layout shift. |
 | 4.2 | Positioning statement | ✅ Complete — editorial layout, copy remains a visible Q6 placeholder. |
-| 4.3 | Services overview | ✅ Complete — seven data-led cards; Q5 copy remains visibly placeholdered. |
+| 4.3 | Services overview | ✅ Complete — six data-led cards; Q5 titles and concise descriptions approved 2026-08-24. |
 | 4.4 | Why Pramiva | ✅ Complete — four approved differentiators; client names remain anonymised pending Q24. |
 | 4.5 | Process | ✅ Complete — four-step assumed working model, pending management review. |
 | 4.6 | Company intro | ✅ Complete — draft company story from supplied context; Q6 approval pending. |
@@ -176,7 +177,7 @@ Built with no new one-off components: each route composes `Section`, `SectionHea
 Decisions taken during the phase, for the record:
 
 - About copy is drafted from [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §3, §4 and §6 Option A so management corrects sentences instead of composing them. All of it is `[DRAFT]`. Values wording created **Q28**.
-- Service descriptions stay visible placeholders. Q5 asks management for the exact approved wording, and a service description is the company's public commercial offer — the one class of sentence this project does not draft on its behalf.
+- Q5 was approved on 2026-08-24: six public service titles, concise descriptions and the short Services overview. The descriptions remain intentionally brief and make no performance claims.
 - PRD §5.3 also lists "benefits" and a process block for `/services`. Benefits are omitted, because every benefit line would be an unapproved performance claim. The working model is presented once, on the homepage, rather than duplicated.
 - `/contact` carries no closing CTA band — the site's single primary action already points at that page.
 

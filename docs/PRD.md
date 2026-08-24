@@ -128,7 +128,7 @@ Deferred to v2: Insights/Blog, individual service pages, named case studies.
 | 1 | Navigation | `[CONFIRMED]` structure | Sticky, 4 links + CTA, keyboard-navigable, mobile drawer |
 | 2 | Hero | `[BLOCKED]` copy (Q6) | Display headline, one supporting line, primary CTA. LCP element. No layout shift. |
 | 3 | Positioning statement | `[BLOCKED]` copy (Q6) | One large editorial statement — what the company does, in the company's words |
-| 4 | Services overview | `[BLOCKED]` list (Q5) | Grid of approved service categories, each linking to `/services` |
+| 4 | Services overview | `[CONFIRMED]` copy — 2026-08-24 | Grid of six approved services, each linking to `/services` |
 | 5 | Why Pramiva | `[CONFIRMED]` copy — 2026-08-24 | Four approved differentiators. Client names remain anonymised pending Q24. |
 | 6 | Metrics | `[BLOCKED]` (Q — see §9) | **Omit entirely unless verified numbers are supplied.** A fake stat is worse than no stat. |
 | 7 | Process | `[ASSUMED]` | 3–4 step working approach |
@@ -140,7 +140,7 @@ Deferred to v2: Insights/Blog, individual service pages, named case studies.
 Company introduction, story, mission, vision, values, approach. Team section only if photographs and approval exist (Q17, Q20). All copy `[BLOCKED]`.
 
 ### 5.3 Services
-Intro, service categories, per-service description, benefits, process, CTA. Service list `[BLOCKED]` on Q5 — **services must come from approved company material, never invented.**
+Intro, service categories, per-service description and CTA. Service titles, concise descriptions and the overview are `[CONFIRMED]` — 2026-08-24. Benefits remain omitted because they would introduce unapproved performance claims; public internal-process content is out of scope.
 
 ### 5.4 Contact
 Heading, short intro, form, email, phone, address, social links, map only if an address is confirmed. Details `[BLOCKED]` on Q7–Q11.
@@ -225,7 +225,7 @@ Owner is management unless stated. Full text and suggested defaults in [MANAGER-
 | 2 | Target audience / markets / industries | Tone, compliance, copy | Blocker |
 | 3 | Required pages | Sitemap, nav, routing | Blocker |
 | 4 | Primary CTA wording | Every page | Blocker |
-| 5 | Publicly advertisable services + approved wording | Services page, Home §4 | Blocker |
+| 5 | Publicly advertisable services + approved wording | ANSWERED ✅ — six titles, concise descriptions and overview approved 2026-08-24 | Resolved |
 | 6 | Approved company description | Hero, About, JSON-LD | Blocker |
 | 7 | Display email | Footer, Contact | Blocker |
 | 8 | Display phone | Footer, Contact | Blocker |

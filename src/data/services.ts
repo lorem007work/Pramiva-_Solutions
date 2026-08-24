@@ -10,10 +10,9 @@
  * the wording describes how work is divided with clients, which is
  * confidential.
  *
- * DESCRIPTIONS remain placeholders pending Q5. A service description is the
- * company's public commercial offer and the one class of sentence this project
- * does not draft on management's behalf — Q5 asks for the exact approved
- * wording, so writing our own would pre-empt the question being asked.
+ * DESCRIPTIONS are CONFIRMED (2026-08-24). They are deliberately concise: do
+ * not expand them into benefits, performance claims, or internal process detail
+ * without a new approval.
  */
 
 export type Service = {
@@ -32,15 +31,18 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Search and content marketing",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "Create useful, search-friendly content that helps people discover and understand a business online.",
       },
       {
         title: "Social media management",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "Plan, publish and manage social content that keeps a business active and connected with its audience.",
       },
       {
         title: "Google and Facebook paid advertising",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "Set up and manage targeted advertising campaigns across Google and Facebook to reach relevant audiences.",
       },
     ],
   },
@@ -49,11 +51,13 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Customer-system setup and management",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "Set up and maintain customer systems so contact details, conversations and follow-up information stay organised.",
       },
       {
         title: "Customer service through calls, text and email",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "Handle customer enquiries through calls, text and email with clear, professional communication.",
       },
     ],
   },
@@ -62,7 +66,8 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "AI and automation solutions",
-        description: "PLACEHOLDER: approved service description (Q5)",
+        description:
+          "A future service direction focused on practical AI and automation for suitable business tasks.",
       },
     ],
   },
