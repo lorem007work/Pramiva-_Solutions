@@ -3,10 +3,7 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
 import { footerNav } from "@/data/navigation";
 import { site } from "@/data/site";
-
-function isPlaceholder(value: string) {
-  return value.startsWith("PLACEHOLDER:");
-}
+import { isPlaceholder } from "@/lib/utils";
 
 export function Footer() {
   return (

@@ -7,6 +7,7 @@ import { MobileMenu } from "@/components/layout/mobile-menu";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
 import type { NavLink } from "@/data/navigation";
+import { isCurrentPath } from "@/lib/utils";
 
 type NavbarProps = {
   siteName: string;
@@ -35,7 +36,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
             <nav aria-label="Primary">
               <ul className="flex items-center gap-7">
                 {links.map((link) => {
-                  const isCurrent = pathname === link.href;
+                  const isCurrent = isCurrentPath(pathname, link.href);
                   return (
                     <li key={link.href}>
                       <Link

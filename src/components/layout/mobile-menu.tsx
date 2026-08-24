@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import type { NavLink } from "@/data/navigation";
+import { isCurrentPath } from "@/lib/utils";
 
 type MobileMenuProps = {
   isOpen: boolean;
@@ -103,7 +104,7 @@ export function MobileMenu({
         <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center">
           <ul className="divide-y divide-line border-y border-line">
             {links.map((link, index) => {
-              const isCurrent = pathname === link.href;
+              const isCurrent = isCurrentPath(pathname, link.href);
               return (
                 <li key={link.href}>
                   <Link

@@ -5,6 +5,7 @@ import { PositioningStatement } from "@/components/sections/positioning-statemen
 import { Process } from "@/components/sections/process";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { WhyPramiva } from "@/components/sections/why-pramiva";
+import { homepage } from "@/data/homepage";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <WhyPramiva />
       <Process />
       <CompanyIntro />
-      <CtaBand />
+      <CtaBand id="home-cta-title" {...homepage.cta} />
     </main>
   );
 }
