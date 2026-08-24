@@ -333,3 +333,59 @@ p {
   --tone-muted: color-mix(in oklab, var(--color-canvas) 72%, transparent);
   --tone-border: color-mix(in oklab, var(--color-canvas) 15%, transparent);
 }
+
+/* ---------------------------------------------------------------------------
+   Hero entrance.
+
+   The hero is above the fold, so it cannot use the scroll reveal — there is no
+   scroll event to wait for. It animates on load instead, staggered so the
+   section assembles rather than appearing as one slab.
+
+   `both` fill mode holds the from-state before the delay elapses, which is
+   what stops a flash of finished layout on a fast connection.
+
+   Deliberately short: 500ms with a 90ms step means the last element has landed
+   inside a second. A hero a visitor has to wait through is worse than one that
+   simply appears — this is polish, not a performance.
+   --------------------------------------------------------------------------- */
+
+[data-hero-step] {
+  animation: hero-in 500ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--hero-step, 0) * 90ms);
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The artwork settles rather than sliding, so the type stays the subject. */
+.hero-ground {
+  animation: hero-ground-in 1200ms var(--ease-out-expo) both;
+}
+
+@keyframes hero-ground-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-step],
+  .hero-ground {
+    animation: none;
+  }
+}
