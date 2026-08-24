@@ -70,9 +70,15 @@
      Section rhythm is the main carrier of "premium" in this design.
      Only <Section> applies these; individual sections never set their own.   */
 
-  --spacing-section: clamp(5rem, 12vw, 10rem);
-  --spacing-section-sm: clamp(3rem, 7vw, 5rem);
-  --spacing-block: clamp(1.5rem, 3vw, 2.5rem);
+  /* Tightened 2026-08-24. At clamp(5rem, 12vw, 10rem) a desktop viewport put
+     160px above AND below every section — 320px of blank between one heading
+     and the next. With a single short paragraph per section that reads as
+     missing content rather than as deliberate space. The copy is
+     approval-limited and cannot simply be expanded, so the rhythm tightens to
+     suit the content that actually exists. */
+  --spacing-section: clamp(3.5rem, 8vw, 7rem);
+  --spacing-section-sm: clamp(2.5rem, 5vw, 4rem);
+  --spacing-block: clamp(1.25rem, 2.5vw, 2rem);
 
   --container-page: 1280px;
 
@@ -189,4 +195,79 @@ p {
   .reveal[data-reveal-state="visible"] [data-stagger] {
     animation: none;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Rich section grounds.
+
+   Flat #0A0A0A reads as cheap at full-bleed size — there is nothing for the
+   eye to travel across. Depth here is GENERATED, not photographed: two wide
+   radial washes pulled from the brand palette, plus a fine grain overlay.
+
+   Generated rather than sourced on purpose. Background photography would mean
+   either stock (ruled out by the brief) or third-party images we have no
+   licence to publish. These cost one gradient declaration, carry no licensing
+   risk, scale to any viewport, and stay crisp on every display.
+
+   The grain is an inline SVG turbulence filter as a data URI, so it adds no
+   request and cannot 404. At 3.5% opacity it is invisible as texture but stops
+   large colour fields from banding on 8-bit panels — the detail that separates
+   an expensive-looking gradient from a cheap one.
+   --------------------------------------------------------------------------- */
+
+.ground {
+  position: relative;
+  isolation: isolate;
+}
+
+.ground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Near-black, lifted by a teal wash top-left and a green one bottom-right. */
+.ground-ink {
+  background-color: var(--color-ink);
+  background-image:
+    radial-gradient(
+      70rem 45rem at 12% -15%,
+      color-mix(in oklab, var(--color-brand) 55%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      55rem 40rem at 105% 115%,
+      color-mix(in oklab, var(--color-accent) 30%, transparent),
+      transparent 68%
+    );
+}
+
+/* Deep brand teal. White body copy on this sits at 7.4:1 — AAA. */
+.ground-brand {
+  background-color: var(--color-brand-deep);
+  background-image:
+    radial-gradient(
+      65rem 45rem at 85% -20%,
+      color-mix(in oklab, var(--color-accent) 42%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      50rem 35rem at -10% 110%,
+      color-mix(in oklab, var(--color-ink) 45%, transparent),
+      transparent 65%
+    );
+}
+
+/* Barely-there tint so light sections are not plain #FAFAFA either. */
+.ground-surface {
+  background-color: var(--color-surface);
+  background-image: radial-gradient(
+    60rem 40rem at 90% 0%,
+    color-mix(in oklab, var(--color-brand) 7%, transparent),
+    transparent 60%
+  );
 }

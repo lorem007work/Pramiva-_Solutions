@@ -7,7 +7,7 @@ export function PositioningStatement() {
 
   return (
     <Section
-      tone="ink"
+      tone="brand"
       reveal
       aria-labelledby="home-positioning-title"
       className="overflow-hidden"

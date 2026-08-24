@@ -85,23 +85,22 @@ export default function ContactPage() {
               </dd>
             </div>
 
-            <div className="border-t border-line pt-4">
-              <dt className="text-eyebrow uppercase text-ink-subtle">
-                {details.labels.phone}
-              </dt>
-              <dd className="mt-2 break-words">
-                {isPlaceholder(site.phone) ? (
-                  <span className="text-ink-muted">{site.phone}</span>
-                ) : (
+            {/* Omitted while unanswered — see the note in layout/footer.tsx. */}
+            {!isPlaceholder(site.phone) && (
+              <div className="border-t border-line pt-4">
+                <dt className="text-eyebrow uppercase text-ink-subtle">
+                  {details.labels.phone}
+                </dt>
+                <dd className="mt-2 break-words">
                   <a
                     href={`tel:${site.phone}`}
                     className="inline-flex min-h-11 items-center text-ink transition-colors duration-150 hover:text-brand"
                   >
                     {site.phone}
                   </a>
-                )}
-              </dd>
-            </div>
+                </dd>
+              </div>
+            )}
 
             <div className="border-t border-line pt-4">
               <dt className="text-eyebrow uppercase text-ink-subtle">
