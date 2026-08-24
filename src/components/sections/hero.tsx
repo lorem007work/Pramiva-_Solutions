@@ -104,7 +104,16 @@ export function Hero() {
         {serviceGroups.map((group, index) => (
           <li
             key={group.heading}
-            className="border-[color:var(--tone-border)] py-6 sm:border-l sm:first:border-l-0 sm:px-6 sm:first:pl-0"
+            /*
+              Separators switch axis with the layout. Below sm the items stack,
+              so the divider has to be a rule between rows; only the first is
+              exempt, because the list already carries a top border. From sm
+              they sit side by side and the divider becomes vertical.
+
+              Without the mobile case the three items ran together as one
+              undifferentiated block on a phone.
+            */
+            className="border-t border-[color:var(--tone-border)] py-6 first:border-t-0 sm:border-t-0 sm:border-l sm:first:border-l-0 sm:px-6 sm:first:pl-0"
           >
             <span aria-hidden="true" className="text-eyebrow text-accent">
               {String(index + 1).padStart(2, "0")}
