@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
 import { footerNav } from "@/data/navigation";
 import { site } from "@/data/site";
@@ -13,8 +14,12 @@ export function Footer() {
       <Container className="py-section-sm">
         <div className="grid gap-12 border-b border-canvas/15 pb-section-sm md:grid-cols-12">
           <div className="md:col-span-5">
-            <Link href="/" className="text-h3 text-canvas hover:text-brand">
-              {site.name}
+            <Link
+              href="/"
+              aria-label={`${site.name} home`}
+              className="inline-flex transition-opacity duration-150 hover:opacity-80"
+            >
+              <BrandLogo inverted className="h-auto w-44 sm:w-52" />
             </Link>
             <p className="mt-4 max-w-sm text-canvas/70">{site.tagline}</p>
           </div>

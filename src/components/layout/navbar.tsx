@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
 import type { NavLink } from "@/data/navigation";
 
@@ -25,17 +26,9 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
           <Link
             href="/"
             aria-label={`${siteName} home`}
-            className="group inline-flex shrink-0 items-center gap-3"
+            className="inline-flex shrink-0 transition-opacity duration-150 hover:opacity-80"
           >
-            <span
-              aria-hidden="true"
-              className="relative block h-9 w-9 rounded-full border-[3px] border-brand transition-colors duration-150 group-hover:border-brand-deep"
-            >
-              <span className="absolute inset-1 rounded-full border-2 border-accent border-r-transparent" />
-            </span>
-            <span className="text-lg font-medium tracking-tight text-brand-deep">
-              {siteName}
-            </span>
+            <BrandLogo className="h-auto w-36 sm:w-44" />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
