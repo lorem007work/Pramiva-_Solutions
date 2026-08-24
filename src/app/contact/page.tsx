@@ -109,6 +109,21 @@ export default function ContactPage() {
               </dt>
               <dd className="mt-2 break-words text-ink-muted">
                 {site.address}
+                {/*
+                  A link, deliberately not an embedded map. An iframe would pull
+                  third-party Google cookies into the page, which creates a
+                  consent obligation for any EU visitor and costs a request the
+                  static export cannot optimise away. The link gives a visitor
+                  the same directions with none of that.
+                */}
+                <a
+                  href={site.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-brand underline-offset-4 hover:underline"
+                >
+                  View on map
+                </a>
               </dd>
             </div>
           </dl>

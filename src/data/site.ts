@@ -48,12 +48,26 @@ export const site = {
   vision:
     "To help businesses everywhere grow smarter, by combining real-world experience with innovative solutions.",
 
-  /** Q7 answered 2026-08-24 — mailbox created on the domain. */
+  /**
+   * Q7 and Q10 answered 2026-08-24 — mailbox created on the domain, and the
+   * same address both displays publicly and receives enquiries.
+   */
   email: "support@pramivasolutions.com.np",
   phone: "PLACEHOLDER: display phone number (Q8)",
 
-  /** The city is confirmed; the street address is not. */
-  address: "PLACEHOLDER: full postal address in Lalitpur (Q27)",
+  /**
+   * Q27 answered 2026-08-24 from the company's Google Business Profile.
+   *
+   * Google lists this as "M887+FMH, Damodar Marg, Lalitpur 44600". The leading
+   * token is a Plus Code — a geocoded grid reference, not a street number. It
+   * is machine-readable rather than human-readable, so it is omitted from the
+   * displayed line and carried by `mapUrl` instead, which is what a visitor
+   * actually needs to find the office.
+   */
+  address: "Damodar Marg, Lalitpur 44600, Nepal",
+
+  /** The company's own Google Business Profile listing. */
+  mapUrl: "https://share.google/Bf6ujO5DWbSeZ70f5",
 
   /** Baked into canonical URLs and the sitemap AT BUILD TIME. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
