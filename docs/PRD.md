@@ -129,7 +129,7 @@ Deferred to v2: Insights/Blog, individual service pages, named case studies.
 | 2 | Hero | `[BLOCKED]` copy (Q6) | Display headline, one supporting line, primary CTA. LCP element. No layout shift. |
 | 3 | Positioning statement | `[BLOCKED]` copy (Q6) | One large editorial statement — what the company does, in the company's words |
 | 4 | Services overview | `[BLOCKED]` list (Q5) | Grid of approved service categories, each linking to `/services` |
-| 5 | Why Pramiva | `[BLOCKED]` copy | 3–4 differentiators. No unverifiable superlatives. |
+| 5 | Why Pramiva | `[CONFIRMED]` copy — 2026-08-24 | Four approved differentiators. Client names remain anonymised pending Q24. |
 | 6 | Metrics | `[BLOCKED]` (Q — see §9) | **Omit entirely unless verified numbers are supplied.** A fake stat is worse than no stat. |
 | 7 | Process | `[ASSUMED]` | 3–4 step working approach |
 | 8 | Company intro | `[BLOCKED]` copy (Q6) | Short paragraph + link to About |
