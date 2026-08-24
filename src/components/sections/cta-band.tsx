@@ -22,6 +22,8 @@ export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
     <Section
       tone="ink"
       backgroundImage="/images/brand/cta-bg.webp"
+      /* Compact band, so the crop is severe - aim it at the bright corner. */
+      backgroundPosition="right bottom"
       spacing="compact"
       reveal
       aria-labelledby={id}

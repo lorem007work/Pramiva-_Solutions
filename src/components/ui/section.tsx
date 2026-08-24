@@ -19,6 +19,15 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
    * lives in the CSS rather than in whoever briefs the artwork.
    */
   backgroundImage?: string;
+  /**
+   * Which part of the artwork stays visible once `cover` crops it.
+   *
+   * This matters more than it looks. The generated frames are 16:9, but a
+   * compact band can be 4.8:1 - so `cover` keeps a thin horizontal slice and
+   * discards most of the composition. Pointing the crop at where the arcs
+   * actually are is the difference between artwork and a smear.
+   */
+  backgroundPosition?: string;
 };
 
 /**
@@ -51,6 +60,7 @@ export function Section({
   spacing = "default",
   reveal = false,
   backgroundImage,
+  backgroundPosition,
   style,
   ...props
 }: SectionProps) {
@@ -68,6 +78,7 @@ export function Section({
           ? ({
               ...style,
               "--ground-image": `url(${backgroundImage})`,
+              ...(backgroundPosition ? { backgroundPosition } : null),
             } as React.CSSProperties)
           : style
       }

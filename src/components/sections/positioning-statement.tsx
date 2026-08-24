@@ -9,6 +9,8 @@ export function PositioningStatement() {
     <Section
       tone="brand"
       backgroundImage="/images/brand/vision-bg.webp"
+      /* This frame carries its arcs on the left. */
+      backgroundPosition="left center"
       reveal
       aria-labelledby="home-positioning-title"
       className="overflow-hidden"

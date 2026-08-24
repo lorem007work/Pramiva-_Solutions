@@ -33,6 +33,8 @@ export function Hero() {
     <Section
       tone="ink"
       backgroundImage="/images/brand/hero-bg.webp"
+      /* Arcs live on the right of this frame; keep them when height crops. */
+      backgroundPosition="right center"
       aria-labelledby="home-hero-title"
       className="hero-ground relative flex min-h-[calc(100svh-5rem)] overflow-hidden"
       containerClassName="flex w-full flex-col justify-between gap-section-sm"
