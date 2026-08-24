@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "inverse" | "ghost";
 
 type CommonProps = {
   children: ReactNode;
@@ -23,6 +23,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: "bg-ink text-canvas hover:bg-brand",
   secondary:
     "border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-canvas",
+  inverse: "bg-canvas text-ink hover:bg-line",
   ghost: "text-ink underline-offset-4 hover:text-brand",
 };
 

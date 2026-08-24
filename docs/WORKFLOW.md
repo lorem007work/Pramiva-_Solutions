@@ -124,7 +124,7 @@ Build in this order — each depends on the last:
 
 ---
 
-### Phase 4 — Homepage ← YOU ARE HERE
+### Phase 4 — Homepage ✅ COMPLETE
 
 **Branch:** `feat/homepage`
 
@@ -138,7 +138,7 @@ Build in this order — each depends on the last:
 | 4.4 | Why Pramiva | ✅ Complete — four approved differentiators; client names remain anonymised pending Q24. |
 | 4.5 | Process | ✅ Complete — four-step assumed working model, pending management review. |
 | 4.6 | Company intro | ✅ Complete — draft company story from supplied context; Q6 approval pending. |
-| 4.7 | CTA band | |
+| 4.7 | CTA band | ✅ Complete — single contact action; working Q4 wording pending approval. |
 
 Metrics section is **omitted** unless Q23 supplies verified numbers.
 
@@ -148,7 +148,7 @@ Metrics section is **omitted** unless Q23 supplies verified numbers.
 
 ---
 
-### Phase 5 — Internal pages
+### Phase 5 — Internal pages ← NEXT
 
 **Branch:** `feat/pages`
 

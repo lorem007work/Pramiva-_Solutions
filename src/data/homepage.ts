@@ -82,4 +82,10 @@ export const homepage = {
     motto: "Think Bold. Build Smart. Scale Fast.",
     ctaLabel: "Learn more about Pramiva",
   },
+  cta: {
+    eyebrow: "07 — Start a conversation",
+    title: "Make more room for growth.",
+    description:
+      "Tell us where your operation needs support, and let’s explore a practical way forward together.",
+  },
 } as const;
