@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { mainNav, primaryCta } from "@/data/navigation";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -38,7 +41,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        {children}
+        <Navbar siteName={site.name} links={mainNav} primaryCta={primaryCta} />
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

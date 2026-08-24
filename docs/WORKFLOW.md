@@ -55,7 +55,7 @@ Branch per phase, merge to `main` on green.
 
 ---
 
-### Phase 1 — Requirements ← YOU ARE HERE
+### Phase 1 — Requirements
 
 **Goal:** Remove the guesswork before any code exists.
 
@@ -105,7 +105,7 @@ Verifying the export works now — rather than at Phase 9 — is the point of th
 
 ---
 
-### Phase 3 — Global components
+### Phase 3 — Global components ← YOU ARE HERE
 
 **Branch:** `feat/layout`
 
