@@ -29,6 +29,21 @@ Measured so far: 168.8 KB gz framework-only at Phase 2 · **179.2 KB gz** at Pha
 
 **8. When a session goes wrong, revert — do not patch.** `git checkout .` and re-prompt with better instructions is faster than debugging generated code you did not write.
 
+**9. Mobile first, and mobile is not an afterthought.** Design and verify every change at **360, 390 and 430 px before desktop**, preserving the desktop layout as you go. Roughly half the audience reads on a phone ([PRD.md](PRD.md) §4), and a desktop-first section reaches mobile as overrides that later have to be unpicked.
+
+Definition of done for a section, not QA for later:
+
+- navigation and drawer accessibility
+- readable typography and spacing
+- card stacking and content order
+- touch targets at least 44×44 px
+- no horizontal overflow
+- visible keyboard focus
+- `prefers-reduced-motion` honoured
+- usable on a mid-range Android and on iOS Safari
+
+Then `npm run lint`, `npm run build`, the responsive browser pass, and a bundle measurement — after *every* mobile-focused change, not at the end of the phase.
+
 ### Session template
 
 Start each session with roughly this:
