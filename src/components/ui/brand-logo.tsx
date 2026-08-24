@@ -15,7 +15,7 @@ export function BrandLogo({
 }: BrandLogoProps) {
   return (
     <Image
-      src="/pramiva-logo.webp"
+      src="/images/brand/pramiva-logo.webp"
       alt=""
       width={640}
       height={213}

@@ -61,7 +61,7 @@ PHPMailer, three files only — no Composer needed, cPanel shared hosting often 
 
 | Asset | Have it? | Owner | Blocks | Priority |
 |---|---|---|---|---|
-| Logo — PNG | ✓ [logo.png](../logo.png), 1536×1024 | — | — | — |
+| Logo — transparent PNG | ✓ [logo.png](../logo.png), 2172×724 | — | — | — |
 | **Logo — SVG or AI** | ✗ | **Manager (Q15)** | Non-blocking, quality impact | **High** |
 | Logo — white/reverse variant | ✗ | Manager | Non-blocking | Medium |
 | Brand colours | ✓ Sampled: `#389970`, `#007B91`, `#324043` | — | — | — |

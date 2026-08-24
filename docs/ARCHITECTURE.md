@@ -85,7 +85,8 @@ pramiva/
 ├── next.config.ts               output: "export" — see §1.1
 ├── public/
 │   ├── logo.svg                 PENDING — awaiting SVG from management (Q15)
-│   ├── logo.png                 Current fallback asset
+│   ├── images/brand/
+│   │   └── pramiva-logo.webp    Optimized transparent web asset
 │   ├── favicon.ico, icon.svg, apple-icon.png
 │   ├── og-image.png
 │   ├── .htaccess                Apache rules — copied to out/ on export
