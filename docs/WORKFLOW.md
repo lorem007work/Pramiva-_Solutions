@@ -21,7 +21,9 @@ These exist because AI-assisted development fails in a specific way: it produces
 
 **5. Stay inside the phase.** If a session starts editing files from a completed phase, stop it. Approved work does not get silently rewritten.
 
-**6. Watch the bundle.** After each build, read the First Load JS figure for `/`. Budget is 100KB. If it jumps, something became a Client Component — find it now, not at launch.
+**6. Watch the bundle.** After each build, read the First Load JS figure for `/`. Budget is **185 KB gzipped** ([PRD.md](PRD.md) §7) — the 100 KB figure this document originally carried predates the framework measurement and is wrong. If it jumps, something became a Client Component — find it now, not at launch.
+
+Measured so far: 168.8 KB gz framework-only at Phase 2 · **179.2 KB gz** at Phase 5, identical on all four routes.
 
 **7. Placeholders stay visible.** Never let an AI fill a gap with realistic-looking invented content. See the `content-guard` skill.
 
@@ -142,13 +144,13 @@ Build in this order — each depends on the last:
 
 Metrics section is **omitted** unless Q23 supplies verified numbers.
 
-**Exit check per session:** renders at all breakpoints · uses only design tokens · not `"use client"` · build passes · First Load JS still under 100KB.
+**Exit check per session:** renders at all breakpoints · uses only design tokens · not `"use client"` · build passes · First Load JS still under 185 KB gz.
 
 **Commits:** `Build homepage hero section`, `Add services overview section`, …
 
 ---
 
-### Phase 5 — Internal pages ✅ BUILT — visual check outstanding
+### Phase 5 — Internal pages ✅ COMPLETE
 
 **Branch:** `feat/pages`
 
@@ -165,7 +167,9 @@ Decisions taken during the phase, for the record:
 
 **Exit check:** all four routes render · no 404 in nav or footer · per-page metadata present · one `h1` per page · build passes.
 
-Verified from `out/`: four routes emitted, exactly one `h1` and one `id="main"` per page, per-page `<title>` and description present, first-load JS 179 KB gz on every route with an identical chunk set — the pages added no client JavaScript. **Still outstanding:** the manual pass at 360/768/1440 and the keyboard run through the new pages.
+Verified from `out/`: four routes emitted, exactly one `h1` and one `id="main"` per page, per-page `<title>` and description present, first-load JS **179.2 KB gz** on every route with an identical chunk set — the pages added no client JavaScript.
+
+Verified in a browser: no horizontal overflow at 360/768/1024/1440/1920 · `aria-current` correct on every route · desktop tab order and visible focus intact · mobile drawer locks scroll, focuses the close button, closes on `Escape` and restores focus to the trigger.
 
 **Commit:** `Add about, services and contact pages`
 
@@ -181,7 +185,9 @@ Verified from `out/`: four routes emitted, exactly one `h1` and one `id="main"` 
 4. Hover states on buttons, cards, links
 5. `providers/smooth-scroll.tsx` — Lenis, within the §5.2 constraints
 
-**Exit check:** First Load JS still under 100KB — *check this specifically, this is the phase that breaks it* · `prefers-reduced-motion` genuinely disables animation and Lenis · anchor links and browser find still work · no jank scrolling on a real mid-range phone · build passes.
+**🔴 Headroom before starting: 5.8 KB.** Phase 5 measured 179.2 KB gz against a 185 KB budget. Framer Motion (via `LazyMotion` + `domAnimation`) and Lenis together were estimated at roughly 8 KB gz — more than what is left. Build and measure after the *smallest* motion integration (step 1 alone, one `<Reveal>` in place) before writing any more of this phase. If step 1 alone breaches the budget, the choice is a lighter approach — IntersectionObserver reveals, CSS scroll-behaviour instead of Lenis — not a bigger budget.
+
+**Exit check:** First Load JS still under 185 KB gz — *check this specifically, this is the phase that breaks it* · `prefers-reduced-motion` genuinely disables animation and Lenis · anchor links and browser find still work · no jank scrolling on a real mid-range phone · build passes.
 
 **Commit:** `Add scroll reveals and micro-interactions`
 
@@ -224,6 +230,7 @@ Send the staging URL for management sign-off (Q20 names the approvers).
 
 **Branch:** `feat/production`
 
+0. **Delete the staging guard from `public/.htaccess`** — the `X-Robots-Tag "noindex, nofollow"` block added when the review build went up. Leaving it in place ships a site search engines are told to ignore. Verify with `curl -I https://<domain>/` after upload: no `X-Robots-Tag` header in the response.
 1. `sitemap.ts`, `robots.ts` — **verify `robots.txt` does not disallow production**
 2. Favicon set + OG image
 3. `Organization` JSON-LD — only if Q6–Q9 answered

@@ -5,6 +5,19 @@
 # enabled. A missing .htaccess is a silent failure: no HTTPS redirect, no 404
 # page, no caching. Verify it after every upload.
 
+# --- 🔴 STAGING GUARD — DELETE AT PHASE 9 -----------------------------------
+# The deployed build still contains PLACEHOLDER text and unapproved [DRAFT]
+# copy. This keeps search engines from indexing it while management reviews the
+# site on the real domain.
+#
+# Removing this block is a numbered step in docs/WORKFLOW.md Phase 9. Do not
+# remove it earlier: an indexed placeholder page outlives the deploy that
+# created it, and getting it out of a search index is far slower than keeping
+# it out.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
 # --- Force HTTPS ------------------------------------------------------------
 RewriteEngine On
 RewriteCond %{HTTPS} off
