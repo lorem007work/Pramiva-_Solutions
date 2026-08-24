@@ -137,7 +137,7 @@ Build in this order — each depends on the last:
 | 4.3 | Services overview | ✅ Complete — seven data-led cards; Q5 copy remains visibly placeholdered. |
 | 4.4 | Why Pramiva | ✅ Complete — four approved differentiators; client names remain anonymised pending Q24. |
 | 4.5 | Process | ✅ Complete — four-step assumed working model, pending management review. |
-| 4.6 | Company intro | |
+| 4.6 | Company intro | ✅ Complete — draft company story from supplied context; Q6 approval pending. |
 | 4.7 | CTA band | |
 
 Metrics section is **omitted** unless Q23 supplies verified numbers.

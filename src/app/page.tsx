@@ -1,3 +1,4 @@
+import { CompanyIntro } from "@/components/sections/company-intro";
 import { Hero } from "@/components/sections/hero";
 import { PositioningStatement } from "@/components/sections/positioning-statement";
 import { Process } from "@/components/sections/process";
@@ -12,6 +13,7 @@ export default function Home() {
       <ServicesOverview />
       <WhyPramiva />
       <Process />
+      <CompanyIntro />
     </main>
   );
 }
