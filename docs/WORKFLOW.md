@@ -105,7 +105,7 @@ Verifying the export works now — rather than at Phase 9 — is the point of th
 
 ---
 
-### Phase 3 — Global components ← YOU ARE HERE
+### Phase 3 — Global components
 
 **Branch:** `feat/layout`
 
@@ -124,7 +124,7 @@ Build in this order — each depends on the last:
 
 ---
 
-### Phase 4 — Homepage
+### Phase 4 — Homepage ← YOU ARE HERE
 
 **Branch:** `feat/homepage`
 
@@ -132,7 +132,7 @@ Build in this order — each depends on the last:
 
 | Session | Section | Note |
 |---|---|---|
-| 4.1 | Hero | LCP element. No layout shift. |
+| 4.1 | Hero | ✅ Complete — text LCP, no layout shift. |
 | 4.2 | Positioning statement | |
 | 4.3 | Services overview | Blocked on Q5 — placeholders until answered |
 | 4.4 | Why Pramiva | |

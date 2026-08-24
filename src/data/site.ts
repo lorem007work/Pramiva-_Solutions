@@ -34,6 +34,9 @@ export const site = {
   /** On the logo, therefore already public. Safe to publish. */
   tagline: "Think Bold. Build Smart. Scale Fast.",
 
+  /** Q6 — the hero structure is final, but management must approve its claim. */
+  heroHeadline: "PLACEHOLDER: approved homepage headline (Q6)",
+
   /**
    * Draft exists in docs/CONTENT-INVENTORY.md §3, built on the company's own
    * "engine room" phrasing. NOT approved — do not publish until Q6 returns.
