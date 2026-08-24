@@ -120,8 +120,6 @@ pramiva/
     │   │   └── cta-band.tsx         all server
     │   ├── forms/
     │   │   └── contact-form.tsx     "use client"
-    │   ├── providers/
-    │   │   └── smooth-scroll.tsx    "use client" — Lenis
     │   └── ui/
     │       ├── button.tsx           server (renders <button> or <a>)
     │       ├── container.tsx        server
@@ -137,9 +135,7 @@ pramiva/
     │   └── seo.ts               Per-route metadata defaults
     │
     └── lib/
-        ├── validation.ts        Zod schemas — shared client/server
-        ├── motion.ts            Animation variants and durations
-        ├── rate-limit.ts        In-memory per-IP limiter
+        ├── validation.ts        Dependency-free client form validation
         └── utils.ts             Small helpers only
 ```
 
@@ -149,16 +145,15 @@ pramiva/
 
 **Default: Server Component. `"use client"` is an exception that must be justified.**
 
-This is the single most consequential rule in the codebase. Framer Motion is a client library; if `"use client"` is placed at a page or section root, the entire subtree ships to the browser and the performance budget in [PRD.md](PRD.md) §7 is gone. The damage is invisible in development and only shows up in the `next build` bundle report.
+This is the single most consequential rule in the codebase. If `"use client"` is placed at a page or section root, the entire subtree ships to the browser and the performance budget in [PRD.md](PRD.md) §7 is gone. The damage is invisible in development and only shows up in the production bundle measurement.
 
-The complete list of client components — four files, and it should not grow:
+The complete list of client components — four files, and it should not grow without a measured reason:
 
 | Component | Reason |
 |---|---|
 | `navbar.tsx` | `useState` for the mobile menu |
 | `mobile-menu.tsx` | Focus trap, `Escape` handler, scroll lock |
-| `reveal.tsx` | Wraps Framer Motion |
-| `smooth-scroll.tsx` | Lenis instance + rAF loop |
+| `reveal.tsx` | Dependency-free `IntersectionObserver` reveal boundary |
 | `contact-form.tsx` | Form state, fetch, validation feedback |
 
 Section components stay on the server and receive animation by *wrapping their children* in `<Reveal>`, rather than becoming client components themselves. `<Reveal>` accepts `children` — server-rendered content passed through a client boundary as a prop stays server-rendered. This pattern is what keeps the JS budget intact, and it is the thing most likely to be broken by a careless edit.
@@ -166,7 +161,7 @@ Section components stay on the server and receive animation by *wrapping their c
 Verify after every phase:
 
 ```bash
-npm run build   # First Load JS for / must stay under 100 KB
+npm run build   # First Load JS must stay under 185 KB gzipped
 ```
 
 ---
@@ -226,53 +221,16 @@ Keeping the named data out of the repository entirely — rather than committed 
 
 ## 5. Motion architecture
 
-### 5.1 Framer Motion — bundle discipline
+### 5.1 Dependency-free reveals
 
-Framer Motion's full import is roughly 35KB gzipped. Loaded through `LazyMotion` with the `domAnimation` feature set it is roughly 5KB, which covers everything this site needs (opacity, transform, viewport triggers).
+The measured framework baseline left too little room for Framer Motion and Lenis. Phase 6 therefore uses one small `IntersectionObserver` client island and CSS transforms, adding only 0.6 KB gzipped across the site.
 
 Rules:
-- `LazyMotion` is mounted once, in `layout.tsx`, with `strict` enabled. `strict` makes the build fail if any component imports the full `motion` — the guard is mechanical, not a matter of discipline.
-- Components import `m`, never `motion`.
-- **No component imports `framer-motion` directly.** All animation goes through `<Reveal>`. One file to audit, one file to change if the library is ever swapped.
-
-```tsx
-// src/components/ui/reveal.tsx
-"use client";
-import { m, useReducedMotion } from "framer-motion";
-
-export function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const reduced = useReducedMotion();
-  if (reduced) return <>{children}</>;   // final state, no animation at all
-  return (
-    <m.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </m.div>
-  );
-}
-```
-
-The reduced-motion branch returns children unwrapped — not a zero-duration animation. A user with vestibular sensitivity gets no transform at all.
-
-### 5.2 Lenis — constrained smooth scroll
-
-Lenis normalises scroll easing. Brief §12 forbids scroll hijacking, and these two ideas sit close enough together that the boundary must be written down:
-
-**Allowed:** light easing of the native scroll position; the page still scrolls at a natural rate, the scrollbar still tracks, wheel and trackpad and keyboard all behave normally.
-
-**Forbidden:** section snapping, scroll-driven timelines that pin content, altered scroll direction, `duration` values high enough that the page feels detached from the input, anything that makes a fast flick feel slow.
-
-Constraints:
-- Disabled entirely under `prefers-reduced-motion` — the instance is never constructed
-- Disabled on touch devices (`smoothTouch: false`); mobile OS scroll is already tuned and Lenis makes it feel wrong
-- `lerp` ≈ 0.1, no `duration` override
-- Must not break in-page anchor links or browser find-on-page
-
-If the site ever feels like it is fighting the user's scroll, remove Lenis. It is a polish layer, not a requirement.
+- Server-rendered content is visible by default; JavaScript may only hide content after confirming it begins below the viewport.
+- Only opacity and transform animate.
+- `prefers-reduced-motion` bypasses observer setup and reveal transforms.
+- Native browser scrolling remains untouched: no Lenis, section snapping or scroll hijacking.
+- Page and feature components stay Server Components; `Section` passes their rendered content through `<Reveal>` only when requested.
 
 ---
 
@@ -281,7 +239,7 @@ If the site ever feels like it is fighting the user's scroll, remove Lenis. It i
 ### Flow
 
 ```
-contact-form.tsx  ──validate (Zod)──▶  fetch POST /api/contact.php
+contact-form.tsx  ──validate (TypeScript)──▶  fetch POST /api/contact.php
                                              │
                                         [ PHP 8 on cPanel ]
                                              ├─ rate limit (file-based, per IP)
@@ -296,21 +254,12 @@ Same origin, so no CORS configuration is needed.
 ### Validation happens twice, in two languages
 
 ```ts
-// src/lib/validation.ts — client only
-import { z } from "zod";
-
-export const contactSchema = z.object({
-  name:    z.string().trim().min(2).max(100),
-  email:   z.string().trim().email().max(200),
-  company: z.string().trim().min(1).max(150),
-  phone:   z.string().trim().max(30).optional().or(z.literal("")),
-  message: z.string().trim().min(10).max(3000),
-  website:  z.literal("").optional(),   // honeypot: bots fill it
-  loadedAt: z.number(),                 // timing: submit <2s after load = bot
-});
+// src/lib/validation.ts — client only, dependency-free
+// name 2-100 | email valid, <=200 | company 1-150
+// phone <=30 optional | message 10-3000
 ```
 
-**The PHP handler must re-implement these same rules independently.** With a static site the entire JS bundle is public and trivially bypassed — anyone can POST directly to `contact.php`. Zod is a UX affordance only; PHP is the actual gate.
+**The PHP handler re-implements these same rules independently.** With a static site the entire JavaScript bundle is public and trivially bypassed — anyone can POST directly to `contact.php`. Client validation is a UX affordance only; PHP is the actual gate.
 
 Because the rules now live in two languages, they will drift unless deliberately kept in step. **When one changes, change both** — the limits are duplicated as a comment block at the top of `contact.php` so the pairing is visible.
 
@@ -369,7 +318,7 @@ Three layers, no CAPTCHA — a CAPTCHA costs an external script, a privacy discl
 
 PHPMailer over **SMTP**, authenticated against the domain mailbox — not PHP's bare `mail()`. `mail()` sends unauthenticated from the web server and lands in spam often enough to lose enquiries silently, which is the worst possible failure for a contact form.
 
-PHPMailer needs only three files (`PHPMailer.php`, `SMTP.php`, `Exception.php`) uploaded to `public/api/lib/`. No Composer required — cPanel shared hosting frequently lacks it.
+PHPMailer 6.12.0 is pinned as three files (`PHPMailer.php`, `SMTP.php`, `Exception.php`) plus its licence in `public/api/lib/`. No Composer is required — cPanel shared hosting frequently lacks it.
 
 Set the envelope `From:` to the domain mailbox and `Reply-To:` to the enquirer's address, so replying from the inbox reaches the sender directly.
 

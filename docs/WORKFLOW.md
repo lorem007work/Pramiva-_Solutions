@@ -209,18 +209,20 @@ Verified in a browser: no horizontal overflow at 360/768/1024/1440/1920 · `aria
 
 ---
 
-### Phase 7 — Contact form
+### Phase 7 — Contact form 🟡 LOCAL IMPLEMENTATION COMPLETE
 
 **Branch:** `feat/contact-form`
 
-1. `lib/validation.ts` — Zod schema (client-side UX only)
-2. `ui/field.tsx` — label/input/error with correct ARIA
-3. `forms/contact-form.tsx` — client state, loading, success, error
-4. `public/api/contact.php` — re-validate independently, honeypot, timing, rate limit
-5. PHPMailer files into `public/api/lib/`
-6. Mail config placed by hand outside `public_html` on the server
+1. ✅ Dependency-free `lib/validation.ts` rules (client-side UX only)
+2. ✅ `ui/field.tsx` label/input/error with correct ARIA
+3. ✅ `forms/contact-form.tsx` client state, loading, persistent success and visible error
+4. ✅ `public/api/contact.php` independent validation, honeypot, timing and file-based rate limit
+5. ✅ PHPMailer 6.12.0 files and licence in `public/api/lib/`
+6. ⏳ Mail config outside `public_html` and live SMTP test — blocked on Q10 and cPanel access
 
-**Exit check:** submits successfully to a real inbox · every validation error reachable and announced · loading state visible · success state persists · a forced failure shows the fallback email · honeypot submission rejected · rate limit triggers on the 6th request · **a direct POST to `contact.php` with invalid data is rejected** · config file confirmed absent from `git status` · build passes.
+**Local check:** every client validation error is reachable and announced · focus moves to the first invalid field · loading and forced-failure states are visible · no overflow at 360/390/430 · contact route 181.9 KB gzipped · PHP and PHPMailer files emit into `out/api/` · build passes.
+
+**Server check still required:** real inbox delivery · persistent success state after confirmed delivery · fallback email after forced SMTP failure · honeypot/timing/rate-limit checks · direct invalid POST rejection. Follow [CONTACT-FORM-DEPLOYMENT.md](CONTACT-FORM-DEPLOYMENT.md).
 
 **This phase must be tested on the server, not locally.** `next dev` does not execute PHP — the handler only runs once uploaded to cPanel.
 

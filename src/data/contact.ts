@@ -5,10 +5,8 @@
  * `site.ts` as placeholders (Q7, Q8, Q27) and are read straight from there, so
  * one answer from management updates the footer and this page together.
  *
- * The enquiry form is Phase 7 (docs/WORKFLOW.md). It needs the PHP handler,
- * shared validation and a real destination inbox (Q10), none of which exist
- * yet. Until then the page reserves the space with a visible placeholder
- * rather than rendering inert inputs that silently discard an enquiry.
+ * The enquiry form is implemented in Phase 7. Delivery remains fail-safe until
+ * the private cPanel mail configuration and destination inbox (Q10) exist.
  */
 
 export const contact = {
@@ -22,8 +20,24 @@ export const contact = {
 
   form: {
     heading: "Send an enquiry",
-    /** Reserved space. Phase 7 replaces this with `forms/contact-form.tsx`. */
-    placeholder: "PLACEHOLDER: enquiry form — built in Phase 7",
+    introduction:
+      "Share a few details and we will respond using the contact information you provide.",
+    fields: {
+      name: "Name",
+      email: "Email",
+      company: "Company",
+      phone: "Phone",
+      message: "How can we help?",
+    },
+    submitLabel: "Send enquiry",
+    submittingLabel: "Sending…",
+    validationMessage: "Check the highlighted fields and try again.",
+    successTitle: "Your enquiry has been sent.",
+    successMessage: "Thank you. We will respond as soon as we can.",
+    sendAnotherLabel: "Send another enquiry",
+    errorMessage:
+      "We could not send your enquiry. Please try again in a moment.",
+    fallbackPrefix: "You can also email",
   },
 
   details: {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactForm } from "@/components/forms/contact-form";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { contact } from "@/data/contact";
@@ -12,12 +13,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Contact page — layout and copy structure only.
- *
- * The enquiry form is Phase 7: it needs `public/api/contact.php`, shared
- * validation and a confirmed destination inbox (Q10). Its space is reserved
- * with a visible placeholder rather than inert inputs, because a form that
- * accepts a submission and drops it is worse than a form that is absent.
+ * Contact page. The form posts to the cPanel PHP handler because this project
+ * exports static HTML and has no Next.js server in production.
  *
  * No closing CTA band here: the site's single primary action points at this
  * page, and a button linking to the page you are already on is noise.
@@ -50,9 +47,18 @@ export default function ContactPage() {
           <h2 id="contact-form-title" className="text-h2">
             {form.heading}
           </h2>
-          <p className="mt-block max-w-[65ch] text-ink-muted">
-            {form.placeholder}
+          <p className="mt-4 max-w-[65ch] text-ink-muted">
+            {form.introduction}
           </p>
+
+          <div className="mt-block">
+            <ContactForm
+              copy={form}
+              fallbackEmail={
+                isPlaceholder(site.email) ? undefined : site.email
+              }
+            />
+          </div>
         </section>
 
         <section
