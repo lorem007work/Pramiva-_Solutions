@@ -48,7 +48,8 @@ export const site = {
   vision:
     "To help businesses everywhere grow smarter, by combining real-world experience with innovative solutions.",
 
-  email: "PLACEHOLDER: display email address (Q7)",
+  /** Q7 answered 2026-08-24 — mailbox created on the domain. */
+  email: "support@pramivasolutions.com.np",
   phone: "PLACEHOLDER: display phone number (Q8)",
 
   /** The city is confirmed; the street address is not. */

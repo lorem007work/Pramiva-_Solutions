@@ -74,3 +74,28 @@ ErrorDocument 404 /404.html
 <FilesMatch "^\.">
   Require all denied
 </FilesMatch>
+
+# --- Block direct access to the mail library ---------------------------------
+# Verified on the live site: /api/lib/PHPMailer.php returned 200, publicly
+# advertising the exact PHPMailer version to anyone scanning for known CVEs.
+# The library must be readable by PHP via require_once but never over HTTP.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^api/lib/ - [F,L]
+</IfModule>
+
+# --- Raster image caching ---------------------------------------------------
+# The earlier ExpiresByType block listed webp, avif and svg but omitted jpeg,
+# png and ico, so those fell through to a 7-day host default.
+<IfModule mod_expires.c>
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png  "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpe?g|png|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

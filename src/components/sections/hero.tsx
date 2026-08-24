@@ -1,56 +1,95 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import { about } from "@/data/about";
 import { primaryCta } from "@/data/navigation";
 import { site } from "@/data/site";
 
 /**
- * Homepage LCP section. This stays a Server Component: the headline is plain
- * HTML, there is no hero image to shift layout, and the artwork is decorative.
+ * Homepage LCP section. Stays a Server Component — the headline is plain HTML
+ * and `next/image` renders server-side.
+ *
+ * The right column was an abstract circle-and-numeral composition. Decorative
+ * geometry filling empty space is the strongest "generated template" signal on
+ * a page, and the brief rules that look out.
+ *
+ * It is replaced by the real team photograph, which also does the page's
+ * hardest sales work: the company delivers operations from another country, so
+ * a prospective client's first unspoken question is whether a team they will
+ * never meet can be relied on. A photograph of that team answers it.
+ *
+ * The wide table frame is used rather than the rooftop one. The rooftop shot
+ * reads as a social outing — posing, plates, glasses — while this one shows
+ * the team working. At 1600x767 it also runs as a full-width band rather than
+ * being cropped into a narrow column, which is what its proportions want.
+ *
+ * `priority` is correct: this is above the fold and is the LCP element. Static
+ * export means no runtime optimisation, so the file was compressed before
+ * committing and carries explicit width/height to prevent layout shift.
  */
 export function Hero() {
+  const photo = about.people.photos.main;
+
+  // The motto is three separate statements. Left to reflow, it breaks mid-claim
+  // ("Think Bold. Build / Smart. Scale Fast."), which reads as an accident.
+  // Splitting on the sentence boundary keeps one statement per line at every
+  // width. Derived from the data, so the wording is never restated here.
+  const mottoLines = site.tagline.match(/[^.]+\./g) ?? [site.tagline];
+
   return (
     <Section
       aria-labelledby="home-hero-title"
-      className="relative min-h-[calc(100svh-5rem)] overflow-hidden"
-      containerClassName="relative grid items-center gap-12 lg:grid-cols-12"
+      className="relative overflow-hidden"
+      containerClassName="relative"
     >
-      <div className="relative z-10 lg:col-span-8">
-        <p className="text-eyebrow uppercase text-ink-subtle">
-          {site.descriptor}
-        </p>
+      <div className="grid gap-12 lg:grid-cols-12">
+        <div className="relative z-10 lg:col-span-9">
+          <p className="text-eyebrow uppercase text-ink-subtle">
+            {site.descriptor}
+          </p>
 
-        {/*
-          The motto carries the headline. It is on the logo, so it is already
-          public and needs no approval, and no other confirmed sentence is
-          short enough to set at display size. The line underneath says what
-          the company actually does.
-        */}
-        <h1 id="home-hero-title" className="mt-block max-w-5xl text-display">
-          {site.tagline}
-        </h1>
+          {/*
+            The motto carries the headline. It is on the logo, so it is already
+            public and needs no approval, and no other confirmed sentence is
+            short enough to set at display size. The line underneath says what
+            the company actually does.
+          */}
+          <h1 id="home-hero-title" className="mt-block text-display">
+            {mottoLines.map((line) => (
+              <span key={line} className="block">
+                {line.trim()}
+              </span>
+            ))}
+          </h1>
+        </div>
 
-        <p className="mt-block max-w-[60ch] text-lead text-ink-muted">
-          {site.summary}
-        </p>
+        <div className="lg:col-span-8">
+          <p className="max-w-[60ch] text-lead text-ink-muted">
+            {site.summary}
+          </p>
 
-        <div className="mt-block">
-          <Button href={primaryCta.href}>{primaryCta.label}</Button>
+          <div className="mt-block">
+            <Button href={primaryCta.href}>{primaryCta.label}</Button>
+          </div>
         </div>
       </div>
 
-      <div
-        aria-hidden="true"
-        className="relative mx-auto aspect-square w-full max-w-64 sm:max-w-80 lg:col-span-4 lg:max-w-md"
-      >
-        <div className="absolute inset-0 rounded-full border border-line-strong" />
-        <div className="absolute inset-[12%] rotate-45 rounded-full border-[12px] border-brand border-r-transparent border-b-transparent sm:border-[18px]" />
-        <div className="absolute inset-[27%] -rotate-45 rounded-full border-[9px] border-accent border-t-transparent border-l-transparent sm:border-[13px]" />
-        <div className="absolute inset-[44%] rounded-full bg-brand-deep" />
-        <div className="absolute top-1/2 -right-section h-px w-[200%] bg-line" />
-        <div className="absolute -bottom-8 -left-2 text-display text-line-strong">
-          01
+      <figure className="mt-section-sm">
+        <div className="overflow-hidden rounded-2xl border border-line">
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            sizes="(min-width: 1280px) 1280px, 100vw"
+            priority
+            className="w-full object-cover"
+          />
         </div>
-      </div>
+        <figcaption className="mt-4 text-sm text-ink-subtle">
+          {photo.caption}
+        </figcaption>
+      </figure>
     </Section>
   );
 }

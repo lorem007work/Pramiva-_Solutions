@@ -15,32 +15,38 @@ import { site } from "@/data/site";
  */
 
 export type RouteSeo = {
+  path: `/${string}`;
   title: string;
   description: string;
 };
 
-export const seo: Record<string, RouteSeo> = {
+export const seo = {
   home: {
+    path: "/",
     /** The layout template appends the site name, so this must not repeat it. */
     title: "Business and operations company",
     description: site.description,
   },
   about: {
+    path: "/about/",
     title: "About",
     description: `A business and operations company based in ${site.location}, working with businesses in Nepal and internationally.`,
   },
   services: {
+    path: "/services/",
     title: "Services",
     description:
       "Digital marketing, customer systems and customer service for businesses in Nepal and internationally.",
   },
   careers: {
+    path: "/careers/",
     title: "Careers",
     description:
       "Join a young, growing business and operations team in Lalitpur, Nepal.",
   },
   contact: {
+    path: "/contact/",
     title: "Contact",
     description: "Send an enquiry or find our contact details.",
   },
-};
+} satisfies Record<string, RouteSeo>;

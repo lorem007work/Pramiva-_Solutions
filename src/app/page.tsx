@@ -1,9 +1,13 @@
+import { createPageMetadata } from "@/lib/metadata";
 import { CompanyIntro } from "@/components/sections/company-intro";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Hero } from "@/components/sections/hero";
 import { PositioningStatement } from "@/components/sections/positioning-statement";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { homepage } from "@/data/homepage";
+import { seo } from "@/data/seo";
+
+export const metadata = createPageMetadata(seo.home);
 
 /**
  * Homepage.

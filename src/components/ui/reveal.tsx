@@ -40,9 +40,19 @@ export function Reveal({ children, className = "", ...props }: RevealProps) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry?.isIntersecting) return;
+        if (!entry) return;
 
-        element.dataset.revealState = "visible";
+        // Reveal when the element enters the viewport, and ALSO when it has
+        // already passed above it. A programmatic jump — anchor link, restored
+        // scroll position, or a fast flick — can move an element from below the
+        // viewport to above it within a single frame, so `isIntersecting` never
+        // becomes true and the content stays at opacity 0 permanently. Verified
+        // on the deployed site: jumping to the page bottom left one section
+        // invisible until it was scrolled back into view.
+        const hasPassedAbove = entry.boundingClientRect.bottom < 0;
+        if (!entry.isIntersecting && !hasPassedAbove) return;
+
+        element.dataset.revealState = hasPassedAbove ? "ready" : "visible";
         observer.disconnect();
       },
       { rootMargin: "0px 0px -8%", threshold: 0.08 },

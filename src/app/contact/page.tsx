@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -6,11 +5,9 @@ import { contact } from "@/data/contact";
 import { seo } from "@/data/seo";
 import { site } from "@/data/site";
 import { isPlaceholder } from "@/lib/utils";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: seo.contact.title,
-  description: seo.contact.description,
-};
+export const metadata = createPageMetadata(seo.contact);
 
 /**
  * Contact page. The form posts to the cPanel PHP handler because this project

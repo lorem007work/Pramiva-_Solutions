@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { seo } from "@/data/seo";
 import { serviceGroups } from "@/data/services";
 import { servicesPage } from "@/data/services-page";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: seo.services.title,
-  description: seo.services.description,
-};
+export const metadata = createPageMetadata(seo.services);
 
 /**
  * Services page.

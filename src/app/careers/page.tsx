@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { careers } from "@/data/careers";
 import { seo } from "@/data/seo";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: seo.careers.title,
-  description: seo.careers.description,
-};
+export const metadata = createPageMetadata(seo.careers);
 
 /**
  * Careers page. Server-rendered throughout, composing the shared primitives

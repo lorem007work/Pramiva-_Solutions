@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Team } from "@/components/sections/team";
 import { Section } from "@/components/ui/section";
@@ -6,11 +5,9 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { about } from "@/data/about";
 import { seo } from "@/data/seo";
 import { site } from "@/data/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: seo.about.title,
-  description: seo.about.description,
-};
+export const metadata = createPageMetadata(seo.about);
 
 /**
  * About page. Content stays server-rendered; Section adds a narrow Reveal
