@@ -133,7 +133,7 @@ Build in this order — each depends on the last:
 | Session | Section | Note |
 |---|---|---|
 | 4.1 | Hero | ✅ Complete — text LCP, no layout shift. |
-| 4.2 | Positioning statement | |
+| 4.2 | Positioning statement | ✅ Complete — editorial layout, copy remains a visible Q6 placeholder. |
 | 4.3 | Services overview | Blocked on Q5 — placeholders until answered |
 | 4.4 | Why Pramiva | |
 | 4.5 | Process | |
