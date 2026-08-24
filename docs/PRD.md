@@ -248,6 +248,7 @@ Owner is management unless stated. Full text and suggested defaults in [MANAGER-
 | 25 | Publish founding year (2025) and team size (~10)? | About page | Non-blocking — omitted by default |
 | 26 | Include a Careers / Academy page in v1? | `/careers` route | Non-blocking — recommended yes |
 | 27 | Exact postal address in Lalpur, Nepal | Contact page, JSON-LD | Blocker — "Lalpur" alone is not an address |
+| 28 | Approved wording for the three corporate values | About page §values | Non-blocking — drafted from [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §4, awaiting sign-off |
 
 ## 10. Launch checklist
 

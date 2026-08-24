@@ -148,19 +148,30 @@ Metrics section is **omitted** unless Q23 supplies verified numbers.
 
 ---
 
-### Phase 5 — Internal pages ← NEXT
+### Phase 5 — Internal pages ✅ BUILT — visual check outstanding
 
 **Branch:** `feat/pages`
 
 `/about`, `/services`, `/contact` (layout and copy structure only — the form is Phase 7). Reuse Phase 3 and 4 components; a new one-off component here is a signal the primitive should be generalised instead.
 
+Built with no new one-off components: each route composes `Section`, `SectionHeading` and `Button` directly, and `cta-band.tsx` was generalised to take its copy as props rather than gaining a variant.
+
+Decisions taken during the phase, for the record:
+
+- About copy is drafted from [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §3, §4 and §6 Option A so management corrects sentences instead of composing them. All of it is `[DRAFT]`. Values wording created **Q28**.
+- Service descriptions stay visible placeholders. Q5 asks management for the exact approved wording, and a service description is the company's public commercial offer — the one class of sentence this project does not draft on its behalf.
+- PRD §5.3 also lists "benefits" and a process block for `/services`. Benefits are omitted, because every benefit line would be an unapproved performance claim. The working model is presented once, on the homepage, rather than duplicated.
+- `/contact` carries no closing CTA band — the site's single primary action already points at that page.
+
 **Exit check:** all four routes render · no 404 in nav or footer · per-page metadata present · one `h1` per page · build passes.
+
+Verified from `out/`: four routes emitted, exactly one `h1` and one `id="main"` per page, per-page `<title>` and description present, first-load JS 179 KB gz on every route with an identical chunk set — the pages added no client JavaScript. **Still outstanding:** the manual pass at 360/768/1440 and the keyboard run through the new pages.
 
 **Commit:** `Add about, services and contact pages`
 
 ---
 
-### Phase 6 — Interactions
+### Phase 6 — Interactions ← NEXT
 
 **Branch:** `feat/motion`
 
