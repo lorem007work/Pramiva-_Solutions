@@ -9,7 +9,9 @@ export function CompanyIntro() {
 
   return (
     <Section
-      tone="surface"
+      /* Canvas, not surface: services above is already surface, and two
+         identical grounds in a row read as one long section. */
+      tone="canvas"
       reveal
       aria-labelledby="home-company-title"
       containerClassName="grid gap-section-sm lg:grid-cols-12"

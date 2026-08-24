@@ -7,7 +7,14 @@ export function PositioningStatement() {
 
   return (
     <Section
-      tone="brand"
+      /*
+        Ink, not brand. The hero now owns the deep teal - it is the logo
+        colour and the fold is where it belongs - so leaving this band teal
+        too put two large identical grounds on one page. The teal artwork
+        still shows through, tinted dark by the ink scrim, which keeps the
+        band related to the hero without repeating it.
+      */
+      tone="ink"
       backgroundImage="/images/brand/vision-bg.webp"
       /* This frame carries its arcs on the left. */
       backgroundPosition="left center"
