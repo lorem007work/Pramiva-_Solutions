@@ -83,7 +83,7 @@ Any of these may become v2. None block launch.
 
 `[DRAFT]` — Manager Question 2. Internal material has narrowed this considerably.
 
-**What we now know:** the company is based in **Lalpur, Nepal**, and delivers back-office and operations work for businesses **abroad** — the known partnership is **Australian**. This is an offshore operations/BPO model, B2B, English-language.
+**What we now know:** the company is based in **Lalitpur, Nepal**, and delivers back-office and operations work for businesses **abroad** — the known partnership is **Australian**. This is an offshore operations/BPO model, B2B, English-language.
 
 **Working assumption:** business owners and operations leads at small-to-medium businesses in Australia and comparable English-speaking markets, evaluating an outsourced operations partner. Reading in English, roughly half on mobile.
 
@@ -247,7 +247,7 @@ Owner is management unless stated. Full text and suggested defaults in [MANAGER-
 | **24** | **May client brands be named publicly?** (needs SNS consent too) | Portfolio content | **🔴 Risk — anonymised by default** |
 | 25 | Publish founding year (2025) and team size (~10)? | About page | Non-blocking — omitted by default |
 | 26 | Include a Careers / Academy page in v1? | `/careers` route | Non-blocking — recommended yes |
-| 27 | Exact postal address in Lalpur, Nepal | Contact page, JSON-LD | Blocker — "Lalpur" alone is not an address |
+| 27 | Exact postal address in Lalitpur, Nepal | Contact page, JSON-LD | Blocker — "Lalitpur" alone is not an address |
 | 28 | Approved wording for the three corporate values | About page §values | Non-blocking — drafted from [CONTENT-INVENTORY.md](CONTENT-INVENTORY.md) §4, awaiting sign-off |
 
 ## 10. Launch checklist
