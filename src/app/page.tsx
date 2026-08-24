@@ -1,4 +1,5 @@
 import { createPageMetadata } from "@/lib/metadata";
+import { AtAGlance } from "@/components/sections/at-a-glance";
 import { CompanyIntro } from "@/components/sections/company-intro";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Hero } from "@/components/sections/hero";
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <main id="main">
       <Hero />
+      <AtAGlance />
       <PositioningStatement />
       <ServicesOverview />
       <CompanyIntro />

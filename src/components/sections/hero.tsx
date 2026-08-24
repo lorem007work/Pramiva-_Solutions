@@ -39,8 +39,16 @@ export function Hero() {
       backgroundImage="/images/brand/hero-bg.webp"
       backgroundPosition="right center"
       aria-labelledby="home-hero-title"
-      className="hero-ground relative flex min-h-[calc(100svh-5rem)] overflow-hidden"
-      containerClassName="flex w-full flex-col justify-between gap-section-sm"
+      /*
+        No forced viewport height. Pinning the section to 100svh and using
+        justify-between pushed the capability strip to the floor, and with copy
+        this short that opened a void through the middle - the same emptiness
+        the whole redesign is trying to remove. The section now sizes to its
+        content, so the spacing is the rhythm token rather than whatever the
+        viewport happens to be.
+      */
+      className="hero-ground relative overflow-hidden"
+      containerClassName="flex w-full flex-col gap-section-sm"
     >
       <div>
         <p

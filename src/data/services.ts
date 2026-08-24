@@ -18,6 +18,11 @@
 export type Service = {
   title: string;
   description: string;
+  /**
+   * Presentation metadata, not published copy. Names a shape in
+   * ui/service-icon.tsx. Changing it alters no approved wording.
+   */
+  icon: string;
 };
 
 export type ServiceGroup = {
@@ -31,16 +36,19 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Search and content marketing",
+        icon: "search",
         description:
           "Create useful, search-friendly content that helps people discover and understand a business online.",
       },
       {
         title: "Social media management",
+        icon: "social",
         description:
           "Plan, publish and manage social content that keeps a business active and connected with its audience.",
       },
       {
         title: "Google and Facebook paid advertising",
+        icon: "advertising",
         description:
           "Set up and manage targeted advertising campaigns across Google and Facebook to reach relevant audiences.",
       },
@@ -51,11 +59,13 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "Customer-system setup and management",
+        icon: "systems",
         description:
           "Set up and maintain customer systems so contact details, conversations and follow-up information stay organised.",
       },
       {
         title: "Customer service through calls, text and email",
+        icon: "support",
         description:
           "Handle customer enquiries through calls, text and email with clear, professional communication.",
       },
@@ -66,6 +76,7 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         title: "AI and automation solutions",
+        icon: "automation",
         description:
           "A future service direction focused on practical AI and automation for suitable business tasks.",
       },

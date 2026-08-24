@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ServiceIcon } from "@/components/ui/service-icon";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -60,18 +61,26 @@ export function ServicesOverview() {
                 href="/services"
                 className="group flex h-full flex-col rounded-2xl border border-line bg-canvas p-8 transition-[border-color,transform] duration-300 hover:border-ink-subtle motion-safe:hover:-translate-y-1 motion-safe:active:scale-[0.99]"
               >
-                <div className="flex items-baseline justify-between gap-4">
+                <div className="flex items-start justify-between gap-4">
+                  {/*
+                    Icon in a tinted tile rather than bare on the card. A loose
+                    line icon beside body copy reads as clip-art; giving it a
+                    ground of its own makes it a deliberate element and gives
+                    the card a fixed anchor point whatever the title length.
+                  */}
+                  <span className="inline-flex size-12 items-center justify-center rounded-xl bg-brand/8 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-canvas">
+                    <ServiceIcon name={service.icon} className="size-6" />
+                  </span>
                   <span aria-hidden="true" className="text-eyebrow text-accent-text">
                     {number}
                   </span>
-                  {/* The group name, kept as quiet metadata so the service
-                      title stays the loudest thing in the card. */}
-                  <span className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
-                    {service.group}
-                  </span>
                 </div>
 
-                <h3 className="mt-8 text-h3 transition-colors duration-150 group-hover:text-brand">
+                <p className="mt-6 text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+                  {service.group}
+                </p>
+
+                <h3 className="mt-2 text-h3 transition-colors duration-150 group-hover:text-brand">
                   {service.title}
                 </h3>
 
