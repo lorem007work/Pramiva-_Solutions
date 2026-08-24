@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import { homepage } from "@/data/homepage";
 import { primaryCta } from "@/data/navigation";
 import { serviceGroups } from "@/data/services";
 import { site } from "@/data/site";
@@ -8,32 +9,34 @@ import { site } from "@/data/site";
  * Homepage LCP section. Server Component — plain HTML over a CSS background,
  * so the fold ships no JavaScript, animation included.
  *
- * Composition. Earlier versions were a block of text floating in the left half
- * of a dark rectangle, with dead space through the middle and the capability
- * strip sliced in half by the fold. Colour alone did not fix that; the section
- * had no structure. It now fills the viewport below the navbar and distributes
- * content between top and bottom, with the strip pinned to the floor as a
- * full-width rule — closing the composition and showing the page continues.
+ * Ground. Deep brand teal, taken from the logo wordmark, rather than black or
+ * white. It is the colour the company already owns, so the fold reads as this
+ * brand rather than as a generic dark hero.
  *
- * Motion. The hero is above the fold, so it cannot use the scroll reveal;
- * there is no scroll to wait for. Each element carries a --hero-step index and
- * animates on load, so the section assembles instead of appearing at once. The
- * whole sequence lands inside a second: a hero a visitor waits through is
- * worse than one that simply appears.
+ * Headline. The motto used to be the H1. It is memorable, but it is a slogan —
+ * a visitor reading "Think Bold. Build Smart. Scale Fast." still does not know
+ * what is sold, and Google indexes that as the page's main claim. The H1 now
+ * states the offer, using wording already approved and already carried on the
+ * About page. The motto stays, demoted to a brand line beneath it, which is
+ * where a tagline usually belongs.
+ *
+ * The supporting paragraph was removed rather than repeated: site.summary
+ * opens with almost exactly the same clause as the new H1, so keeping both put
+ * the same sentence on screen twice. The capability strip carries the detail
+ * it was providing.
+ *
+ * Motion. The hero is above the fold and cannot use the scroll reveal — there
+ * is no scroll to wait for. Elements carry a --hero-step index and animate on
+ * load so the section assembles. The sequence lands inside a second.
  */
 export function Hero() {
-  // The motto is three separate statements. Left to reflow it breaks mid-claim
-  // ("Think Bold. Build / Smart. Scale Fast."), which reads as an accident.
-  const mottoLines = site.tagline.match(/[^.]+\./g) ?? [site.tagline];
-
   const step = (index: number) =>
     ({ "--hero-step": index }) as React.CSSProperties;
 
   return (
     <Section
-      tone="ink"
+      tone="brand"
       backgroundImage="/images/brand/hero-bg.webp"
-      /* Arcs live on the right of this frame; keep them when height crops. */
       backgroundPosition="right center"
       aria-labelledby="home-hero-title"
       className="hero-ground relative flex min-h-[calc(100svh-5rem)] overflow-hidden"
@@ -48,55 +51,46 @@ export function Hero() {
           {site.descriptor}
         </p>
 
-        {/*
-          The motto carries the headline. It is on the logo, so it is already
-          public and needs no approval, and no other confirmed sentence is
-          short enough to set at display size. Each line animates separately —
-          the three statements arriving in sequence is the point of the motto.
-        */}
-        <h1 id="home-hero-title" className="mt-6 text-display">
-          {mottoLines.map((line, index) => (
-            <span
-              key={line}
-              data-hero-step
-              style={step(index + 1)}
-              className="block"
-            >
-              {line.trim()}
-            </span>
-          ))}
+        <h1
+          data-hero-step
+          style={step(1)}
+          className="mt-6 max-w-[18ch] text-h1"
+        >
+          {homepage.company.title}
         </h1>
+
+        {/* The motto, kept but demoted — it is a tagline, not a proposition. */}
+        <p
+          data-hero-step
+          style={step(2)}
+          className="mt-block text-lead text-[color:var(--tone-muted)]"
+        >
+          {site.tagline}
+        </p>
 
         <div
           data-hero-step
-          style={step(4)}
-          className="mt-block grid gap-block lg:grid-cols-12"
+          style={step(3)}
+          className="mt-block flex flex-wrap items-center gap-4"
         >
-          <p className="max-w-[52ch] text-lead text-[color:var(--tone-muted)] lg:col-span-6">
-            {site.summary}
-          </p>
-
+          <Button href={primaryCta.href} variant="inverse">
+            {primaryCta.label}
+          </Button>
           {/*
-            Actions sit beside the supporting line rather than under it. Stacked,
-            they pushed the capability strip off the fold; alongside, they close
-            the horizontal gap that made the middle of the section read as empty.
+            A second, quieter action. Someone not yet ready to make contact
+            otherwise has nowhere to go from the fold but the navigation.
           */}
-          <div className="flex flex-wrap items-center gap-4 lg:col-span-5 lg:col-start-8 lg:justify-end">
-            <Button href={primaryCta.href} variant="inverse">
-              {primaryCta.label}
-            </Button>
-            <Button href="/services" variant="ghost">
-              Explore services
-              <span aria-hidden="true">→</span>
-            </Button>
-          </div>
+          <Button href="/services" variant="ghost">
+            Explore services
+            <span aria-hidden="true">→</span>
+          </Button>
         </div>
       </div>
 
       {/* Capability strip — approved group headings, no new copy. */}
       <ul
         data-hero-step
-        style={step(5)}
+        style={step(4)}
         className="grid border-t border-[color:var(--tone-border)] sm:grid-cols-3"
       >
         {serviceGroups.map((group, index) => (
