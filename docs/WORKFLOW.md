@@ -134,7 +134,7 @@ Build in this order — each depends on the last:
 |---|---|---|
 | 4.1 | Hero | ✅ Complete — text LCP, no layout shift. |
 | 4.2 | Positioning statement | ✅ Complete — editorial layout, copy remains a visible Q6 placeholder. |
-| 4.3 | Services overview | Blocked on Q5 — placeholders until answered |
+| 4.3 | Services overview | ✅ Complete — seven data-led cards; Q5 copy remains visibly placeholdered. |
 | 4.4 | Why Pramiva | |
 | 4.5 | Process | |
 | 4.6 | Company intro | |
