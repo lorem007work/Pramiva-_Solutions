@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { Container } from "@/components/ui/container";
+import { Reveal } from "@/components/ui/reveal";
 
 type SectionTone = "canvas" | "surface" | "ink";
 type SectionSpacing = "default" | "compact";
@@ -8,6 +9,7 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
   tone?: SectionTone;
   spacing?: SectionSpacing;
   containerClassName?: string;
+  reveal?: boolean;
 };
 
 const toneClasses: Record<SectionTone, string> = {
@@ -28,14 +30,19 @@ export function Section({
   containerClassName = "",
   tone = "canvas",
   spacing = "default",
+  reveal = false,
   ...props
 }: SectionProps) {
+  const content = (
+    <Container className={containerClassName}>{children}</Container>
+  );
+
   return (
     <section
       className={`${toneClasses[tone]} ${spacingClasses[spacing]} ${className}`}
       {...props}
     >
-      <Container className={containerClassName}>{children}</Container>
+      {reveal ? <Reveal>{content}</Reveal> : content}
     </section>
   );
 }

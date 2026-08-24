@@ -5,12 +5,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { homepage } from "@/data/homepage";
 import { serviceGroups } from "@/data/services";
 
-/** Service catalogue preview. All commercial copy remains gated by Q5. */
+/** Service catalogue preview. Titles and concise descriptions are approved. */
 export function ServicesOverview() {
   const { services } = homepage;
 
   return (
-    <Section tone="surface" aria-labelledby="home-services-title">
+    <Section tone="surface" reveal aria-labelledby="home-services-title">
       <div className="grid items-end gap-block lg:grid-cols-12">
         <SectionHeading
           id="home-services-title"
@@ -55,7 +55,7 @@ export function ServicesOverview() {
                     <li key={service.title}>
                       <Link
                         href="/services"
-                        className="group flex h-full flex-col rounded-2xl border border-line bg-canvas p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-ink-subtle"
+                        className="group flex h-full flex-col rounded-2xl border border-line bg-canvas p-6 transition-[border-color,transform] duration-300 hover:border-ink-subtle motion-safe:hover:-translate-y-1 motion-safe:active:scale-[0.99]"
                       >
                         <span
                           aria-hidden="true"

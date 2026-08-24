@@ -14,10 +14,8 @@ export const metadata: Metadata = {
 /**
  * Services page.
  *
- * Every service description renders as a visible placeholder until Q5 returns
- * the approved wording. That is the intended state: a service description is
- * the company's public commercial offer, and it is the one kind of sentence
- * this project does not draft on management's behalf.
+ * Every service title and concise description was approved under Q5 on
+ * 2026-08-24. Keep the wording data-led and do not expand it into claims.
  *
  * PRD §5.3 also lists "benefits" and a process block for this page. Benefits
  * are omitted — every benefit line would be an unapproved performance claim.
@@ -38,7 +36,11 @@ export default function ServicesPage() {
         />
       </Section>
 
-      <Section tone="surface" aria-labelledby="services-catalogue-title">
+      <Section
+        tone="surface"
+        reveal
+        aria-labelledby="services-catalogue-title"
+      >
         <SectionHeading
           id="services-catalogue-title"
           eyebrow={catalogue.eyebrow}

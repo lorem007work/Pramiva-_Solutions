@@ -22,6 +22,7 @@ export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
     <Section
       tone="ink"
       spacing="compact"
+      reveal
       aria-labelledby={id}
       containerClassName="grid gap-block md:grid-cols-12 md:items-end"
     >

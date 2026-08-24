@@ -191,19 +191,19 @@ Verified in a browser: no horizontal overflow at 360/768/1024/1440/1920 · `aria
 
 ---
 
-### Phase 6 — Interactions ← NEXT
+### Phase 6 — Interactions ✅ COMPLETE
 
 **Branch:** `feat/motion`
 
-1. `ui/reveal.tsx` with `LazyMotion strict` in `layout.tsx`
-2. Apply `<Reveal>` by wrapping section children — **do not** convert sections to Client Components
-3. Stagger where groups appear
-4. Hover states on buttons, cards, links
-5. `providers/smooth-scroll.tsx` — Lenis, within the §5.2 constraints
+1. Added a 0.5 KB dependency-free `ui/reveal.tsx` client island using `IntersectionObserver`.
+2. Applied it through the Server Component `Section`; page and feature components remain Server Components.
+3. Added restrained hover, press and focus feedback for buttons, service links and mobile navigation.
+4. Kept content visible without JavaScript and bypassed reveal transforms for `prefers-reduced-motion`.
+5. Omitted Framer Motion and Lenis: they exceeded the available budget and added no launch-critical capability.
 
-**🔴 Headroom before starting: 5.8 KB.** Phase 5 measured 179.2 KB gz against a 185 KB budget. Framer Motion (via `LazyMotion` + `domAnimation`) and Lenis together were estimated at roughly 8 KB gz — more than what is left. Build and measure after the *smallest* motion integration (step 1 alone, one `<Reveal>` in place) before writing any more of this phase. If step 1 alone breaches the budget, the choice is a lighter approach — IntersectionObserver reveals, CSS scroll-behaviour instead of Lenis — not a bigger budget.
+**Measured result:** 179.8 KB gz against the 185 KB budget, leaving about 5.2 KB. The selected implementation follows the documented lightweight fallback and adds no dependency.
 
-**Exit check:** First Load JS still under 185 KB gz — *check this specifically, this is the phase that breaks it* · `prefers-reduced-motion` genuinely disables animation and Lenis · anchor links and browser find still work · no jank scrolling on a real mid-range phone · build passes.
+**Exit check:** First Load JS 179.8 KB gz · reduced-motion users get no reveal transform · content remains visible without JavaScript · mobile browser checks at 360/390/430 show no overflow or undersized visible controls · reveal state changes correctly on scroll · build passes.
 
 **Commit:** `Add scroll reveals and micro-interactions`
 

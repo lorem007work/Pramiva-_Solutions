@@ -62,7 +62,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
           <button
             type="button"
             onClick={() => setIsMenuOpen(true)}
-            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-150 hover:border-ink md:hidden"
+            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-[background-color,border-color,color,transform] duration-200 hover:border-ink motion-safe:active:scale-95 md:hidden"
             aria-label="Open navigation"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"

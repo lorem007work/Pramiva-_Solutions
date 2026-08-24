@@ -10,6 +10,7 @@ export function CompanyIntro() {
   return (
     <Section
       tone="surface"
+      reveal
       aria-labelledby="home-company-title"
       containerClassName="grid gap-section-sm lg:grid-cols-12"
     >

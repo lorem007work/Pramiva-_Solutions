@@ -91,7 +91,7 @@ export function MobileMenu({
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-150 hover:border-ink hover:bg-ink hover:text-canvas"
+            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-[background-color,border-color,color,transform] duration-200 hover:border-ink hover:bg-ink hover:text-canvas motion-safe:active:scale-95"
             aria-label="Close navigation"
           >
             <span aria-hidden="true" className="relative block h-5 w-5">
@@ -111,7 +111,7 @@ export function MobileMenu({
                     href={link.href}
                     aria-current={isCurrent ? "page" : undefined}
                     onClick={onClose}
-                    className="group flex items-center justify-between py-5 text-h3"
+                    className="group flex min-h-16 items-center justify-between py-5 text-h3 transition-colors duration-150 hover:text-brand motion-safe:active:translate-x-1"
                   >
                     <span>{link.label}</span>
                     <span

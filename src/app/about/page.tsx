@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * About page. Server-rendered throughout — nothing here needs client state,
- * and motion arrives in Phase 6 by wrapping children in <Reveal>.
+ * About page. Content stays server-rendered; Section adds a narrow Reveal
+ * boundary around selected below-the-fold content.
  *
  * Confirmed facts only. The values cards and the capability statement were
  * removed on 2026-08-24; see data/about.ts for why each went.
@@ -35,6 +35,7 @@ export default function AboutPage() {
 
       <Section
         tone="surface"
+        reveal
         aria-labelledby="about-story-title"
         containerClassName="grid gap-section-sm lg:grid-cols-12"
       >
@@ -71,6 +72,7 @@ export default function AboutPage() {
 
       <Section
         tone="ink"
+        reveal
         aria-labelledby="about-vision-title"
         containerClassName="grid gap-block md:grid-cols-12"
       >

@@ -28,7 +28,7 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const baseClasses =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[background-color,border-color,color,transform] duration-200 motion-safe:hover:-translate-y-0.5 motion-safe:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50";
 
 /** Renders a semantic link for navigation and a button for actions. */
 export function Button(props: ButtonProps) {

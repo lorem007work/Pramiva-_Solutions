@@ -8,6 +8,7 @@ export function PositioningStatement() {
   return (
     <Section
       tone="ink"
+      reveal
       aria-labelledby="home-positioning-title"
       className="overflow-hidden"
       containerClassName="relative grid gap-block md:grid-cols-12"

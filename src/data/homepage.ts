@@ -13,8 +13,7 @@ import { site } from "@/data/site";
  *    explicitly barred from public pages.
  *
  * What remains asserts only confirmed facts: business type, location, markets,
- * founding year, the vision and the motto. Service wording stays placeholdered
- * until Q5 returns approved descriptions.
+ * founding year, the vision, the motto and the Q5-approved service wording.
  */
 export const homepage = {
   positioning: {

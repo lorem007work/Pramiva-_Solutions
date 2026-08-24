@@ -40,6 +40,7 @@ export default function ContactPage() {
       <Section
         tone="surface"
         spacing="compact"
+        reveal
         containerClassName="grid gap-section-sm lg:grid-cols-12"
       >
         <section

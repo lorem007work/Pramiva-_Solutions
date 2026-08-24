@@ -104,6 +104,29 @@ html {
   scroll-padding-top: 5rem;
 }
 
+/* Content remains visible until the client confirms it begins below the fold.
+   Only compositor-safe properties animate, keeping mid-range phones smooth. */
+.reveal[data-reveal-state="pending"] {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.reveal[data-reveal-state="visible"] {
+  animation: reveal-in 600ms var(--ease-out-expo) both;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Keyboard focus only — never on mouse click, always present for keyboard.
    `outline: none` anywhere in this codebase is a bug. */
 :focus-visible {
@@ -128,8 +151,8 @@ p {
 
 /* ---------------------------------------------------------------------------
    Reduced motion — non-negotiable.
-   <Reveal> also returns children unwrapped rather than running a zero-duration
-   animation, so users with vestibular sensitivity get no transform at all.
+   <Reveal> detects this preference before creating its observer, so users with
+   vestibular sensitivity get no reveal transform at all.
    --------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
