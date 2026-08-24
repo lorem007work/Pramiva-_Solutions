@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { homepage } from "@/data/homepage";
+import { site } from "@/data/site";
 
-/** Draft company introduction sourced from management context; Q6 approval pending. */
+/** High-level company introduction. Confirmed facts only — see data/homepage.ts. */
 export function CompanyIntro() {
   const { company } = homepage;
 
@@ -21,7 +22,7 @@ export function CompanyIntro() {
         </h2>
 
         <p className="mt-section-sm border-l-2 border-accent pl-block text-h3 text-accent-text">
-          {company.motto}
+          {site.tagline}
         </p>
       </div>
 

@@ -5,53 +5,56 @@
  *  - Never hard-code any of this in a component.
  *  - Never invent a value. Unknown → `PLACEHOLDER: <need> (Q<n>)`.
  *  - `grep -rn "PLACEHOLDER:" src/` must return nothing before launch.
+ *
+ * Everything not marked PLACEHOLDER below was confirmed for publication on
+ * 2026-08-24. The confidential list from the same instruction — client
+ * relationships, how work is divided, offshore or cost framing, internal
+ * workflows, the academy, team size — must never appear in this file or any
+ * other. It is not a matter of wording; those subjects do not go on the site.
  */
 
 export const site = {
-  /**
-   * Q0 — settled for web purposes.
-   *
-   *   logo.png                   → "Pramiva Solutions"
-   *   registered domain          → pramivasolutions.com.np
-   *   induction material claimed → "Promeva Solutions Private Limited"
-   *
-   * Two independent official artefacts (the logo and the registered domain)
-   * agree on "Pramiva", so that is what the website uses. The transcript's
-   * "Promeva" is most likely a mishearing.
-   *
-   * Still open: whether the REGISTERED LEGAL ENTITY matches. If the
-   * certificate reads "Promeva", the website address and the legal name
-   * differ — survivable, but management should know it.
-   *
-   * This constant is the single point of change. Never type either spelling
-   * anywhere else — not in metadata, JSON-LD, headings, alt text, or comments.
-   */
+  /** CONFIRMED — public trading name. */
   name: "Pramiva Solutions",
 
-  /** PLACEHOLDER: registered legal entity name, from the certificate (Q0) */
-  legalName: "PLACEHOLDER: registered legal entity name (Q0)",
+  /** CONFIRMED — registered legal entity. Used for legal pages and JSON-LD. */
+  legalName: "Pramiva Solutions Private Limited",
 
-  /** On the logo, therefore already public. Safe to publish. */
+  /** CONFIRMED. Published only where it reads as fact, never as experience. */
+  founded: 2025,
+
+  /** CONFIRMED. A city, not a postal address — see `address` below. */
+  location: "Lalitpur, Nepal",
+
+  /** CONFIRMED — on the logo, therefore public already. */
   tagline: "Think Bold. Build Smart. Scale Fast.",
 
-  /** Q6 — the hero structure is final, but management must approve its claim. */
-  heroHeadline: "PLACEHOLDER: approved homepage headline (Q6)",
+  /**
+   * CONFIRMED — business type and location, assembled from confirmed facts
+   * only. Sits above the headline as the hero eyebrow.
+   */
+  descriptor: "Business and operations · Lalitpur, Nepal",
 
   /**
-   * Draft exists in docs/CONTENT-INVENTORY.md §3, built on the company's own
-   * "engine room" phrasing. NOT approved — do not publish until Q6 returns.
+   * CONFIRMED — the approved high-level description, minus the legal name so
+   * it reads as body copy. Used for the hero lead and page introductions.
    */
-  description: "PLACEHOLDER: approved company description (Q6)",
+  summary:
+    "A business and operations company based in Lalitpur, Nepal, supporting businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
+
+  /** CONFIRMED — the approved company description, verbatim. Used for SEO. */
+  description:
+    "Pramiva Solutions Private Limited is a business and operations company based in Lalitpur, Nepal. We support businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
+
+  /** CONFIRMED — the company's stated vision, verbatim. Do not paraphrase. */
+  vision:
+    "To help businesses everywhere grow smarter, by combining real-world experience with innovative solutions.",
 
   email: "PLACEHOLDER: display email address (Q7)",
   phone: "PLACEHOLDER: display phone number (Q8)",
 
-  /**
-   * The transcript renders the city as "Lalpur"; confirmed 2026-08-24 as
-   * **Lalitpur**, in the Kathmandu valley. Still a city, not a postal address,
-   * so the full street address remains outstanding.
-   */
-  address: "PLACEHOLDER: full postal address (Q27)",
+  /** The city is confirmed; the street address is not. */
+  address: "PLACEHOLDER: full postal address in Lalitpur (Q27)",
 
   /** Baked into canonical URLs and the sitemap AT BUILD TIME. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",

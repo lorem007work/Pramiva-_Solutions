@@ -73,7 +73,7 @@ export default function ContactPage() {
                 ) : (
                   <a
                     href={`mailto:${site.email}`}
-                    className="text-ink transition-colors duration-150 hover:text-brand"
+                    className="inline-flex min-h-11 items-center text-ink transition-colors duration-150 hover:text-brand"
                   >
                     {site.email}
                   </a>
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 ) : (
                   <a
                     href={`tel:${site.phone}`}
-                    className="text-ink transition-colors duration-150 hover:text-brand"
+                    className="inline-flex min-h-11 items-center text-ink transition-colors duration-150 hover:text-brand"
                   >
                     {site.phone}
                   </a>

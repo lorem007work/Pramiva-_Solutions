@@ -29,12 +29,14 @@ export function Footer() {
                   <p className="text-eyebrow uppercase text-canvas/60">
                     {group.heading}
                   </p>
-                  <ul className="mt-5 space-y-3">
+                  {/* min-h-11 keeps every link a 44px touch target on a phone
+                      without changing how the list reads on desktop. */}
+                  <ul className="mt-3 space-y-1">
                     {group.links.map((link) => (
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="text-canvas/80 transition-colors duration-150 hover:text-canvas"
+                          className="inline-flex min-h-11 items-center text-canvas/80 transition-colors duration-150 hover:text-canvas"
                         >
                           {link.label}
                         </Link>
@@ -53,7 +55,10 @@ export function Footer() {
                     {isPlaceholder(site.email) ? (
                       site.email
                     ) : (
-                      <a href={`mailto:${site.email}`} className="hover:text-canvas">
+                      <a
+                        href={`mailto:${site.email}`}
+                        className="inline-flex min-h-11 items-center hover:text-canvas"
+                      >
                         {site.email}
                       </a>
                     )}
@@ -65,7 +70,10 @@ export function Footer() {
                     {isPlaceholder(site.phone) ? (
                       site.phone
                     ) : (
-                      <a href={`tel:${site.phone}`} className="hover:text-canvas">
+                      <a
+                        href={`tel:${site.phone}`}
+                        className="inline-flex min-h-11 items-center hover:text-canvas"
+                      >
                         {site.phone}
                       </a>
                     )}

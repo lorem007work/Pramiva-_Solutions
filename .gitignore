@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Deployment archives — built artefacts, never committed
 /deploy/
+
+# Browser automation artefacts
+/.playwright-mcp/

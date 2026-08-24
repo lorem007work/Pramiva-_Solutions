@@ -1,31 +1,29 @@
+import { site } from "@/data/site";
+
 /**
  * Services page framing copy.
  *
- * The catalogue itself lives in `services.ts` and is unchanged: group and
- * service TITLES are [DRAFT] from docs/CONTENT-INVENTORY.md §5, and every
- * service DESCRIPTION stays a visible placeholder on purpose.
+ * The catalogue itself lives in `services.ts`: titles confirmed, descriptions
+ * placeholdered pending Q5.
  *
- * Q5 asks management for "the exact wording you approve" for the services.
- * Drafting our own descriptions would pre-empt the question being asked and,
- * unlike the About copy, a service description is the company's public
- * commercial offer — the one kind of sentence that must not be guessed.
- * That decision was taken when `services.ts` was written; it stands.
- *
- * The headings below assert nothing factual, so they are safe to author.
+ * The headings here assert nothing factual, and the introduction uses the
+ * approved high-level description rather than a written-up version of it.
+ * PRD §5.3 also lists "benefits" and a process block for this page — both are
+ * omitted, benefits because they would be invented claims, the process because
+ * public "how we work" content is barred.
  */
 
 export const servicesPage = {
   header: {
     eyebrow: "Services",
     title: "What we do.",
-    /** [BLOCKED] Q5 — approved introduction to the offer. */
-    description: "PLACEHOLDER: approved services page introduction (Q5)",
+    description: site.summary,
   },
 
   catalogue: {
     eyebrow: "01 — The catalogue",
     title: "Grouped by the part of the business they support.",
-    /** [BLOCKED] Q5 */
+    /** [BLOCKED] Q5 — the approved wording for the offer as a whole. */
     description: "PLACEHOLDER: approved services overview paragraph (Q5)",
   },
 
@@ -33,6 +31,6 @@ export const servicesPage = {
     eyebrow: "02 — Start a conversation",
     title: "Not sure which of these you need?",
     description:
-      "Describe the work that keeps landing on the wrong desk and we will suggest where to start.",
+      "Send an enquiry describing what you are trying to get done, and we will suggest where to start.",
   },
 } as const;

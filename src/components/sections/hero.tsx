@@ -15,14 +15,22 @@ export function Hero() {
       containerClassName="relative grid items-center gap-12 lg:grid-cols-12"
     >
       <div className="relative z-10 lg:col-span-8">
-        <p className="text-eyebrow uppercase text-ink-subtle">{site.tagline}</p>
+        <p className="text-eyebrow uppercase text-ink-subtle">
+          {site.descriptor}
+        </p>
 
+        {/*
+          The motto carries the headline. It is on the logo, so it is already
+          public and needs no approval, and no other confirmed sentence is
+          short enough to set at display size. The line underneath says what
+          the company actually does.
+        */}
         <h1 id="home-hero-title" className="mt-block max-w-5xl text-display">
-          {site.heroHeadline}
+          {site.tagline}
         </h1>
 
         <p className="mt-block max-w-[60ch] text-lead text-ink-muted">
-          {site.description}
+          {site.summary}
         </p>
 
         <div className="mt-block">

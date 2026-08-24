@@ -15,11 +15,11 @@ export const metadata: Metadata = {
  * About page. Server-rendered throughout — nothing here needs client state,
  * and motion arrives in Phase 6 by wrapping children in <Reveal>.
  *
- * All copy is [DRAFT] and read from `data/about.ts`; see that file for what
- * each block is waiting on.
+ * Confirmed facts only. The values cards and the capability statement were
+ * removed on 2026-08-24; see data/about.ts for why each went.
  */
 export default function AboutPage() {
-  const { header, story, values, capability, cta } = about;
+  const { header, story, vision, cta } = about;
 
   return (
     <main id="main">
@@ -69,53 +69,26 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section aria-labelledby="about-values-title">
-        <SectionHeading
-          id="about-values-title"
-          eyebrow={values.eyebrow}
-          title={values.title}
-          description={values.description}
-        />
-
-        {/* Static cards — no hover lift, because nothing here is clickable. */}
-        <ul className="mt-section-sm grid gap-block md:grid-cols-3">
-          {values.items.map((item, index) => (
-            <li
-              key={item.title}
-              className="rounded-2xl border border-line p-8"
-            >
-              <span aria-hidden="true" className="text-eyebrow text-accent-text">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-5 text-h3">{item.title}</h3>
-              <p className="mt-4 text-ink-muted">{item.description}</p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
       <Section
         tone="ink"
-        aria-labelledby="about-capability-title"
+        aria-labelledby="about-vision-title"
         containerClassName="grid gap-block md:grid-cols-12"
       >
-        <div className="border-t border-slate pt-5 md:col-span-3">
+        <div className="flex items-start justify-between gap-6 border-t border-slate pt-5 md:col-span-3 md:flex-col">
           <p className="text-eyebrow uppercase text-line-strong">
-            {capability.eyebrow}
+            {vision.eyebrow}
+          </p>
+          <p aria-hidden="true" className="text-h2 text-accent">
+            02
           </p>
         </div>
 
-        <div className="md:col-span-8 md:col-start-5">
-          <h2 id="about-capability-title" className="max-w-4xl text-h1">
-            {capability.title}
-          </h2>
-          <p className="mt-block max-w-[55ch] text-lead text-canvas/70">
-            {capability.description}
-          </p>
-          <p className="mt-block max-w-[55ch] text-sm text-canvas/60">
-            {capability.note}
-          </p>
-        </div>
+        <h2
+          id="about-vision-title"
+          className="max-w-4xl text-h1 md:col-span-8 md:col-start-5"
+        >
+          {vision.statement}
+        </h2>
       </Section>
 
       <CtaBand id="about-cta-title" {...cta} />

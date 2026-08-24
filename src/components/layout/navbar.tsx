@@ -42,7 +42,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
                       <Link
                         href={link.href}
                         aria-current={isCurrent ? "page" : undefined}
-                        className={`relative py-2 text-sm transition-colors duration-150 after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:text-brand hover:after:origin-left hover:after:scale-x-100 ${isCurrent ? "font-medium text-brand after:scale-x-100" : "text-ink-muted"}`}
+                        className={`relative inline-flex min-h-11 items-center text-sm transition-colors duration-150 after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:text-brand hover:after:origin-left hover:after:scale-x-100 ${isCurrent ? "font-medium text-brand after:scale-x-100" : "text-ink-muted"}`}
                       >
                         {link.label}
                       </Link>

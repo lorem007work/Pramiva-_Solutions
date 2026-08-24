@@ -1,91 +1,49 @@
+import { site } from "@/data/site";
+
 /**
  * Homepage-specific copy.
  *
- * Structural labels are safe to author. Company claims remain visible
- * placeholders until management approves them in writing.
+ * Rewritten 2026-08-24 against the confirmed information set. Two sections
+ * were removed rather than reworded:
+ *
+ *  - **Why Pramiva** — every line of it was either a benefit claim, which is
+ *    not ours to invent, or a description of how work is divided with clients,
+ *    which is confidential.
+ *  - **Process / "How we work"** — drawn from induction material and now
+ *    explicitly barred from public pages.
+ *
+ * What remains asserts only confirmed facts: business type, location, markets,
+ * founding year, the vision and the motto. Service wording stays placeholdered
+ * until Q5 returns approved descriptions.
  */
 export const homepage = {
   positioning: {
-    eyebrow: "02 — What we do",
-    /** Q6 — draft source exists in docs/CONTENT-INVENTORY.md §3. */
-    statement: "PLACEHOLDER: approved positioning statement (Q6)",
+    eyebrow: "02 — Our vision",
+    /** CONFIRMED — the company's vision, verbatim. */
+    statement: site.vision,
   },
   services: {
     eyebrow: "03 — Services",
-    title: "PLACEHOLDER: approved services overview heading (Q5)",
-    description: "PLACEHOLDER: approved services overview introduction (Q5)",
+    title: "What we do.",
+    /** CONFIRMED — the approved high-level description of the offer. */
+    description:
+      "We support businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
     ctaLabel: "Explore all services",
   },
-  why: {
-    eyebrow: "04 — Why Pramiva",
-    title: "Built to keep growing businesses moving.",
-    description:
-      "Pramiva acts as a B2B engine room, combining operational experience with smart solutions so clients can focus on growth.",
-    items: [
-      {
-        title: "The engine room behind growth",
-        description:
-          "We handle critical back-office and operations work, from customer service and digital marketing to administration and reporting, so client businesses can run smoothly and focus on growth.",
-      },
-      {
-        title: "Experience meets innovation",
-        description:
-          "Pramiva combines hands-on operations experience with modern, practical solutions designed to help growing businesses succeed internationally.",
-      },
-      {
-        title: "Three pillars, one direction",
-        description:
-          "Think Bold. Build Smart. Scale Fast. is the philosophy that shapes how Pramiva approaches ideas, systems and growth.",
-      },
-      {
-        title: "Global support from Nepal",
-        description:
-          "From its operations hub in Lalitpur, Nepal, Pramiva provides skilled and efficient support for international clients, including businesses in Australia.",
-      },
-    ],
-  },
-  process: {
-    eyebrow: "05 — How we work",
-    title: "A clear path from need to ongoing support.",
-    description:
-      "A practical four-step model for understanding the work, setting up the right support and improving it over time.",
-    steps: [
-      {
-        title: "Understand the operation",
-        description:
-          "We begin by learning the client's goals, current workflow and the work that needs support.",
-      },
-      {
-        title: "Design the system",
-        description:
-          "We define responsibilities, communication and practical workflows around the operation.",
-      },
-      {
-        title: "Deliver with clarity",
-        description:
-          "We carry out the agreed support and keep communication clear throughout the working relationship.",
-      },
-      {
-        title: "Improve and scale",
-        description:
-          "We review what is working, refine the system and adapt the support as the business grows.",
-      },
-    ],
-  },
   company: {
-    eyebrow: "06 — About Pramiva",
-    title: "Experience-led support, built for international growth.",
+    eyebrow: "04 — About",
+    title: "A business and operations company in Lalitpur, Nepal.",
+    /** CONFIRMED — founding year, location, business type and markets. */
     description: [
-      "Pramiva Solutions was founded to manage the essential back-office and operations work that keeps client businesses running smoothly. From customer service and digital marketing to administration and reporting, we build support around the work clients need handled every day.",
-      "Based in Lalitpur, Nepal, Pramiva combines practical operations experience with modern, smart solutions for growing businesses internationally—giving clients more room to focus on growth.",
+      `Founded in ${site.founded} and based in ${site.location}, we are a business and operations company working with clients in Nepal and internationally.`,
+      "Our work covers digital marketing, customer systems and customer service, with AI and automation solutions as a future direction.",
     ],
-    motto: "Think Bold. Build Smart. Scale Fast.",
-    ctaLabel: "Learn more about Pramiva",
+    ctaLabel: "More about the company",
   },
   cta: {
-    eyebrow: "07 — Start a conversation",
-    title: "Make more room for growth.",
+    eyebrow: "05 — Start a conversation",
+    title: "Tell us what you need handled.",
     description:
-      "Tell us where your operation needs support, and let’s explore a practical way forward together.",
+      "Send an enquiry and we will come back to you with a practical next step.",
   },
 } as const;
