@@ -33,7 +33,7 @@ export const about = {
     /** [DRAFT] Q6, and Q27 for the location line. */
     paragraphs: [
       "We were founded to manage the essential back-office and operations work that keeps client businesses running smoothly — from customer service and digital marketing through to administration and reporting.",
-      "Working from our operations hub in Lalpur, Nepal, we combine practical operations experience with modern, smart solutions for growing businesses internationally, including businesses in Australia.",
+      "Working from our operations hub in Lalitpur, Nepal, we combine practical operations experience with modern, smart solutions for growing businesses internationally, including businesses in Australia.",
       "The result is a working relationship rather than a hand-off: the day-to-day is handled, communication stays clear, and the support adapts as the business grows.",
     ],
   },

@@ -40,7 +40,7 @@ export const homepage = {
       {
         title: "Global support from Nepal",
         description:
-          "From its operations hub in Lalpur, Nepal, Pramiva provides skilled and efficient support for international clients, including businesses in Australia.",
+          "From its operations hub in Lalitpur, Nepal, Pramiva provides skilled and efficient support for international clients, including businesses in Australia.",
       },
     ],
   },
@@ -77,7 +77,7 @@ export const homepage = {
     title: "Experience-led support, built for international growth.",
     description: [
       "Pramiva Solutions was founded to manage the essential back-office and operations work that keeps client businesses running smoothly. From customer service and digital marketing to administration and reporting, we build support around the work clients need handled every day.",
-      "Based in Lalpur, Nepal, Pramiva combines practical operations experience with modern, smart solutions for growing businesses internationally—giving clients more room to focus on growth.",
+      "Based in Lalitpur, Nepal, Pramiva combines practical operations experience with modern, smart solutions for growing businesses internationally—giving clients more room to focus on growth.",
     ],
     motto: "Think Bold. Build Smart. Scale Fast.",
     ctaLabel: "Learn more about Pramiva",

@@ -114,7 +114,7 @@ My recommendation is to leave both out for now. A website does not need a foundi
 
 - Which email address should be displayed publicly?
 - Which phone number should be displayed publicly?
-- What is our full office address in Lalpur? I have the area name but I need the complete address, or tell me to show only "Lalpur, Nepal".
+- What is our full office address in Lalitpur? I have the area name but I need the complete address, or tell me to show only "Lalitpur, Nepal".
 - Which inbox should website enquiries be delivered to? A shared inbox is safer than a personal one so nothing is missed during leave.
 - Do we have LinkedIn, Facebook or Instagram accounts to link? If not I will leave the icons out — empty links look unprofessional.
 

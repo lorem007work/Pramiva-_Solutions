@@ -46,7 +46,11 @@ export const site = {
   email: "PLACEHOLDER: display email address (Q7)",
   phone: "PLACEHOLDER: display phone number (Q8)",
 
-  /** Induction material gives "Lalpur, Nepal" — an area, not a postal address. */
+  /**
+   * The transcript renders the city as "Lalpur"; confirmed 2026-08-24 as
+   * **Lalitpur**, in the Kathmandu valley. Still a city, not a postal address,
+   * so the full street address remains outstanding.
+   */
   address: "PLACEHOLDER: full postal address (Q27)",
 
   /** Baked into canonical URLs and the sitemap AT BUILD TIME. */

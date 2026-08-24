@@ -59,7 +59,7 @@ The name still lives **only** in `src/data/site.ts`, so a correction remains a o
 | Fact | Value from source | Publish? | Note |
 |---|---|---|---|
 | Legal name | Promeva Solutions Private Limited | ☐ | See §1. Verify against registration certificate. |
-| Location | Lalpur, Nepal | ☐ | Confirm exact address for the Contact page — "Lalpur" alone is not a postal address |
+| Location | Lalitpur, Nepal | ☑ city | Transcript renders it "Lalpur"; confirmed 2026-08-24 as **Lalitpur**. The city is settled, the postal address is not — still needed for the Contact page (Q27) |
 | Founded | 2025 | ☐ | See positioning note below |
 | Team size | ~10, "young, fast-growing" | ☐ | See positioning note below |
 | Tagline | Think Bold. Build Smart. Scale Fast. | ☑ | Safe — it is on the logo, publicly branded already |

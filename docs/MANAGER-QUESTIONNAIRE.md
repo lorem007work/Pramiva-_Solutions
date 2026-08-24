@@ -16,7 +16,7 @@ The technical documentation and architecture for the website are complete, and t
 |---|---|---|
 | 🔴 | **A0** — company name spelling | Blocks the domain purchase |
 | 🔴 | **Section F** — naming client brands | Possible contract and client-relationship risk |
-| 🔴 | **B3** — full office address | "Lalpur" alone is not a postal address |
+| 🔴 | **B3** — full office address | "Lalitpur" alone is not a postal address |
 
 ---
 
@@ -187,7 +187,7 @@ Needed for the footer and Contact page. These appear on every page.
 | B4 | **Inbox where website enquiries should be delivered** | |
 | B5 | Social media profile links (LinkedIn, Facebook, Instagram, X) | |
 
-**B3 note:** the induction material gives the location as **Lalpur, Nepal**. That is an area, not a postal address — the full street address is needed for the Contact page and for Google. If a full public address is not appropriate, we can show only "Lalpur, Nepal". Please confirm which.
+**B3 note:** the induction material gives the location as **Lalitpur, Nepal**. That is an area, not a postal address — the full street address is needed for the Contact page and for Google. If a full public address is not appropriate, we can show only "Lalitpur, Nepal". Please confirm which.
 
 **B4 note:** this can differ from B1 — B1 is what visitors see, B4 is where the form actually delivers. A shared inbox is recommended over a personal one so enquiries are not missed during leave.
 

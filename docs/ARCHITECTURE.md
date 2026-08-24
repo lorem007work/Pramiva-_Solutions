@@ -188,7 +188,7 @@ export const site = {
   description: "PLACEHOLDER: approved company description (Q6)",
   email:       "PLACEHOLDER: display email address (Q7)",
   phone:       "PLACEHOLDER: display phone number (Q8)",
-  address:     "PLACEHOLDER: full postal address, Lalpur (Q27)",
+  address:     "PLACEHOLDER: full postal address, Lalitpur (Q27)",
   social: {
     // Only add keys that management confirms exist (Q11)
   },
