@@ -15,7 +15,7 @@ export function CompanyIntro() {
       containerClassName="grid gap-section-sm lg:grid-cols-12"
     >
       <div className="lg:col-span-5">
-        <p className="text-eyebrow uppercase text-ink-subtle">
+        <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
           {company.eyebrow}
         </p>
         <h2 id="home-company-title" className="mt-4 max-w-2xl text-h1">
@@ -32,7 +32,7 @@ export function CompanyIntro() {
           {company.description.map((paragraph, index) => (
             <p
               key={paragraph}
-              className={index === 0 ? "text-lead" : "text-ink-muted"}
+              className={index === 0 ? "text-lead" : "text-[color:var(--tone-muted)]"}
             >
               {paragraph}
             </p>

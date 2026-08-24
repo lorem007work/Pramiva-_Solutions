@@ -305,3 +305,31 @@ p {
      Measured on the rendered page after the change - see the commit. */
   opacity: 0.55;
 }
+
+/* ---------------------------------------------------------------------------
+   Tone-aware text colours.
+
+   Components previously hardcoded `text-ink-muted` and `text-ink-subtle`, so
+   every dark section had to override them by hand at the call site. That is
+   why dark grounds kept needing bespoke patches — and why one of them shipped
+   with #52606D body copy on near-black.
+
+   Each ground now declares what secondary text, borders and eyebrows should be
+   ON that ground. A component asks for "the muted colour here" and gets the
+   right answer whatever it is placed on. Adding a ground later means setting
+   three variables, not auditing every component.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --tone-eyebrow: var(--color-ink-subtle);
+  --tone-muted: var(--color-ink-muted);
+  --tone-border: var(--color-line);
+}
+
+.ground-ink,
+.ground-brand {
+  --tone-eyebrow: var(--color-line-strong);
+  /* 70% white on a near-black ground measures ~12:1 — past AAA. */
+  --tone-muted: color-mix(in oklab, var(--color-canvas) 72%, transparent);
+  --tone-border: color-mix(in oklab, var(--color-canvas) 15%, transparent);
+}

@@ -1,36 +1,27 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import { about } from "@/data/about";
 import { primaryCta } from "@/data/navigation";
+import { serviceGroups } from "@/data/services";
 import { site } from "@/data/site";
 
 /**
- * Homepage LCP section. Stays a Server Component — the headline is plain HTML
- * and `next/image` renders server-side.
+ * Homepage LCP section. Stays a Server Component — plain HTML over a CSS
+ * background, so nothing here ships JavaScript.
  *
- * The right column was an abstract circle-and-numeral composition. Decorative
- * geometry filling empty space is the strongest "generated template" signal on
- * a page, and the brief rules that look out.
+ * The team photograph was removed from the hero. The artwork behind the type
+ * reads as premium; a restaurant table photo directly beneath it pulled that
+ * back down, and it was competing with the headline for the fold rather than
+ * supporting it. The photograph still appears further down the page, where it
+ * is context rather than the first impression.
  *
- * It is replaced by the real team photograph, which also does the page's
- * hardest sales work: the company delivers operations from another country, so
- * a prospective client's first unspoken question is whether a team they will
- * never meet can be relied on. A photograph of that team answers it.
- *
- * The wide table frame is used rather than the rooftop one. The rooftop shot
- * reads as a social outing — posing, plates, glasses — while this one shows
- * the team working. At 1600x767 it also runs as a full-width band rather than
- * being cropped into a narrow column, which is what its proportions want.
- *
- * `priority` is correct: this is above the fold and is the LCP element. Static
- * export means no runtime optimisation, so the file was compressed before
- * committing and carries explicit width/height to prevent layout shift.
+ * A capability strip replaces it. It costs no new copy — the three lines are
+ * the approved service group headings from data/services.ts — but it answers
+ * the question the motto alone leaves open. "Think Bold. Build Smart. Scale
+ * Fast." is a slogan; a visitor still needs to know what is actually sold, and
+ * the fold is where they look for it.
  */
 export function Hero() {
-  const photo = about.people.photos.main;
-
-  // The motto is three separate statements. Left to reflow, it breaks mid-claim
+  // The motto is three separate statements. Left to reflow it breaks mid-claim
   // ("Think Bold. Build / Smart. Scale Fast."), which reads as an accident.
   // Splitting on the sentence boundary keeps one statement per line at every
   // width. Derived from the data, so the wording is never restated here.
@@ -42,19 +33,17 @@ export function Hero() {
       backgroundImage="/images/brand/hero-bg.webp"
       aria-labelledby="home-hero-title"
       className="relative overflow-hidden"
-      containerClassName="relative"
     >
-      <div className="grid gap-12 lg:grid-cols-12">
-        <div className="relative z-10 lg:col-span-9">
-          <p className="text-eyebrow uppercase text-line-strong">
+      <div className="grid gap-block lg:grid-cols-12">
+        <div className="lg:col-span-9">
+          <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
             {site.descriptor}
           </p>
 
           {/*
             The motto carries the headline. It is on the logo, so it is already
             public and needs no approval, and no other confirmed sentence is
-            short enough to set at display size. The line underneath says what
-            the company actually does.
+            short enough to set at display size.
           */}
           <h1 id="home-hero-title" className="mt-block text-display">
             {mottoLines.map((line) => (
@@ -65,35 +54,46 @@ export function Hero() {
           </h1>
         </div>
 
-        <div className="lg:col-span-8">
-          <p className="max-w-[60ch] text-lead text-canvas/70">
+        <div className="lg:col-span-7">
+          <p className="max-w-[58ch] text-lead text-[color:var(--tone-muted)]">
             {site.summary}
           </p>
 
-          <div className="mt-block">
+          <div className="mt-block flex flex-wrap items-center gap-4">
             <Button href={primaryCta.href} variant="inverse">
               {primaryCta.label}
+            </Button>
+            {/*
+              A second, quieter action. Not everyone arriving is ready to make
+              contact; without this the only way forward from the fold is the
+              nav, and a visitor who is still deciding simply leaves.
+            */}
+            <Button href="/services" variant="ghost">
+              Explore services
+              <span aria-hidden="true">→</span>
             </Button>
           </div>
         </div>
       </div>
 
-      <figure className="mt-section-sm">
-        <div className="overflow-hidden rounded-2xl border border-canvas/15">
-          <Image
-            src={photo.src}
-            alt={photo.alt}
-            width={photo.width}
-            height={photo.height}
-            sizes="(min-width: 1280px) 1280px, 100vw"
-            priority
-            className="w-full object-cover"
-          />
-        </div>
-        <figcaption className="mt-4 text-sm text-canvas/60">
-          {photo.caption}
-        </figcaption>
-      </figure>
+      {/* Capability strip — approved group headings, no new copy. */}
+      <ul className="mt-section-sm grid gap-px overflow-hidden border-t border-[color:var(--tone-border)] pt-block sm:grid-cols-3">
+        {serviceGroups.map((group, index) => (
+          <li
+            key={group.heading}
+            data-stagger
+            style={{ "--stagger-index": index } as React.CSSProperties}
+          >
+            <span
+              aria-hidden="true"
+              className="text-eyebrow text-accent"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <p className="mt-2 text-h3">{group.heading}</p>
+          </li>
+        ))}
+      </ul>
     </Section>
   );
 }

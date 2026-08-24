@@ -24,7 +24,11 @@ const variantClasses: Record<ButtonVariant, string> = {
   secondary:
     "border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-canvas",
   inverse: "bg-canvas text-ink hover:bg-line",
-  ghost: "text-ink underline-offset-4 hover:text-brand",
+  /* No colour of its own: it inherits from whatever ground it sits on. Setting
+     text-ink here made the button invisible on dark sections - the same
+     hardcoded-colour failure the tone variables exist to prevent. On light
+     grounds inheritance resolves to ink, so nothing changes there. */
+  ghost: "underline-offset-4 hover:text-brand",
 };
 
 const baseClasses =

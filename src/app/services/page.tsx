@@ -23,7 +23,11 @@ export default function ServicesPage() {
 
   return (
     <main id="main">
-      <Section aria-labelledby="services-title">
+      <Section
+        tone="ink"
+        backgroundImage="/images/brand/services-bg.webp"
+        aria-labelledby="services-title"
+      >
         <SectionHeading
           id="services-title"
           level="h1"
@@ -86,7 +90,7 @@ export default function ServicesPage() {
                         <h4 className="text-h3 transition-colors duration-150 group-hover:text-brand md:col-span-5">
                           {service.title}
                         </h4>
-                        <p className="max-w-[65ch] text-ink-muted md:col-span-7">
+                        <p className="max-w-[65ch] text-[color:var(--tone-muted)] md:col-span-7">
                           {service.description}
                         </p>
                       </div>

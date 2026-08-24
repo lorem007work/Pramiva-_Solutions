@@ -44,7 +44,7 @@ export default function ContactPage() {
           <h2 id="contact-form-title" className="text-h2">
             {form.heading}
           </h2>
-          <p className="mt-4 max-w-[65ch] text-ink-muted">
+          <p className="mt-4 max-w-[65ch] text-[color:var(--tone-muted)]">
             {form.introduction}
           </p>
 
@@ -68,12 +68,12 @@ export default function ContactPage() {
 
           <dl className="mt-block space-y-6">
             <div className="border-t border-line pt-4">
-              <dt className="text-eyebrow uppercase text-ink-subtle">
+              <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                 {details.labels.email}
               </dt>
               <dd className="mt-2 break-words">
                 {isPlaceholder(site.email) ? (
-                  <span className="text-ink-muted">{site.email}</span>
+                  <span className="text-[color:var(--tone-muted)]">{site.email}</span>
                 ) : (
                   <a
                     href={`mailto:${site.email}`}
@@ -88,7 +88,7 @@ export default function ContactPage() {
             {/* Omitted while unanswered — see the note in layout/footer.tsx. */}
             {!isPlaceholder(site.phone) && (
               <div className="border-t border-line pt-4">
-                <dt className="text-eyebrow uppercase text-ink-subtle">
+                <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                   {details.labels.phone}
                 </dt>
                 <dd className="mt-2 break-words">
@@ -103,10 +103,10 @@ export default function ContactPage() {
             )}
 
             <div className="border-t border-line pt-4">
-              <dt className="text-eyebrow uppercase text-ink-subtle">
+              <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                 {details.labels.address}
               </dt>
-              <dd className="mt-2 break-words text-ink-muted">
+              <dd className="mt-2 break-words text-[color:var(--tone-muted)]">
                 {site.address}
                 {/*
                   A link, deliberately not an embedded map. An iframe would pull

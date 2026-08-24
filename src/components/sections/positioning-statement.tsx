@@ -8,6 +8,7 @@ export function PositioningStatement() {
   return (
     <Section
       tone="brand"
+      backgroundImage="/images/brand/vision-bg.webp"
       reveal
       aria-labelledby="home-positioning-title"
       className="overflow-hidden"

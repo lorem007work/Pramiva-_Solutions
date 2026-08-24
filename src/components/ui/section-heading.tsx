@@ -28,13 +28,15 @@ export function SectionHeading({
   return (
     <div className={`flex max-w-3xl flex-col ${alignment} ${className}`}>
       {eyebrow ? (
-        <p className="text-eyebrow uppercase text-ink-subtle">{eyebrow}</p>
+        <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+          {eyebrow}
+        </p>
       ) : null}
       <Heading id={id} className={`${eyebrow ? "mt-4" : ""} ${size}`}>
         {title}
       </Heading>
       {description ? (
-        <div className="mt-5 max-w-[65ch] text-lead text-ink-muted">
+        <div className="mt-5 max-w-[65ch] text-lead text-[color:var(--tone-muted)]">
           {description}
         </div>
       ) : null}

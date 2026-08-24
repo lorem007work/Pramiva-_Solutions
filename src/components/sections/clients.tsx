@@ -39,7 +39,7 @@ export function Clients({
       />
 
       {isFull ? (
-        <p className="mt-block max-w-[65ch] text-ink-muted">
+        <p className="mt-block max-w-[65ch] text-[color:var(--tone-muted)]">
           {principalClient.summary}
         </p>
       ) : null}
@@ -59,7 +59,7 @@ export function Clients({
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h4 className="mt-5 text-h3">{brand.name}</h4>
-                <p className="mt-4 text-sm text-ink-muted">
+                <p className="mt-4 text-sm text-[color:var(--tone-muted)]">
                   {brand.description}
                 </p>
               </li>
@@ -67,7 +67,7 @@ export function Clients({
           </ul>
         ) : (
           <>
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-ink-muted">
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[color:var(--tone-muted)]">
               {brands.map((brand) => (
                 <li key={brand.name} className="text-lead">
                   {brand.name}

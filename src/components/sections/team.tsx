@@ -38,7 +38,7 @@ export function Team() {
             sizes="(min-width: 768px) 66vw, 100vw"
             className="w-full rounded-2xl border border-line"
           />
-          <figcaption className="mt-4 text-sm text-ink-subtle">
+          <figcaption className="mt-4 text-sm text-[color:var(--tone-eyebrow)]">
             {main.caption}
           </figcaption>
         </figure>
@@ -52,7 +52,7 @@ export function Team() {
             sizes="(min-width: 768px) 33vw, 100vw"
             className="w-full rounded-2xl border border-line"
           />
-          <figcaption className="mt-4 text-sm text-ink-subtle">
+          <figcaption className="mt-4 text-sm text-[color:var(--tone-eyebrow)]">
             {culture.caption}
           </figcaption>
         </figure>

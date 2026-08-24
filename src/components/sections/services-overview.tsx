@@ -66,7 +66,7 @@ export function ServicesOverview() {
                   </span>
                   {/* The group name, kept as quiet metadata so the service
                       title stays the loudest thing in the card. */}
-                  <span className="text-eyebrow uppercase text-ink-subtle">
+                  <span className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                     {service.group}
                   </span>
                 </div>
@@ -75,7 +75,7 @@ export function ServicesOverview() {
                   {service.title}
                 </h3>
 
-                <p className="mt-4 text-ink-muted">{service.description}</p>
+                <p className="mt-4 text-[color:var(--tone-muted)]">{service.description}</p>
 
                 {/* Pushes the rule to the card floor so every card ends on the
                     same line regardless of description length. */}

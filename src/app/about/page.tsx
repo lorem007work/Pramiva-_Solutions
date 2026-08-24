@@ -38,7 +38,7 @@ export default function AboutPage() {
         containerClassName="grid gap-section-sm lg:grid-cols-12"
       >
         <div className="lg:col-span-5">
-          <p className="text-eyebrow uppercase text-ink-subtle">
+          <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
             {story.eyebrow}
           </p>
           <h2 id="about-story-title" className="mt-4 max-w-2xl text-h1">
@@ -58,7 +58,7 @@ export default function AboutPage() {
                 className={
                   index === 0
                     ? "max-w-[65ch] text-lead"
-                    : "max-w-[65ch] text-ink-muted"
+                    : "max-w-[65ch] text-[color:var(--tone-muted)]"
                 }
               >
                 {paragraph}
