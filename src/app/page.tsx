@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/hero";
 import { PositioningStatement } from "@/components/sections/positioning-statement";
+import { Process } from "@/components/sections/process";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { WhyPramiva } from "@/components/sections/why-pramiva";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <PositioningStatement />
       <ServicesOverview />
       <WhyPramiva />
+      <Process />
     </main>
   );
 }

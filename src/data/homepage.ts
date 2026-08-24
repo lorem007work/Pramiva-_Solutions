@@ -44,4 +44,32 @@ export const homepage = {
       },
     ],
   },
+  process: {
+    eyebrow: "05 — How we work",
+    title: "A clear path from need to ongoing support.",
+    description:
+      "A practical four-step model for understanding the work, setting up the right support and improving it over time.",
+    steps: [
+      {
+        title: "Understand the operation",
+        description:
+          "We begin by learning the client's goals, current workflow and the work that needs support.",
+      },
+      {
+        title: "Design the system",
+        description:
+          "We define responsibilities, communication and practical workflows around the operation.",
+      },
+      {
+        title: "Deliver with clarity",
+        description:
+          "We carry out the agreed support and keep communication clear throughout the working relationship.",
+      },
+      {
+        title: "Improve and scale",
+        description:
+          "We review what is working, refine the system and adapt the support as the business grows.",
+      },
+    ],
+  },
 } as const;
