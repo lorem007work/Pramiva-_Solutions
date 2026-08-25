@@ -3,21 +3,10 @@ import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { about } from "@/data/about";
 
-/**
- * The workspace section.
- *
- * The previous staff photographs were withdrawn at the team's request. These
- * replacements were supplied by the company and show the real office. The
- * employee is photographed from behind, and every screen is blurred.
- *
- * Neither image carries `priority`: this sits below the page header and the
- * story block, so it is never the LCP element and lazy loading is correct.
- * The pair is top-aligned rather than height-matched — the wide group shot
- * cannot be cropped square without cutting people off both ends of the table.
- */
+// Company-supplied photographs of the real office. Faces and screens are
+// blurred where the source image was treated; see data/about.ts.
 export function Team() {
   const { workspace } = about;
-  const { main, culture } = workspace.photos;
 
   return (
     <Section tone="surface" reveal aria-labelledby="about-workspace-title">
@@ -28,34 +17,34 @@ export function Team() {
         description={workspace.description}
       />
 
-      <div className="mt-section-sm grid items-start gap-block md:grid-cols-12">
-        <figure className="md:col-span-8">
-          <Image
-            src={main.src}
-            alt={main.alt}
-            width={main.width}
-            height={main.height}
-            sizes="(min-width: 768px) 66vw, 100vw"
-            className="w-full rounded-2xl border border-line"
-          />
-          <figcaption className="mt-4 text-sm text-[color:var(--tone-eyebrow)]">
-            {main.caption}
-          </figcaption>
-        </figure>
-
-        <figure className="md:col-span-4">
-          <Image
-            src={culture.src}
-            alt={culture.alt}
-            width={culture.width}
-            height={culture.height}
-            sizes="(min-width: 768px) 33vw, 100vw"
-            className="w-full rounded-2xl border border-line"
-          />
-          <figcaption className="mt-4 text-sm text-[color:var(--tone-eyebrow)]">
-            {culture.caption}
-          </figcaption>
-        </figure>
+      {/*
+        CSS columns, not a grid. The set mixes landscape and portrait, and a
+        grid would force one aspect ratio and crop heads out of the wide team
+        shot. Columns let each photograph keep its own proportions.
+      */}
+      <div className="mt-section-sm gap-4 sm:columns-2 lg:columns-3 lg:gap-6">
+        {workspace.photos.map((photo, index) => (
+          <figure
+            key={photo.src}
+            data-stagger
+            style={{ "--stagger-index": index } as React.CSSProperties}
+            className="mb-4 break-inside-avoid lg:mb-6"
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              // Below the page header and story block, so never the LCP
+              // element and lazy loading is correct.
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="w-full rounded-2xl border border-line"
+            />
+            <figcaption className="mt-3 text-sm text-[color:var(--tone-eyebrow)]">
+              {photo.caption}
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </Section>
   );
