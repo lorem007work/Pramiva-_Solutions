@@ -1,51 +1,70 @@
+import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { brands } from "@/data/brands";
 import { partnership } from "@/data/partnership";
 
 /**
- * Anonymised partnership section — Q24 Option A.
+ * Named partner brands — Q24 Option B, confirmed 2026-08-25.
  *
- * Sectors and scale only, no client or brand names, no logos. See
- * data/partnership.ts and docs/CONTENT-INVENTORY.md §6 for the full reasoning
- * — the short version is that naming the brands publicly identifies clients
- * who trade as local Perth businesses, which is not this company's disclosure
- * to make without the client's own written consent.
+ * Previously shipped as anonymous sector pills; upgraded once management
+ * confirmed SNS itself had agreed in writing to being named, not just an
+ * internal instruction. See data/brands.ts for the fuller record and the
+ * still-open request for a written citation.
  *
- * Tone is ink rather than surface/canvas: the sections either side (services,
- * company-intro) are both light, and a dark band here breaks that run while
- * giving the section the same visual weight as the facts row and the vision
- * statement — this is proof-of-scale content, so it should not read as an
- * afterthought tucked between two lighter sections.
+ * Logos sit in plain white tiles rather than on the section's dark ground.
+ * Most were supplied on white or near-white backgrounds; compositing them
+ * directly onto ink would show a visible box around every mark except the two
+ * with real transparency. A consistent white card is the same treatment every
+ * "as seen in" / client-logo pattern uses for exactly this reason, and it
+ * reads as intentional rather than as a background mismatch.
+ *
+ * Five tiles, not six: no logo exists yet for the sixth brand mentioned in the
+ * source material. Nothing fills the gap — the wall shows what was supplied.
  */
 export function Partnership() {
   return (
     <Section tone="ink" reveal aria-labelledby="partnership-title">
-      <div className="grid gap-block lg:grid-cols-12">
-        <SectionHeading
-          id="partnership-title"
-          eyebrow={partnership.eyebrow}
-          title={partnership.title}
-          description={partnership.description}
-          className="lg:col-span-7"
-        />
+      <SectionHeading
+        id="partnership-title"
+        eyebrow={partnership.eyebrow}
+        title={partnership.title}
+        description={partnership.description}
+        className="max-w-3xl"
+      />
 
-        <ul className="flex flex-wrap content-start gap-3 lg:col-span-5 lg:justify-end">
-          {partnership.sectors.map((sector, index) => (
-            <li
-              key={sector}
-              data-stagger
-              style={{ "--stagger-index": index } as React.CSSProperties}
-              className="rounded-full border border-[color:var(--tone-border)] px-4 py-2 text-sm"
-            >
-              {sector}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <p className="mt-block text-sm text-[color:var(--tone-muted)]">
-        {partnership.note}
-      </p>
+      <ul className="mt-section-sm grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {brands.map((brand, index) => (
+          <li
+            key={brand.name}
+            data-stagger
+            style={{ "--stagger-index": index } as React.CSSProperties}
+            className="flex flex-col items-center gap-4 rounded-2xl bg-canvas p-6"
+          >
+            {/*
+              These marks range from 0.90 to 3.45 in aspect ratio — one is
+              nearly square, another is a long wordmark. Capping height alone
+              left the tall one looking half the size of the wide ones, so the
+              box constrains both axes and object-contain lets each mark fill
+              whichever dimension binds first. That is what makes a mixed set
+              of logos read as evenly weighted.
+            */}
+            <div className="flex h-20 w-full items-center justify-center">
+              <Image
+                src={brand.logo.src}
+                alt={`${brand.name} logo`}
+                width={brand.logo.width}
+                height={brand.logo.height}
+                className="max-h-20 max-w-full object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-medium text-ink">{brand.name}</p>
+              <p className="mt-0.5 text-xs text-ink-subtle">{brand.sector}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </Section>
   );
 }

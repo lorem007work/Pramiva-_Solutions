@@ -1,45 +1,18 @@
 /**
- * Anonymised partnership summary — Q24 Option A.
+ * Partnership section copy — upgraded to Q24 Option B 2026-08-25.
  *
- * Source: docs/CONTENT-INVENTORY.md §6. The company supports several consumer
- * brands for an Australian partner (SNS Multiservices), operating brands
- * including Turf Man, Perth Landscaper, Cleaning Team, Carry or Drag, Hardrex
- * and Public Shed.
+ * Was anonymous sector pills (Option A) as of the previous commit. Upgraded
+ * once management confirmed SNS itself agreed in writing to being named
+ * publicly — see src/data/brands.ts for the fuller note and the still-open
+ * request for a written citation to link here.
  *
- * 🔴 THE NAMES ABOVE ARE FOR THIS COMMENT ONLY — never copy them into the
- * exported content below. Several of those brands trade as local Perth
- * businesses; stating publicly that their operations run from Nepal could
- * affect their local sales and may breach a confidentiality clause. That is
- * not a risk this file may take on the strength of an internal instruction —
- * SNS has to agree to it too.
- *
- * What ships instead is sector and scale only, which discloses no client and
- * needs no one's permission. Confirmed with the founder/team on 2026-08-25:
- * build the anonymised version now; pursue named consent from SNS separately.
- *
- * Even the sector list is induction-derived, so treat this content the same
- * as any other [DRAFT] entry in CONTENT-INVENTORY.md — safe to publish because
- * it identifies no one, but worth a quick nod from management at the next
- * sign-off rather than being invented on the developer's authority alone.
+ * The logos themselves, and which sectors they belong to, live in
+ * src/data/brands.ts. This file only holds the section's framing copy.
  */
 
 export const partnership = {
   eyebrow: "04 — Partnership",
-  title: "Behind the scenes for consumer brands abroad.",
+  title: "Trusted with consumer brands abroad.",
   description:
-    "Alongside our Nepal and international client work, we support an Australian partner's consumer brands — handling the operations behind the scenes across the categories below.",
-  sectors: [
-    "Turf & lawn supply",
-    "Landscaping",
-    "Cleaning services",
-    "E-commerce retail",
-    "Equipment hire",
-    "Home storage",
-  ],
-  /**
-   * Deliberately generic — no client is named anywhere in this file. That is
-   * the whole reason this section can exist yet. Upgradeable to named copy
-   * once Q24 returns written consent from both parties.
-   */
-  note: "Client names are not published without consent from every party involved.",
+    "Alongside our Nepal and international client work, we support the day-to-day operations behind these consumer brands for an Australian partner.",
 } as const;
