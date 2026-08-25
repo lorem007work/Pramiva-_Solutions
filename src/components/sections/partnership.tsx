@@ -48,6 +48,7 @@ export function Partnership() {
            h2 scale it competed with the actual section headings around it. */
         size="h3"
         align="center"
+        stagger={0}
       />
 
       <ul className="mt-block flex flex-wrap items-center justify-center gap-x-6 gap-y-6 sm:mt-section-sm sm:gap-x-12 lg:gap-x-16">
@@ -55,7 +56,7 @@ export function Partnership() {
           <li
             key={brand.name}
             data-stagger
-            style={{ "--stagger-index": index } as React.CSSProperties}
+            style={{ "--stagger-index": index + 1 } as React.CSSProperties}
             className="flex items-center justify-center"
           >
             {/*

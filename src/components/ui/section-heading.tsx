@@ -18,6 +18,9 @@ type SectionHeadingProps = {
   align?: "start" | "center";
   className?: string;
   id?: string;
+  // Position in a group's stagger. Set it so the heading leads its own
+  // section instead of sitting still while the items below animate.
+  stagger?: number;
 };
 
 /** A semantic heading with the recurring editorial eyebrow/title treatment. */
@@ -36,6 +39,7 @@ export function SectionHeading({
   align = "start",
   className = "",
   id,
+  stagger,
 }: SectionHeadingProps) {
   const Heading = level;
   const alignment =
@@ -45,7 +49,15 @@ export function SectionHeading({
   const sizeClass = sizeClasses[size ?? level];
 
   return (
-    <div className={`flex max-w-3xl flex-col ${alignment} ${className}`}>
+    <div
+      className={`flex max-w-3xl flex-col ${alignment} ${className}`}
+      {...(stagger === undefined
+        ? null
+        : {
+            "data-stagger": "",
+            style: { "--stagger-index": stagger } as React.CSSProperties,
+          })}
+    >
       {eyebrow ? (
         <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
           {eyebrow}

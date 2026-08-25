@@ -3,39 +3,54 @@
 import { useEffect, useRef } from "react";
 import type { HTMLAttributes } from "react";
 
-/**
- * THE ONLY MOTION MODULE IN THE CODEBASE — CLAUDE.md rule 7.
- *
- * NO ANIMATION LIBRARY. `motion` was adopted on 2026-08-25 and removed the
- * same day: it cost +34 KB gzipped on every route, taking the site from 179 KB
- * to 213 KB against a 185 KB budget, and every effect on the page is a fade, a
- * translate or a scale. Those are three CSS declarations. The dependency was
- * buying nothing that `IntersectionObserver` plus keyframes does not already
- * do — see docs/ARCHITECTURE.md §5.1 and docs/MOTION-ART-DIRECTION.md.
- *
- * What lives here is the trigger, not the animation. This file decides WHEN a
- * block has entered the viewport and writes that onto the element as a data
- * attribute; globals.css decides what entering looks like. Keeping the timing
- * in the stylesheet is why there is only one set of numbers to change.
- *
- * SERVER RENDERING AND THE NO-JAVASCRIPT CASE
- *
- * Content is visible in the server-rendered HTML and stays visible until this
- * component has confirmed, on the client, that the block starts outside the
- * viewport. A script that never loads, or throws, therefore cannot leave a
- * section stuck at opacity 0 — the failure mode is "no animation", never
- * "no content".
- */
+// Scroll reveal trigger. Decides WHEN a block is on screen; globals.css owns
+// what entering looks like. Content is visible until the client confirms the
+// block starts off-screen, so a failed script never hides anything.
+
+// Re-arms on exit, so a block animates again when scrolled back to.
+// Hysteresis matters here: it shows once 8% is in view but re-arms only when
+// fully out, so a block resting near the boundary cannot flicker.
+const SHOW_RATIO = 0.08;
+
+// Safety net. IntersectionObserver fires only when the ratio CROSSES a
+// threshold, so a block can sit in view unnotified after an odd jump. One
+// shared rAF-throttled passive listener promotes anything pending that is
+// actually on screen — the "invisible content" failure is never acceptable.
+const pending = new Set<HTMLElement>();
+let listening = false;
+let frame = 0;
+
+function sweep() {
+  frame = 0;
+  for (const el of pending) {
+    const b = el.getBoundingClientRect();
+    const inView = b.top < window.innerHeight * (1 - SHOW_RATIO) && b.bottom > 0;
+    if (inView) el.dataset.revealState = "visible";
+  }
+}
+
+function onScroll() {
+  if (!frame) frame = requestAnimationFrame(sweep);
+}
+
+function track(el: HTMLElement) {
+  pending.add(el);
+  if (!listening) {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    listening = true;
+  }
+}
+
+function untrack(el: HTMLElement) {
+  pending.delete(el);
+  if (pending.size === 0 && listening) {
+    window.removeEventListener("scroll", onScroll);
+    listening = false;
+  }
+}
 
 type RevealProps = HTMLAttributes<HTMLDivElement> & {
-  /**
-   * Force group mode instead of letting the component detect it.
-   *
-   * Group mode is normally inferred: if the block contains a `[data-stagger]`
-   * child, its children own the entrance and the container does not animate.
-   * Pass `group` explicitly only when the staggered children are mounted after
-   * the first paint, which nothing currently does.
-   */
+  // Force group mode. Normally inferred from a [data-stagger] descendant.
   group?: boolean;
 };
 
@@ -51,19 +66,8 @@ export function Reveal({
     const element = elementRef.current;
     if (!element) return;
 
-    /*
-      ONE ENTRANCE SYSTEM PER BLOCK.
-
-      Before this, a section with a list ran two animations on top of each
-      other: the container rose and faded, and then every `[data-stagger]`
-      child rose and faded again inside it. Nested opacity multiplies (a child
-      at 0.5 inside a parent at 0.5 renders at 0.25) and the two transforms
-      compound, so the group arrived soft, late and overworked.
-
-      The block declares which system it uses, once, here. A block that
-      contains staggered children hands the entrance to those children and
-      stays still itself; a block that does not, animates as a whole.
-    */
+    // One entrance system per block: a block holding staggered children hands
+    // the entrance to them and stays still, so the two never compound.
     const isGroup = group ?? element.querySelector("[data-stagger]") !== null;
     if (isGroup) element.dataset.revealMode = "group";
 
@@ -71,6 +75,7 @@ export function Reveal({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
+    // Reduced motion opts out of the whole mechanism, replays included.
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       element.dataset.revealState = "ready";
       return;
@@ -78,36 +83,28 @@ export function Reveal({
 
     const bounds = element.getBoundingClientRect();
     const startsInViewport = bounds.top < window.innerHeight && bounds.bottom > 0;
-
-    if (startsInViewport) {
-      element.dataset.revealState = "ready";
-      return;
-    }
-
-    element.dataset.revealState = "pending";
+    element.dataset.revealState = startsInViewport ? "ready" : "pending";
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry) return;
-
-        // Reveal when the element enters the viewport, and ALSO when it has
-        // already passed above it. A programmatic jump — anchor link, restored
-        // scroll position, or a fast flick — can move an element from below the
-        // viewport to above it within a single frame, so `isIntersecting` never
-        // becomes true and the content stays at opacity 0 permanently. Verified
-        // on the deployed site: jumping to the page bottom left one section
-        // invisible until it was scrolled back into view.
-        const hasPassedAbove = entry.boundingClientRect.bottom < 0;
-        if (!entry.isIntersecting && !hasPassedAbove) return;
-
-        element.dataset.revealState = hasPassedAbove ? "ready" : "visible";
-        observer.disconnect();
+      ([record]) => {
+        if (!record) return;
+        if (record.intersectionRatio >= SHOW_RATIO) {
+          element.dataset.revealState = "visible";
+        } else if (record.intersectionRatio === 0) {
+          // Fully out of view: re-arm so the next entry animates again.
+          element.dataset.revealState = "pending";
+        }
       },
-      { rootMargin: "0px 0px -8%", threshold: 0.08 },
+      { threshold: [0, SHOW_RATIO] },
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+    track(element);
+
+    return () => {
+      observer.disconnect();
+      untrack(element);
+    };
   }, [group]);
 
   return (

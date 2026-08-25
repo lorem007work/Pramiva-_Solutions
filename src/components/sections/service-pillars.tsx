@@ -47,8 +47,13 @@ export function ServicePillars() {
           title={services.title}
           description={services.description}
           className="lg:col-span-8"
+          stagger={0}
         />
-        <div className="lg:col-span-4 lg:justify-self-end">
+        <div
+          data-stagger
+          style={{ "--stagger-index": 1 } as React.CSSProperties}
+          className="lg:col-span-4 lg:justify-self-end"
+        >
           <Button href={ctas.services.href} variant="secondary">
             {ctas.services.label}
           </Button>
@@ -63,7 +68,7 @@ export function ServicePillars() {
             <li
               key={pillar.group}
               data-stagger
-              style={{ "--stagger-index": index } as React.CSSProperties}
+              style={{ "--stagger-index": index + 2 } as React.CSSProperties}
               /* flex + h-full so all three cards end level regardless of how
                  many services each one lists. */
               /*
