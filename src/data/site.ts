@@ -15,7 +15,7 @@ export const site = {
   /** CONFIRMED — public trading name. */
   name: "Pramiva Solutions",
 
-  /** CONFIRMED — registered legal entity. Used for legal pages and JSON-LD. */
+  /** CONFIRMED 2026-08-25 by the owner. Used for legal pages and JSON-LD. */
   legalName: "Pramiva Solutions Private Limited",
 
   /** CONFIRMED. Published only where it reads as fact, never as experience. */
