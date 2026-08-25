@@ -21,7 +21,7 @@ export function createPageMetadata(route: RouteSeo): Metadata {
       url: route.path,
       siteName: site.name,
       type: "website",
-      locale: "en",
+      locale: "en_GB",
       images: [socialImage],
     },
     twitter: {

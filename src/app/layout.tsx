@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: site.name,
     type: "website",
-    locale: "en",
+    locale: "en_GB",
     // JPEG, not PNG or WebP: every OG consumer supports it, LinkedIn does not
     // reliably render WebP, and platforms composite on white so alpha is moot.
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: site.name }],
