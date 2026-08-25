@@ -33,35 +33,42 @@ export function Partnership() {
         className="max-w-3xl"
       />
 
-      <ul className="mt-section-sm grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      {/*
+        Deliberately understated. This is a trust signal, not a feature
+        section — the logos should register as "these are real brands" in
+        passing, then let the eye move on. Oversized tiles competed with the
+        heading above them for attention they do not need.
+
+        The name and sector labels are gone with them. Each mark already
+        carries its own name in the artwork, so repeating it underneath was
+        duplication, and the sector line was detail nobody reads on a logo
+        wall. The heading says what the section means.
+      */}
+      <ul className="mt-section-sm flex flex-wrap items-center gap-3 sm:gap-4">
         {brands.map((brand, index) => (
+          // h-20, not h-18: Tailwind's spacing scale jumps 16 → 20, so h-18
+          // generates no rule at all and the tile silently kept its base
+          // height at every breakpoint. Verified against the compiled CSS.
           <li
             key={brand.name}
             data-stagger
             style={{ "--stagger-index": index } as React.CSSProperties}
-            className="flex flex-col items-center gap-4 rounded-2xl bg-canvas p-6"
+            className="flex h-16 w-32 items-center justify-center rounded-xl bg-canvas px-4 sm:h-20 sm:w-36"
           >
             {/*
               These marks range from 0.90 to 3.45 in aspect ratio — one is
-              nearly square, another is a long wordmark. Capping height alone
-              left the tall one looking half the size of the wide ones, so the
-              box constrains both axes and object-contain lets each mark fill
-              whichever dimension binds first. That is what makes a mixed set
-              of logos read as evenly weighted.
+              near-square, another a long wordmark. Constraining both axes with
+              object-contain lets each fill whichever dimension binds first,
+              which is what makes a mixed set read as evenly weighted rather
+              than one mark looking half the size of the others.
             */}
-            <div className="flex h-20 w-full items-center justify-center">
-              <Image
-                src={brand.logo.src}
-                alt={`${brand.name} logo`}
-                width={brand.logo.width}
-                height={brand.logo.height}
-                className="max-h-20 max-w-full object-contain"
-              />
-            </div>
-            <div className="text-center">
-              <p className="text-sm font-medium text-ink">{brand.name}</p>
-              <p className="mt-0.5 text-xs text-ink-subtle">{brand.sector}</p>
-            </div>
+            <Image
+              src={brand.logo.src}
+              alt={`${brand.name} logo`}
+              width={brand.logo.width}
+              height={brand.logo.height}
+              className="max-h-10 max-w-full object-contain sm:max-h-11"
+            />
           </li>
         ))}
       </ul>
