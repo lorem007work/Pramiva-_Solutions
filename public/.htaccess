@@ -5,6 +5,13 @@
 # enabled. A missing .htaccess is a silent failure: no HTTPS redirect, no 404
 # page, no caching. Verify it after every upload.
 
+# --- Directory listing ------------------------------------------------------
+# Without this, cPanel's autoindex serves a browsable "Index of /images/" for
+# every directory with no index.html. Verified live on 2026-08-25: /images/,
+# /images/brand/, /images/brands/, /images/office/, /api/ and /_next/ were all
+# listing their contents publicly.
+Options -Indexes
+
 # --- 🔴 STAGING GUARD — DELETE AT PHASE 9 -----------------------------------
 # The deployed build still contains PLACEHOLDER text and unapproved [DRAFT]
 # copy. This keeps search engines from indexing it while management reviews the
