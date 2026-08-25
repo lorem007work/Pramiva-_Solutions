@@ -151,11 +151,13 @@ For a B2B operations company, this portfolio is by far the strongest proof of ca
 
 | Option | What it looks like | Risk |
 |---|---|---|
-| **A. Anonymised** *(recommended for v1)* | "We operate six consumer brands across turf supply, landscaping, cleaning, e-commerce, equipment hire and home goods for an Australian partner." Sectors and scale, no names. | None — no client identified |
+| **A. Anonymised** — ✅ **shipped 2026-08-25** | Sector pills only, no names: turf & lawn supply, landscaping, cleaning, e-commerce, equipment hire, home storage. `src/data/partnership.ts`, rendered by `components/sections/partnership.tsx` on the homepage. | None — no client identified |
 | **B. Named, with written consent from SNS** | Full brand cards as drafted below | Low once consent is in writing. Highest credibility. |
 | **C. Named without consent** | — | **Do not.** Potential contract breach and damage to the client's brands. |
 
 Option A delivers most of the credibility with none of the exposure, and it can be upgraded to Option B later once consent exists. Launching with A costs nothing and forecloses nothing.
+
+**Status:** Management asked for this section on 2026-08-25 ("add the brand team we have worked with"). Confirmed with the team that only the internal instruction exists — **SNS has not separately agreed to being named**. Built and shipped in the anonymised Option A form, which needs no one's consent because it identifies no client. The named Option B cards below remain held pending written confirmation from SNS specifically, not just an internal go-ahead.
 
 ### Draft brand cards — held for Option B only
 

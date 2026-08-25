@@ -3,6 +3,7 @@ import { AtAGlance } from "@/components/sections/at-a-glance";
 import { CompanyIntro } from "@/components/sections/company-intro";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Hero } from "@/components/sections/hero";
+import { Partnership } from "@/components/sections/partnership";
 import { PositioningStatement } from "@/components/sections/positioning-statement";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { homepage } from "@/data/homepage";
@@ -16,6 +17,11 @@ export const metadata = createPageMetadata(seo.home);
  * The "Why Pramiva" and "How we work" sections were removed on 2026-08-24:
  * one was benefit claims we cannot make, the other was induction-derived
  * process content that is barred from public pages. See data/homepage.ts.
+ *
+ * Partnership added 2026-08-25 at management's request, in its anonymised
+ * form only. See data/partnership.ts — the client brand names remain
+ * withheld pending written consent from SNS, not just an internal
+ * instruction to publish them.
  */
 export default function Home() {
   return (
@@ -24,6 +30,7 @@ export default function Home() {
       <AtAGlance />
       <PositioningStatement />
       <ServicesOverview />
+      <Partnership />
       <CompanyIntro />
       <CtaBand id="home-cta-title" {...homepage.cta} />
     </main>

@@ -30,7 +30,7 @@ export const homepage = {
     ctaLabel: "Explore all services",
   },
   company: {
-    eyebrow: "04 — About",
+    eyebrow: "05 — About",
     title: "A business and operations company in Lalitpur, Nepal.",
     /** CONFIRMED — founding year, location, business type and markets. */
     description: [
@@ -40,7 +40,7 @@ export const homepage = {
     ctaLabel: "More about the company",
   },
   cta: {
-    eyebrow: "05 — Start a conversation",
+    eyebrow: "06 — Start a conversation",
     title: "Tell us what you need handled.",
     description:
       "Send an enquiry and we will come back to you with a practical next step.",
