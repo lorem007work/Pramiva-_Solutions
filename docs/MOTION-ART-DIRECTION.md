@@ -68,13 +68,20 @@ Only `opacity` and `transform` may animate.
 | Hero copy | opacity 0→1, translateY 12px→0 | 500ms; 80–90ms steps |
 | Hero mark | opacity 0→1, scale .96→1 | 700–800ms; inner crescent follows outer |
 | Hero photo | static overflow mask; child opacity 0→1, scale 1.025→1, translateX 12px→0 | 700ms; starts after headline |
-| Section reveal | opacity 0→1, translateY 16px→0 | 520–600ms; once |
+| Section reveal | opacity 0→1, translateY 16px→0 | 520–600ms; replays on re-entry |
 | Group stagger | children use the section reveal values; parent does not transform | 60–80ms between items |
 | Hover feedback | translateY 0→-2px for buttons, 0→-4px for actionable cards | 180–300ms |
 | Press feedback | scale 1→.98 | 120–180ms |
 
 Use `cubic-bezier(0.22, 1, 0.36, 1)` for entrances. The entire hero should be
 settled within about 900ms. Do not delay reading or interaction.
+
+**Reveals replay (owner decision, 2026-08-25).** This section originally specified a
+one-time reveal. Sections now re-arm when they leave the viewport, so scrolling
+back up plays the entrance again. The implementation shows a block once 8% is in
+view and re-arms only when it is fully out — that gap is deliberate hysteresis, so
+a block resting on the boundary cannot flicker. Do not revert this to `once`
+without asking.
 
 Under `prefers-reduced-motion: reduce`, render the final state immediately:
 no transform, no stagger, no smooth scrolling, and no zero-duration imitation

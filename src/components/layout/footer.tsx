@@ -61,7 +61,7 @@ export function Footer() {
                     ) : (
                       <a
                         href={`mailto:${site.email}`}
-                        className="inline-flex min-h-11 items-center hover:text-canvas"
+                        className="inline-flex min-h-11 max-w-full items-center break-all transition-colors duration-150 hover:text-canvas"
                       >
                         {site.email}
                       </a>

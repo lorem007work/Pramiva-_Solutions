@@ -2,13 +2,14 @@
 
 Corporate website. Next.js 15 App Router (static export) · TypeScript strict · Tailwind v4 · Framer Motion · Lenis · PHP/PHPMailer form handler · cPanel hosting.
 
-## 🔴 The company name is unresolved
+## The company name — trading name settled, legal name still open
 
-The logo says **Pramiva**. The stated legal entity is **Promeva Solutions Private Limited**. One of them is wrong and management has not yet said which.
+**Pramiva** is confirmed as the public trading name (owner decision, 2026-08-25). It matches the logo artwork and the registered `.com.np` domain, and `site.name` is already `"Pramiva Solutions"`. Copy, metadata and JSON-LD may use it.
 
-- The name appears in **exactly one place**: `site.name` in `src/data/site.ts`
+**Still open:** whether the registered legal entity is *Promeva Solutions Private Limited*. That only matters for text that must name the legal entity — company registration number, terms, invoices, a legal footer line. Confirm against the registration certificate before writing any of those.
+
+- The name still appears in **exactly one place**: `site.name` in `src/data/site.ts`
 - Never type either spelling anywhere else — not in metadata, not in JSON-LD, not in a heading, not in a comment
-- Do not register a domain, configure a sending address, or write the name into copy until it is confirmed against the registration certificate
 
 See [docs/CONTENT-INVENTORY.md](docs/CONTENT-INVENTORY.md) §1.
 

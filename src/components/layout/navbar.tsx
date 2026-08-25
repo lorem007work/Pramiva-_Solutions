@@ -23,7 +23,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur-sm">
-        <Container className="flex h-20 items-center justify-between gap-8">
+        <Container className="flex h-20 items-center justify-between gap-8 sm:h-24">
           <Link
             href="/"
             aria-label={`${siteName} home`}
@@ -31,7 +31,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
           >
             {/* Above the fold on every route, and the LCP element on the ones
                 with no hero photograph. See BrandLogo. */}
-            <BrandLogo priority className="h-auto w-36 sm:w-44" />
+            <BrandLogo priority className="h-auto w-44 sm:w-52" />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">

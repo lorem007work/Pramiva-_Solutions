@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
@@ -6,6 +7,7 @@ import { ServiceIcon } from "@/components/ui/service-icon";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
+import { serviceGroups } from "@/data/services";
 
 /**
  * Three capability pillars, replacing six equal service cards.
@@ -63,6 +65,12 @@ export function ServicePillars() {
       <ul className="mt-section-sm grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {pillars.map((pillar, index) => {
           const items = pillarServices(pillar);
+          // Anchor index is derived, not hardcoded: /services builds its group
+          // ids from the same array, so reordering there cannot break these.
+          const groupIndex = serviceGroups.findIndex(
+            (group) => group.heading === pillar.group,
+          );
+          const href = `/services/#service-group-${groupIndex + 1}`;
 
           return (
             <li
@@ -78,7 +86,7 @@ export function ServicePillars() {
                 `motion-safe:` so a reduced-motion visitor gets the colour
                 change without the movement.
               */
-              className={`flex h-full flex-col rounded-2xl border p-7 transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-1 sm:p-8 ${
+              className={`relative flex h-full flex-col rounded-2xl border p-7 transition-[border-color,transform] duration-300 focus-within:border-brand/40 motion-safe:hover:-translate-y-1 sm:p-8 ${
                 pillar.future
                   ? "border-dashed border-line-strong bg-surface"
                   : "border-line bg-canvas hover:border-brand/40"
@@ -103,7 +111,12 @@ export function ServicePillars() {
               ) : null}
 
               <h3 className={`text-h3 ${pillar.future ? "mt-2" : "mt-7"}`}>
-                {pillar.title}
+                <Link
+                  href={href}
+                  className="transition-colors duration-200 after:absolute after:inset-0 after:rounded-2xl hover:text-brand"
+                >
+                  {pillar.title}
+                </Link>
               </h3>
 
               {/* The approved service titles, verbatim from services.ts. */}
