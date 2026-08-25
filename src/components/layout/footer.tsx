@@ -68,31 +68,6 @@ export function Footer() {
                     )}
                   </dd>
                 </div>
-                {/*
-                  The row is omitted entirely while the number is unanswered,
-                  rather than printing the placeholder string on every page.
-
-                  Placeholders are deliberately visible in `src/data`, and the
-                  grep gate still catches them before launch — but a footer is
-                  seen by everyone the review link is shared with, and
-                  "PLACEHOLDER: display phone number (Q8)" reads as a broken
-                  site rather than as a known gap. An absent row reads as a
-                  company that lists email and address, which is common and
-                  unremarkable. Nothing is invented either way.
-                */}
-                {!isPlaceholder(site.phone) && (
-                  <div>
-                    <dt className="text-canvas/50">Phone</dt>
-                    <dd className="mt-1 break-words text-canvas/80">
-                      <a
-                        href={`tel:${site.phone}`}
-                        className="inline-flex min-h-11 items-center hover:text-canvas"
-                      >
-                        {site.phone}
-                      </a>
-                    </dd>
-                  </div>
-                )}
                 <div>
                   <dt className="text-canvas/50">Address</dt>
                   <dd className="mt-1 break-words text-canvas/80">

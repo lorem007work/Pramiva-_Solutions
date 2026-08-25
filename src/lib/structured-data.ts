@@ -69,7 +69,6 @@ export function buildHomeJsonLd() {
     description: site.description,
     foundingDate: String(site.founded),
     email: confirmed(site.email),
-    telephone: confirmed(site.phone),
     // The logo a search engine shows beside the site. Absolute URL required.
     logo: compact({
       "@type": "ImageObject",

@@ -53,7 +53,6 @@ export const site = {
    * same address both displays publicly and receives enquiries.
    */
   email: "support@pramivasolutions.com.np",
-  phone: "PLACEHOLDER: display phone number (Q8)",
 
   /**
    * Q27 answered 2026-08-24 from the company's Google Business Profile.

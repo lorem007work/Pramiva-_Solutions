@@ -48,7 +48,6 @@ export const contact = {
     /** Labels only; every value comes from `site.ts`. */
     labels: {
       email: "Email",
-      phone: "Phone",
       address: "Address",
     },
   },
