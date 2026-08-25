@@ -23,7 +23,16 @@ export default function robots(): MetadataRoute.Robots {
   const base = site.url.replace(/\/+$/, "");
 
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/", "/preview/"] }],
+    /*
+      `/preview/` was removed from this list on 2026-08-25: the route no longer
+      exists, so the rule was advertising a path that returns 404. A stale
+      Disallow is harmless to rankings but it is a public statement about the
+      site's shape, and pointing crawlers at a removed internal page is the
+      opposite of what it was for.
+
+      `/api/` stays: contact.php is a POST endpoint with nothing to index.
+    */
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/api/"] }],
     sitemap: `${base}/sitemap.xml`,
     host: base,
   };

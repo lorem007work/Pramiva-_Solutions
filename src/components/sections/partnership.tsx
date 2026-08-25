@@ -5,55 +5,58 @@ import { brands } from "@/data/brands";
 import { partnership } from "@/data/partnership";
 
 /**
- * Named partner brands — Q24 Option B, confirmed 2026-08-25.
+ * Client logo rail.
  *
- * Previously shipped as anonymous sector pills; upgraded once management
- * confirmed SNS itself had agreed in writing to being named, not just an
- * internal instruction. See data/brands.ts for the fuller record and the
- * still-open request for a written citation.
+ * 🔴 CONTENTS FROZEN. See data/partnership.ts and data/brands.ts. Whether
+ * these brands may be named at all is unresolved — the repo and
+ * docs/CONTENT-INVENTORY.md §6 currently contradict each other on whether the
+ * client consented. This redesign changes how the section LOOKS and removes a
+ * barred sentence from its copy. It does not add a brand, a name, a sector, a
+ * logo, or any statement about the work performed.
  *
- * Logos sit in plain white tiles rather than on the section's dark ground.
- * Most were supplied on white or near-white backgrounds; compositing them
- * directly onto ink would show a visible box around every mark except the two
- * with real transparency. A consistent white card is the same treatment every
- * "as seen in" / client-logo pattern uses for exactly this reason, and it
- * reads as intentional rather than as a background mismatch.
+ * WHY IT MOVED OFF THE DARK GROUND
  *
- * Five tiles, not six: no logo exists yet for the sixth brand mentioned in the
- * source material. Nothing fills the gap — the wall shows what was supplied.
+ * It was a full-bleed ink section, which made a passing trust signal one of
+ * the loudest things on the page. It is now a light band: the logos should
+ * register as "these are real businesses" and let the eye move on.
+ *
+ * The white tiles are gone with it. They existed because the supplied marks
+ * sit on mixed backgrounds and compositing them onto ink drew a visible box
+ * around each one. On a light ground that problem disappears, so the marks sit
+ * directly on the surface — which is what makes a logo rail read as a rail
+ * rather than as a row of cards.
+ *
+ * MARKS ARE SHOWN AS SUPPLIED, IN COLOUR.
+ *
+ * A greyscale rail was tried first — it is the usual way to stop five brand
+ * palettes fighting each other. It failed on these particular assets. Three of
+ * the five are dark marks on white with no alpha channel, and desaturating
+ * them then dropping the opacity left them barely visible against a light
+ * ground: the treatment that normally unifies a rail was erasing most of it.
+ *
+ * Full colour at a consistent height is the honest presentation, and with the
+ * marks kept small it stays a passing signal rather than a feature.
  */
 export function Partnership() {
   return (
-    <Section tone="ink" reveal aria-labelledby="partnership-title">
+    <Section tone="canvas" spacing="compact" reveal aria-labelledby="partnership-title">
       <SectionHeading
         id="partnership-title"
         eyebrow={partnership.eyebrow}
         title={partnership.title}
-        description={partnership.description}
-        className="max-w-3xl"
+        /* h3 sizing on an h2 element: this is a supporting trust signal, and at
+           h2 scale it competed with the actual section headings around it. */
+        size="h3"
+        align="center"
       />
 
-      {/*
-        Deliberately understated. This is a trust signal, not a feature
-        section — the logos should register as "these are real brands" in
-        passing, then let the eye move on. Oversized tiles competed with the
-        heading above them for attention they do not need.
-
-        The name and sector labels are gone with them. Each mark already
-        carries its own name in the artwork, so repeating it underneath was
-        duplication, and the sector line was detail nobody reads on a logo
-        wall. The heading says what the section means.
-      */}
-      <ul className="mt-section-sm flex flex-wrap items-center gap-3 sm:gap-4">
+      <ul className="mt-block flex flex-wrap items-center justify-center gap-x-6 gap-y-6 sm:mt-section-sm sm:gap-x-12 lg:gap-x-16">
         {brands.map((brand, index) => (
-          // h-20, not h-18: Tailwind's spacing scale jumps 16 → 20, so h-18
-          // generates no rule at all and the tile silently kept its base
-          // height at every breakpoint. Verified against the compiled CSS.
           <li
             key={brand.name}
             data-stagger
             style={{ "--stagger-index": index } as React.CSSProperties}
-            className="flex h-16 w-32 items-center justify-center rounded-xl bg-canvas px-4 sm:h-20 sm:w-36"
+            className="flex items-center justify-center"
           >
             {/*
               These marks range from 0.90 to 3.45 in aspect ratio — one is
@@ -67,7 +70,7 @@ export function Partnership() {
               alt={`${brand.name} logo`}
               width={brand.logo.width}
               height={brand.logo.height}
-              className="max-h-10 max-w-full object-contain sm:max-h-11"
+              className="h-10 w-auto max-w-[7.5rem] object-contain sm:max-w-[8rem]"
             />
           </li>
         ))}

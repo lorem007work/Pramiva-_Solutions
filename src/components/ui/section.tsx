@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 
-type SectionTone = "canvas" | "surface" | "ink" | "brand";
+type SectionTone = "canvas" | "surface" | "soft" | "ink" | "brand";
 type SectionSpacing = "default" | "compact";
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
@@ -42,6 +42,9 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
 const toneClasses: Record<SectionTone, string> = {
   canvas: "bg-canvas text-ink",
   surface: "ground ground-surface text-ink",
+  /* The third temperature — see .ground-soft in globals.css. It remaps
+     --tone-eyebrow because ink-subtle drops below AA on this tint. */
+  soft: "ground ground-soft text-ink",
   ink: "ground ground-ink text-canvas",
   brand: "ground ground-brand text-canvas",
 };

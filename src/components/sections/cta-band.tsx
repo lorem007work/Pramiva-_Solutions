@@ -1,56 +1,76 @@
 import { Button } from "@/components/ui/button";
+import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
-import { primaryCta } from "@/data/navigation";
+import { ctas } from "@/data/navigation";
 
 type CtaBandProps = {
   /** Unique per page — the band is the labelled region of its own section. */
   id: string;
-  eyebrow: string;
+  /** Optional: the homepage drops it, the inner pages keep their numbering. */
+  eyebrow?: string;
   title: string;
   description: string;
 };
 
 /**
- * Closing conversion prompt, repeated on every route.
+ * Closing conversion prompt, repeated on every route except /contact.
  *
  * Copy arrives as props rather than being read from one page's data file, so
- * the same band serves home, about, services and contact without a variant.
- * Final wording remains pending Q4.
+ * the same band serves home, about, services and careers without a variant.
+ *
+ * CENTRED, NOT SPLIT
+ *
+ * This was a 3/8 editorial split with the action pushed to the right of a
+ * paragraph. That composition is right for a section that carries information;
+ * it is wrong for the last thing on the page, whose only job is to be acted
+ * on. Centring puts the heading, the reassurance and the button on one axis,
+ * so the eye arrives at the action rather than hunting to the right margin
+ * for it.
+ *
+ * One action, no competing second link — a visitor who has read this far has
+ * already been offered "explore services" twice further up.
+ *
+ * The label is "Start a conversation" rather than the header's "Start an
+ * enquiry". Same destination, different moment: someone at the foot of the
+ * page has read everything and is choosing whether to engage, not looking for
+ * the contact route.
  */
 export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
   return (
     <Section
       tone="ink"
       backgroundImage="/images/brand/cta-bg.webp"
-      /* Compact band, so the crop is severe - aim it at the bright corner. */
+      /* Compact band, so the crop is severe — aim it at the bright corner. */
       backgroundPosition="right bottom"
-      spacing="compact"
       reveal
       aria-labelledby={id}
-      containerClassName="grid gap-block md:grid-cols-12 md:items-end"
+      className="relative overflow-hidden"
+      containerClassName="relative flex flex-col items-center text-center"
     >
-      <p className="text-eyebrow uppercase text-line-strong md:col-span-3 md:self-start">
-        {eyebrow}
+      {/* The dimensional brand mark now leads the hero instead. Using the
+          same object twice on one page made it read as wallpaper rather than
+          as the company's mark. */}
+
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+
+      <h2 id={id} className={`max-w-[20ch] text-h1 ${eyebrow ? "mt-4" : ""}`}>
+        {title}
+      </h2>
+
+      <p className="mt-6 max-w-lead text-lead text-[color:var(--tone-muted)]">
+        {description}
       </p>
 
-      <div className="md:col-span-8 md:col-start-5">
-        <h2 id={id} className="max-w-4xl text-h1">
-          {title}
-        </h2>
-
-        <div className="mt-block flex flex-col gap-block sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-[55ch] text-lead text-canvas/70">{description}</p>
-
-          <Button
-            href={primaryCta.href}
-            variant="inverse"
-            className="shrink-0 self-start sm:self-auto"
-          >
-            {primaryCta.label}
-            <span aria-hidden="true">→</span>
-          </Button>
-        </div>
-      </div>
+      {/* Full width on a phone: a centred pill on a narrow screen is a small
+          target floating in a wide band, and this is the page's last chance. */}
+      <Button
+        href={ctas.closing.href}
+        variant="inverse"
+        className="mt-block w-full sm:w-auto"
+      >
+        {ctas.closing.label}
+        <span aria-hidden="true">→</span>
+      </Button>
     </Section>
   );
 }

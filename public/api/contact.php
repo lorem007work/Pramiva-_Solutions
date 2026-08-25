@@ -6,10 +6,24 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 // Rules MUST mirror src/lib/validation.ts:
-// name 2-100 | email valid, <=200 | company 1-150
-// phone <=30 optional | message 10-3000
+// name 2-100 | email valid, <=200 | company OPTIONAL, <=150
+// phone <=30 optional | interest optional, MUST be one of INTEREST_OPTIONS
+// message 10-3000
 // website MUST be empty (honeypot) | loadedAt >=2 seconds ago
 // rate limit: 5 attempts per IP in 10 minutes
+//
+// `interest` is whitelisted rather than accepted as free text. Its value is
+// written into an email that staff will open, so it is attacker-controlled
+// until proven otherwise. Keep this list identical to `contactInterests` in
+// src/lib/validation.ts — the client's copy is never trusted, it is re-checked
+// here, so the two drifting apart shows up as a rejected valid submission.
+const INTEREST_OPTIONS = [
+    'Digital marketing',
+    'Customer systems and service',
+    'AI and automation',
+    'Careers',
+    'Something else',
+];
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -138,6 +152,7 @@ $name = textValue($input, 'name');
 $email = textValue($input, 'email');
 $company = textValue($input, 'company');
 $phone = textValue($input, 'phone');
+$interest = textValue($input, 'interest');
 $message = textValue($input, 'message');
 $errors = [];
 
@@ -147,11 +162,15 @@ if (textLength($name) < 2 || textLength($name) > 100) {
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || textLength($email) > 200) {
     $errors['email'] = 'Enter a valid email address.';
 }
-if (textLength($company) < 1 || textLength($company) > 150) {
+// Optional: only the ceiling applies, and only if something was typed.
+if (textLength($company) > 150) {
     $errors['company'] = 'Enter a company name using up to 150 characters.';
 }
 if (textLength($phone) > 30) {
     $errors['phone'] = 'Enter a phone number using up to 30 characters.';
+}
+if ($interest !== '' && !in_array($interest, INTEREST_OPTIONS, true)) {
+    $errors['interest'] = 'Choose one of the listed options.';
 }
 if (textLength($message) < 10 || textLength($message) > 3000) {
     $errors['message'] = 'Enter a message using 10 to 3,000 characters.';
@@ -238,8 +257,9 @@ try {
     $mail->Body = implode(PHP_EOL, [
         'Name: ' . $name,
         'Email: ' . $email,
-        'Company: ' . $company,
+        'Company: ' . ($company !== '' ? $company : 'Not provided'),
         'Phone: ' . ($phone !== '' ? $phone : 'Not provided'),
+        'Area of interest: ' . ($interest !== '' ? $interest : 'Not specified'),
         '',
         'Message:',
         $message,

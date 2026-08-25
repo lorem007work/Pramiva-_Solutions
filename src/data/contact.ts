@@ -27,8 +27,11 @@ export const contact = {
       email: "Email",
       company: "Company",
       phone: "Phone",
+      interest: "Area of interest",
       message: "How can we help?",
     },
+    /** Empty first option. The field is optional, so it must be selectable. */
+    interestPlaceholder: "Select an area",
     submitLabel: "Send enquiry",
     submittingLabel: "Sending…",
     validationMessage: "Check the highlighted fields and try again.",

@@ -90,7 +90,7 @@ export default function ServicesPage() {
                         <h4 className="text-h3 transition-colors duration-150 group-hover:text-brand md:col-span-5">
                           {service.title}
                         </h4>
-                        <p className="max-w-[65ch] text-[color:var(--tone-muted)] md:col-span-7">
+                        <p className="max-w-copy text-[color:var(--tone-muted)] md:col-span-7">
                           {service.description}
                         </p>
                       </div>

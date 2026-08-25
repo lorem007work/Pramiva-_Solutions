@@ -4,11 +4,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { about } from "@/data/about";
 
 /**
- * The people section.
+ * The workspace section.
  *
- * Both photographs are real and are captioned as what they are — team meals,
- * not staged office shots. Saying otherwise would be inventing a scene onto a
- * real picture, which is the same failure as inventing a statistic.
+ * The previous staff photographs were withdrawn at the team's request. These
+ * replacements were supplied by the company and show the real office. The
+ * employee is photographed from behind, and every screen is blurred.
  *
  * Neither image carries `priority`: this sits below the page header and the
  * story block, so it is never the LCP element and lazy loading is correct.
@@ -16,16 +16,16 @@ import { about } from "@/data/about";
  * cannot be cropped square without cutting people off both ends of the table.
  */
 export function Team() {
-  const { people } = about;
-  const { main, culture } = people.photos;
+  const { workspace } = about;
+  const { main, culture } = workspace.photos;
 
   return (
-    <Section tone="surface" reveal aria-labelledby="about-people-title">
+    <Section tone="surface" reveal aria-labelledby="about-workspace-title">
       <SectionHeading
-        id="about-people-title"
-        eyebrow={people.eyebrow}
-        title={people.title}
-        description={people.description}
+        id="about-workspace-title"
+        eyebrow={workspace.eyebrow}
+        title={workspace.title}
+        description={workspace.description}
       />
 
       <div className="mt-section-sm grid items-start gap-block md:grid-cols-12">

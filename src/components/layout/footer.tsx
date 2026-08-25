@@ -16,12 +16,16 @@ export function Footer() {
               aria-label={`${site.name} home`}
               className="inline-flex transition-opacity duration-150 hover:opacity-80"
             >
-              <BrandLogo inverted className="h-auto w-44 sm:w-52" />
+              <BrandLogo className="h-auto w-44 sm:w-52" />
             </Link>
             <p className="mt-4 max-w-sm text-canvas/70">{site.tagline}</p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 md:col-span-7">
+          {/* Three groups now that Services has its own column: Company,
+              Services, Contact. At sm they fit three across; below that they
+              stack, which keeps each link list scannable rather than squeezing
+              three columns onto a 360px screen. */}
+          <div className="grid gap-10 sm:grid-cols-3 md:col-span-7">
             {footerNav
               .filter((group) => group.links.length > 0)
               .map((group) => (
@@ -33,7 +37,7 @@ export function Footer() {
                       without changing how the list reads on desktop. */}
                   <ul className="mt-3 space-y-1">
                     {group.links.map((link) => (
-                      <li key={link.href}>
+                      <li key={`${group.heading}-${link.label}`}>
                         <Link
                           href={link.href}
                           className="inline-flex min-h-11 items-center text-canvas/80 transition-colors duration-150 hover:text-canvas"

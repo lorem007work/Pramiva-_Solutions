@@ -6,6 +6,7 @@ import { about } from "@/data/about";
 import { seo } from "@/data/seo";
 import { site } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
+import { withNonBreakingHyphens } from "@/lib/utils";
 
 export const metadata = createPageMetadata(seo.about);
 
@@ -57,8 +58,8 @@ export default function AboutPage() {
                 key={paragraph}
                 className={
                   index === 0
-                    ? "max-w-[65ch] text-lead"
-                    : "max-w-[65ch] text-[color:var(--tone-muted)]"
+                    ? "max-w-lead text-lead"
+                    : "max-w-copy text-[color:var(--tone-muted)]"
                 }
               >
                 {paragraph}
@@ -85,11 +86,18 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/*
+          Same sentence as the homepage vision band, so it gets the same
+          treatment — `text-statement` plus the non-breaking hyphen. At text-h1
+          this set as five uneven lines and split "real-world" across two of
+          them; at text-statement it sets as three. Setting one sentence two
+          different ways on two pages is what makes a site look assembled.
+        */}
         <h2
           id="about-vision-title"
-          className="max-w-4xl text-h1 md:col-span-8 md:col-start-5"
+          className="max-w-4xl text-statement text-balance md:col-span-8 md:col-start-5"
         >
-          {vision.statement}
+          {withNonBreakingHyphens(vision.statement)}
         </h2>
       </Section>
 

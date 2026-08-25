@@ -23,8 +23,21 @@ export type RouteSeo = {
 export const seo = {
   home: {
     path: "/",
-    /** The layout template appends the site name, so this must not repeat it. */
-    title: "Business and operations company",
+    /*
+      The brand name is built in HERE, unlike every other route.
+
+      The old comment said the layout template appends it — that is true for
+      /about, /services, /careers and /contact, and false for this one. Next
+      applies `title.template` to CHILD segments only; app/page.tsx sits in the
+      same segment as app/layout.tsx, so it never inherits the template and
+      only `title.default` would cover it. The homepage was therefore shipping
+      as "Business and operations company" with no company name in the single
+      most important title on the site — and the same string in og:title.
+
+      Composed from `site.name` rather than typed, so the unresolved spelling
+      still lives in exactly one file (CLAUDE.md rule 5).
+    */
+    title: `${site.name} — business and operations company`,
     description: site.description,
   },
   about: {

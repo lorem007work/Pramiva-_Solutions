@@ -130,7 +130,7 @@ export function MobileMenu({
         <Link
           href={primaryCta.href}
           onClick={onClose}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand"
+          className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand-deep"
         >
           {primaryCta.label}
         </Link>

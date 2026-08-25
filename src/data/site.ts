@@ -66,6 +66,25 @@ export const site = {
    */
   address: "Damodar Marg, Lalitpur 44600, Nepal",
 
+  /**
+   * The same Q27 answer, split into its parts for structured data.
+   *
+   * Not new information and not a second source of truth — every value here is
+   * a component of `address` above, decomposed because schema.org PostalAddress
+   * wants the parts separately. Emitting the whole display string as
+   * `streetAddress` while ALSO setting locality and country repeats the town
+   * and the country twice in one address object.
+   *
+   * Keep the two in step: if `address` changes, change these with it.
+   * `country` is the ISO 3166-1 alpha-2 code, which is what schema.org expects.
+   */
+  addressParts: {
+    street: "Damodar Marg",
+    locality: "Lalitpur",
+    postalCode: "44600",
+    country: "NP",
+  },
+
   /** The company's own Google Business Profile listing. */
   mapUrl: "https://share.google/Bf6ujO5DWbSeZ70f5",
 

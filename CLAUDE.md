@@ -20,6 +20,7 @@ See [docs/CONTENT-INVENTORY.md](docs/CONTENT-INVENTORY.md) §1.
 | [docs/CONTENT-INVENTORY.md](docs/CONTENT-INVENTORY.md) | Before writing any copy — what is known, and what is cleared |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Deciding *how* — structure, rendering model, form, deps |
 | [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Writing any markup or styling |
+| [docs/MOTION-ART-DIRECTION.md](docs/MOTION-ART-DIRECTION.md) | Editing animation, hero graphics, reveals, or micro-interactions |
 | [docs/WORKFLOW.md](docs/WORKFLOW.md) | Starting a session — which phase are we in |
 | [documntation.md](documntation.md) | The original client brief. Historical source. PRD.md supersedes it. |
 
@@ -52,8 +53,8 @@ npm run build   # must pass before commit; emits out/; check First Load JS
 5. Never write either spelling of the company name outside `src/data/site.ts`.
 
 **Architecture**
-6. Server Components by default. `"use client"` only in: `navbar`, `mobile-menu`, `reveal`, `smooth-scroll`, `contact-form`. Adding a sixth requires justification — it is how the JS budget gets lost. Baseline measured at Phase 2 is **168.8 KB gz** (framework only); budget is **185 KB gz**.
-7. No component imports `framer-motion` directly. All animation goes through `ui/reveal.tsx`.
+6. Server Components by default. `"use client"` only in: `navbar`, `mobile-menu`, `reveal`, `hero-motion`, `smooth-scroll`, `contact-form`. Adding a seventh requires justification — it is how the JS budget gets lost. Baseline measured at Phase 2 is **168.8 KB gz** (framework only); budget is **185 KB gz** — see rule 7 for the one route that is over it on purpose.
+7. **Two motion systems, and the boundary between them is load-bearing.** Scroll reveals and section entrances are CSS, triggered by `ui/reveal.tsx` — that is what every route uses and it costs 0.6 KB. The homepage fold alone uses `motion`, through `ui/hero-motion.tsx`. **Nothing but `sections/hero-split.tsx` may import `hero-motion.tsx`, and no component may import `motion` directly.** The library is reached from one page's tree, which is the only reason `/` pays its 33.8 KB and the other four routes do not; a shared component importing it hoists it into the common chunk and every route pays again. Homepage is **213.5 KB gz** by owner decision (2026-08-25); every other route stays under the 185 KB budget. See [ARCHITECTURE.md](docs/ARCHITECTURE.md) §5.1.
 8. No business string hard-coded in a component. Everything from `src/data/*.ts`.
 9. No hex value inside a component. Tokens only, from `globals.css`.
 

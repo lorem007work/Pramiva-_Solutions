@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { InputField, TextareaField } from "@/components/ui/field";
+import { InputField, SelectField, TextareaField } from "@/components/ui/field";
 import type { contact } from "@/data/contact";
 import {
+  contactInterests,
   readContactFields,
   validateContactFields,
 } from "@/lib/validation";
@@ -146,12 +147,18 @@ export function ContactForm({ copy, fallbackEmail }: ContactFormProps) {
           maxLength={200}
           error={errors.email}
         />
+        {/*
+          Optional as of the redesign. It was required, which forced an
+          individual, a job applicant or a sole trader to invent an answer to
+          get past it. A required field a legitimate visitor cannot answer
+          truthfully collects abandonment, not data.
+        */}
         <InputField
           id="contact-company"
           name="company"
           label={copy.fields.company}
           autoComplete="organization"
-          required
+          optional
           maxLength={150}
           error={errors.company}
         />
@@ -166,6 +173,22 @@ export function ContactForm({ copy, fallbackEmail }: ContactFormProps) {
           error={errors.phone}
         />
       </div>
+
+      {/*
+        Optional, and offered rather than demanded — it routes the enquiry to
+        the right person without adding a step the visitor must clear. The
+        options are a fixed whitelist; the server re-checks against its own
+        copy and does not trust this one.
+      */}
+      <SelectField
+        id="contact-interest"
+        name="interest"
+        label={copy.fields.interest}
+        placeholder={copy.interestPlaceholder}
+        options={contactInterests}
+        optional
+        error={errors.interest}
+      />
 
       <TextareaField
         id="contact-message"

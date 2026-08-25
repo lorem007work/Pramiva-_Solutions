@@ -39,7 +39,7 @@ export function Clients({
       />
 
       {isFull ? (
-        <p className="mt-block max-w-[65ch] text-[color:var(--tone-muted)]">
+        <p className="mt-block max-w-copy text-[color:var(--tone-muted)]">
           {principalClient.summary}
         </p>
       ) : null}

@@ -44,7 +44,7 @@ export default function ContactPage() {
           <h2 id="contact-form-title" className="text-h2">
             {form.heading}
           </h2>
-          <p className="mt-4 max-w-[65ch] text-[color:var(--tone-muted)]">
+          <p className="mt-4 max-w-copy text-[color:var(--tone-muted)]">
             {form.introduction}
           </p>
 
@@ -119,7 +119,7 @@ export default function ContactPage() {
                   href={site.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 block text-brand underline-offset-4 hover:underline"
+                  className="mt-1 inline-flex min-h-11 items-center text-brand underline-offset-4 hover:underline"
                 >
                   View on map
                 </a>

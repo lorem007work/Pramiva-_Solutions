@@ -54,6 +54,10 @@ export const brands: Brand[] = [
   {
     name: "Hardtrex",
     sector: "Equipment hire",
-    logo: { src: "/images/brands/hardtrex.webp", width: 480, height: 141 },
+    /* Re-exported 2026-08-25: the supplied file had a flat #D9D9D9 background
+       baked in, which rendered as a grey box on the light section. The
+       background is an export artifact, not part of the mark — the logo itself
+       is unaltered. Dimensions updated to match the new file. */
+    logo: { src: "/images/brands/hardtrex.webp", width: 600, height: 176 },
   },
 ];

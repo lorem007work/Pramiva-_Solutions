@@ -3,7 +3,8 @@ import { site } from "@/data/site";
 /**
  * About page copy.
  *
- * The public page uses confirmed company facts and genuine team photographs.
+ * The public page uses confirmed company facts and company-supplied office
+ * photographs edited only for exposure and privacy.
  * Client relationships, internal workflows, induction rules and employee
  * counts remain omitted pending separate publication approval.
  */
@@ -25,30 +26,24 @@ export const about = {
     ],
   },
 
-  people: {
-    eyebrow: "02 — Our people",
-    title: "The people behind the work.",
-    description: `Meet the team working from ${site.location}.`,
+  workspace: {
+    eyebrow: "02 — Our workspace",
+    title: "Inside the office.",
+    description: `A real look at our workspace in ${site.location}.`,
     photos: {
-      /**
-       * Re-cropped from the full-resolution original, not from an existing
-       * downsample. Captions describe what is actually in the frame: this is a
-       * team meal with laptops, not a boardroom, and saying otherwise would be
-       * inventing a scene onto a real photograph.
-       */
       main: {
-        src: "/images/team/team-table.webp",
-        width: 1600,
-        height: 767,
-        alt: "The team seated along a long wooden table with laptops, in a warm room with tall shuttered windows",
-        caption: "Team members together in Lalitpur.",
+        src: "/images/office/office-focus-blurred.jpg",
+        width: 1448,
+        height: 1086,
+        alt: "An employee working at computer screens in the Lalitpur office, photographed from behind with screen contents blurred",
+        caption: "A workstation in the Lalitpur office. Screen contents are blurred for privacy.",
       },
       culture: {
-        src: "/images/team/team-rooftop.webp",
-        width: 620,
-        height: 750,
-        alt: "Part of the team around a rooftop table, with the Kathmandu valley behind them",
-        caption: "Team members together on a rooftop.",
+        src: "/images/office/office-sign.jpg",
+        width: 1080,
+        height: 1440,
+        alt: "The company sign above the Lalitpur office entrance",
+        caption: "The office entrance in Lalitpur.",
       },
     },
   },

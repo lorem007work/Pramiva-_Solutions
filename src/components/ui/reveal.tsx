@@ -3,21 +3,69 @@
 import { useEffect, useRef } from "react";
 import type { HTMLAttributes } from "react";
 
-type RevealProps = HTMLAttributes<HTMLDivElement>;
-
 /**
- * Progressively enhances below-the-fold content with a one-time entrance.
+ * THE ONLY MOTION MODULE IN THE CODEBASE — CLAUDE.md rule 7.
  *
- * Server-rendered content stays visible by default. JavaScript only hides an
- * element after confirming it starts outside the viewport, so a failed script
- * can never leave content inaccessible.
+ * NO ANIMATION LIBRARY. `motion` was adopted on 2026-08-25 and removed the
+ * same day: it cost +34 KB gzipped on every route, taking the site from 179 KB
+ * to 213 KB against a 185 KB budget, and every effect on the page is a fade, a
+ * translate or a scale. Those are three CSS declarations. The dependency was
+ * buying nothing that `IntersectionObserver` plus keyframes does not already
+ * do — see docs/ARCHITECTURE.md §5.1 and docs/MOTION-ART-DIRECTION.md.
+ *
+ * What lives here is the trigger, not the animation. This file decides WHEN a
+ * block has entered the viewport and writes that onto the element as a data
+ * attribute; globals.css decides what entering looks like. Keeping the timing
+ * in the stylesheet is why there is only one set of numbers to change.
+ *
+ * SERVER RENDERING AND THE NO-JAVASCRIPT CASE
+ *
+ * Content is visible in the server-rendered HTML and stays visible until this
+ * component has confirmed, on the client, that the block starts outside the
+ * viewport. A script that never loads, or throws, therefore cannot leave a
+ * section stuck at opacity 0 — the failure mode is "no animation", never
+ * "no content".
  */
-export function Reveal({ children, className = "", ...props }: RevealProps) {
+
+type RevealProps = HTMLAttributes<HTMLDivElement> & {
+  /**
+   * Force group mode instead of letting the component detect it.
+   *
+   * Group mode is normally inferred: if the block contains a `[data-stagger]`
+   * child, its children own the entrance and the container does not animate.
+   * Pass `group` explicitly only when the staggered children are mounted after
+   * the first paint, which nothing currently does.
+   */
+  group?: boolean;
+};
+
+export function Reveal({
+  children,
+  className = "",
+  group,
+  ...props
+}: RevealProps) {
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elementRef.current;
     if (!element) return;
+
+    /*
+      ONE ENTRANCE SYSTEM PER BLOCK.
+
+      Before this, a section with a list ran two animations on top of each
+      other: the container rose and faded, and then every `[data-stagger]`
+      child rose and faded again inside it. Nested opacity multiplies (a child
+      at 0.5 inside a parent at 0.5 renders at 0.25) and the two transforms
+      compound, so the group arrived soft, late and overworked.
+
+      The block declares which system it uses, once, here. A block that
+      contains staggered children hands the entrance to those children and
+      stays still itself; a block that does not, animates as a whole.
+    */
+    const isGroup = group ?? element.querySelector("[data-stagger]") !== null;
+    if (isGroup) element.dataset.revealMode = "group";
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -60,7 +108,7 @@ export function Reveal({ children, className = "", ...props }: RevealProps) {
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [group]);
 
   return (
     <div ref={elementRef} className={`reveal ${className}`} {...props}>

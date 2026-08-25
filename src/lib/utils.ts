@@ -23,3 +23,24 @@ export function isCurrentPath(pathname: string, href: string) {
   const normalise = (value: string) => value.replace(/\/+$/, "") || "/";
   return normalise(pathname) === normalise(href);
 }
+
+/**
+ * Stops a hyphenated word being split across two lines.
+ *
+ * U+002D HYPHEN-MINUS is a legitimate line-break opportunity, so at display
+ * sizes "real-world" happily sets as "real-" on one line and "world" on the
+ * next — which reads as a typesetting fault rather than as a compound word.
+ *
+ * U+2011 NON-BREAKING HYPHEN draws an identical glyph and is announced
+ * identically by assistive technology; it simply carries no break opportunity.
+ *
+ * Applied at RENDER time only. The approved strings in src/data/* keep their
+ * ordinary hyphens, because this is a typographic concern and not an edit to
+ * the copy — no word, no punctuation and nothing the reader can see changes.
+ *
+ * Use it on large display type. Body copy at 16px has enough break
+ * opportunities that forcing one closed can cause worse ragging than it fixes.
+ */
+export function withNonBreakingHyphens(text: string) {
+  return text.replaceAll("-", "\u2011");
+}

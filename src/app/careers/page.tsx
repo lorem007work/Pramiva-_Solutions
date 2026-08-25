@@ -51,8 +51,8 @@ export default function CareersPage() {
                 key={paragraph}
                 className={
                   index === 0
-                    ? "max-w-[65ch] text-lead"
-                    : "max-w-[65ch] text-[color:var(--tone-muted)]"
+                    ? "max-w-lead text-lead"
+                    : "max-w-copy text-[color:var(--tone-muted)]"
                 }
               >
                 {paragraph}

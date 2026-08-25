@@ -29,7 +29,9 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
             aria-label={`${siteName} home`}
             className="inline-flex shrink-0 transition-opacity duration-150 hover:opacity-80"
           >
-            <BrandLogo className="h-auto w-36 sm:w-44" />
+            {/* Above the fold on every route, and the LCP element on the ones
+                with no hero photograph. See BrandLogo. */}
+            <BrandLogo priority className="h-auto w-36 sm:w-44" />
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
@@ -53,7 +55,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
             </nav>
             <Link
               href={primaryCta.href}
-              className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand"
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand-deep"
             >
               {primaryCta.label}
             </Link>

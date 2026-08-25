@@ -14,7 +14,8 @@
 | UI | React 19 | Bundled with Next 15. |
 | Language | TypeScript, `strict: true` | Catches the class of error an AI-assisted build produces most: wrong prop shapes across many small components. |
 | Styling | Tailwind CSS v4 | v4 configures via CSS `@theme` rather than a JS config file, so design tokens live in one place next to the CSS that uses them. |
-| Animation | Framer Motion (via `LazyMotion`) | Chosen by the project owner. Loaded as a lazy feature bundle — see §5. |
+| Animation | **CSS keyframes + one `IntersectionObserver`**, all routes | Reveals and section entrances. 0.6 KB gz. See §5.1. |
+| Animation (homepage fold only) | **`motion` 13.1.1** via `LazyMotion` + `m` + `domAnimation`, `strict` | Owner decision, 2026-08-25. Imported by `ui/hero-motion.tsx`, reachable only from `sections/hero-split.tsx`, so +33.8 KB gz lands on `/` alone. See §5.1. |
 | Smooth scroll | Lenis | Chosen by the project owner. Constrained — see §5.2. |
 | Validation | Zod | Client-side validation and typed form state. |
 | Build output | **Static export** (`output: 'export'`) | Required by cPanel — see §1.1 |
@@ -223,12 +224,48 @@ Keeping the named data out of the repository entirely — rather than committed 
 
 ### 5.1 Dependency-free reveals
 
-The measured framework baseline left too little room for Framer Motion and Lenis. Phase 6 therefore uses one small `IntersectionObserver` client island and CSS transforms, adding only 0.6 KB gzipped across the site.
+There is no animation library. `ui/reveal.tsx` decides *when* a block has entered the viewport and writes `data-reveal-state` onto it; `globals.css` owns every duration, easing and offset. Splitting it that way is why the timing exists in one place and why the trigger is about 40 lines.
+
+**The `motion` experiment, for the record.** `motion` 13.1.1 was adopted on 2026-08-25 at the project owner's request and removed the same day. Measured gzipped scripts referenced by the exported HTML:
+
+| Route | Dependency-free | With `motion` | Restored | Budget |
+|---|---|---|---|---|
+| `/`, `/about`, `/services`, `/careers` | 179.2 KB | **213.4 KB** | **179.7 KB** | 185 KB |
+| `/contact` | 181.9 KB | **216 KB** | **182.0 KB** | 185 KB |
+
+`Reveal` is reached through `Section`, which every page uses, so the +34 KB landed on every route — ~15% over the PRD §7 budget — and the reductions that were supposed to contain it did not:
+
+- `LazyMotion` + `m` + `domAnimation` rather than the full `motion` import: already applied, and the 213.4 KB figure includes that saving.
+- `domAnimation` behind an async `import()`: measured *worse* at 220 KB, because Next preloads the split chunk from the page HTML, so it lands in first load anyway and adds chunk overhead.
+
+What the library was actually asked to do was fade, translate and scale. Those are three CSS declarations, and the one effect that would genuinely have been awkward to hand-roll — an SVG `pathLength` draw on the arc frame — was cut for unrelated art-direction reasons before the removal.
+
+**The homepage fold is the one exception, and the import graph is what scopes it.** `motion` was re-adopted on 2026-08-25 for the hero signature only, on the project owner's decision, with the budget consequence accepted for that route:
+
+| Route | Before | Now | Budget |
+|---|---|---|---|
+| `/` | 179.7 KB | **213.5 KB** | 185 KB — **over, by decision** |
+| `/about`, `/services`, `/careers` | 179.7 KB | 179.7 KB | 185 KB |
+| `/contact` | 182.0 KB | 182.0 KB | 185 KB |
+
+The confinement is structural, not configured. `ui/hero-motion.tsx` is imported by `sections/hero-split.tsx` and nothing else; `hero-split` is imported by `app/page.tsx` and nothing else. Next therefore splits the library into the homepage chunk. **The moment any shared component — `Section`, `Button`, `reveal.tsx` — imports it, the library hoists into the common chunk and all five routes pay.** That is exactly what happened on the first adoption, and why it was reverted the same day.
+
+What the library buys, and why a CSS version was not kept for the fold: orchestration. The fold is four copy blocks plus a brand mark that must read as one movement. The CSS version sequenced them with hand-counted `animation-delay` values that had to be re-derived on every timing change, and the mark — which runs longer than the copy — drifted against them. `staggerChildren` puts the rhythm in one place.
+
+Two consequences that are handled, and must stay handled:
+
+- Motion writes `opacity: 0` into the server HTML, so a no-JavaScript visitor would get an empty fold. The `<noscript>` rule in `app/layout.tsx` keys off `[data-hero-step]` and forces the final state back. The CSS reveal needs no equivalent — it hides nothing until the client has confirmed the block is off-screen.
+- The CSS hero keyframes were deleted, not left beside it. Both systems set opacity and transform on the same elements, and two animations racing on one property is how an entrance lands at the wrong value.
+
+**One entrance system per block.** The double-animation path the library introduced is closed off deliberately: `Reveal` looks for a `[data-stagger]` descendant and, if it finds one, marks itself `data-reveal-mode="group"` — the container then stays still and the children carry the entrance. Without that, a section ran both, and nested opacity multiplies while the transforms compound, so the group arrived soft and late. Blocks with no staggered children animate as a whole, as before.
 
 Rules:
 - Server-rendered content is visible by default; JavaScript may only hide content after confirming it begins below the viewport.
 - Only opacity and transform animate.
 - `prefers-reduced-motion` bypasses observer setup and reveal transforms.
+- A block gets one entrance system: the container reveals, or its `[data-stagger]` children do — never both.
+- No ambient or infinite animation. Motion assembles the fold and stops.
+- `motion` is reachable from `sections/hero-split.tsx` only. Any other import path is a silent budget regression on four routes and must be rejected in review.
 - Native browser scrolling remains untouched: no Lenis, section snapping or scroll hijacking.
 - Page and feature components stay Server Components; `Section` passes their rendered content through `<Reveal>` only when requested.
 

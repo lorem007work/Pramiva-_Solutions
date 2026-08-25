@@ -61,6 +61,50 @@ const paths: Record<string, React.ReactNode> = {
       <path d="M10.5 12.5h3" />
     </>
   ),
+
+  /* --- Capability pillars ---------------------------------------------------
+     `support` (headset) and `automation` (robot) already carry the second and
+     third pillar. Only the marketing pillar needed a new shape: the existing
+     `social` and `advertising` icons each describe ONE service inside that
+     group, so using either to stand for the whole group would misrepresent it. */
+  megaphone: (
+    <>
+      <path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z" />
+      <path d="M17 9.5a3.5 3.5 0 0 1 0 5" />
+      <path d="M19.5 7a7 7 0 0 1 0 10" />
+    </>
+  ),
+
+  /* --- Credibility strip ----------------------------------------------------
+     Four facts, four shapes. Same 24px box and 1.5 stroke as the rest, so the
+     strip reads as part of the set rather than as icons borrowed from a pack. */
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
+    </>
+  ),
+  pin: (
+    <>
+      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z" />
+    </>
+  ),
+  capability: (
+    <>
+      <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+      <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+      <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+      <path d="M17.25 13.5v7.5M13.5 17.25h7.5" />
+    </>
+  ),
 };
 
 export function ServiceIcon({ name, className = "" }: ServiceIconProps) {

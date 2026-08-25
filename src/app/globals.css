@@ -32,6 +32,18 @@
   --color-accent: #389970;
   --color-accent-text: #2a7355; /*  5.70:1 — the AA-safe green */
 
+  /* Third surface temperature. The page previously alternated white and dark
+     only, so the rhythm read as on/off — every light section was the same
+     light. This is the brand teal pulled almost all the way to white, so it
+     reads as a tinted white rather than as a colour of its own.
+
+     ⚠ Measured, not picked by eye: --color-ink-subtle (#6B7885) is 4.19:1 on
+     this ground, BELOW the 4.5 AA threshold, where on plain white it is 4.52
+     and passes. That is exactly the kind of failure a new surface introduces
+     silently, so .ground-soft remaps --tone-eyebrow to --color-ink-muted
+     (5.99:1) further down rather than inheriting the :root default. */
+  --color-soft: #f0f8f7;
+
   --color-slate: #324043; /* from the logo tagline */
 
   --color-error: #b42318;
@@ -55,6 +67,25 @@
   --text-h2--line-height: 1.15;
   --text-h2--letter-spacing: -0.02em;
 
+  /* The single editorial statement — currently the vision band.
+     Sits deliberately between h1 and h2, and it exists because of a measured
+     problem rather than a taste for another size.
+
+     The vision sentence is 105 characters. At text-h1 (64px) it sets as FIVE
+     lines whose widths vary by 31%, and no column width fixes that: from 720px
+     to 1152px the rendered result is byte-identical, because `text-wrap:
+     balance` caps the line length itself. Type size is the only lever left.
+     Measured across the scale, 52px is the point where it collapses to THREE
+     lines varying by 10.7% — the difference between a ragged block and a
+     composed one.
+
+     text-h2 would also give three lines, but it is the size every ordinary
+     section heading uses, so the page's one point-of-view statement would stop
+     outranking them. */
+  --text-statement: clamp(1.875rem, 4vw, 3.25rem);
+  --text-statement--line-height: 1.1;
+  --text-statement--letter-spacing: -0.025em;
+
   --text-h3: clamp(1.25rem, 2vw, 1.5rem);
   --text-h3--line-height: 1.3;
   --text-h3--letter-spacing: -0.01em;
@@ -62,6 +93,31 @@
   --text-lead: clamp(1.125rem, 1.5vw, 1.375rem);
   --text-lead--line-height: 1.5;
 
+  /* The scale used to stop at `lead` and resume at `eyebrow`, leaving no token
+     for body or small text — so 20 call sites fell through to raw Tailwind and
+     the page ran on two competing systems.
+
+     Worse, the defaults they landed on were inverted: Tailwind ships text-sm at
+     line-height 1.43 and text-xs at 1.33, while body here is 1.6. Small type was
+     therefore set TIGHTER than body type, which is backwards — as size drops,
+     leading should hold or open up, never close. A footer block at 1.43 beside a
+     paragraph at 1.6 is what makes the vertical rhythm look broken.
+
+     These override Tailwind's defaults rather than adding new names, so the 20
+     existing `text-sm` / `text-xs` call sites are corrected in place without a
+     rename sweep. */
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+
+  /* Same 0.75rem as --text-xs, deliberately kept separate: this is the tracked,
+     uppercase label style, and the wide letter-spacing is what distinguishes it.
+     Line height is tighter because these are almost always one short line. */
   --text-eyebrow: 0.75rem;
   --text-eyebrow--line-height: 1.4;
   --text-eyebrow--letter-spacing: 0.12em;
@@ -81,6 +137,16 @@
   --spacing-block: clamp(1.25rem, 2.5vw, 2rem);
 
   --container-page: 1280px;
+
+  /* Measure, named rather than repeated as arbitrary values. Body copy ran at
+     65ch in eight places while lead paragraphs used 65ch in some components and
+     55ch in others — the same role set two different widths.
+
+     Larger text wants the shorter measure: at lead size, 65ch is a physically
+     longer line than 65ch at body size, and the eye loses the line return. So
+     lead is fixed at 55ch and body at 65ch, everywhere. */
+  --container-copy: 65ch;
+  --container-lead: 55ch;
 
   /* --- Motion -------------------------------------------------------------
      Animate opacity and transform only. Anything else causes layout thrash
@@ -108,16 +174,41 @@ body {
 
 html {
   scroll-padding-top: 5rem;
+
+  /* Smooth scrolling, done by the browser rather than by a library.
+     Lenis is listed in the architecture stack, but it hijacks the scroll
+     thread to do this — roughly 15 KB on a bundle that is already over budget,
+     plus the accessibility cost of overriding a user's own scroll behaviour on
+     a site with no scroll-driven effects to justify it.
+
+     This applies to anchor jumps and scripted scrolls, which is all this site
+     does. Wheel and touch scrolling stay native, which is what most people
+     actually want. The reduced-motion block below forces it back to `auto`. */
+  scroll-behavior: smooth;
 }
 
-/* Content remains visible until the client confirms it begins below the fold.
-   Only compositor-safe properties animate, keeping mid-range phones smooth. */
-.reveal[data-reveal-state="pending"] {
+/* ---------------------------------------------------------------------------
+   Scroll reveal.
+
+   ui/reveal.tsx decides WHEN — it writes `data-reveal-state` onto the block
+   once it has confirmed the block starts off-screen. What the entrance looks
+   like lives here, so there is one set of numbers to change.
+
+   THE ABSENCE OF A DEFAULT RULE IS THE ACCESSIBILITY GUARANTEE. A `.reveal`
+   with no state attribute is fully visible, and that is what the server
+   renders. A script that never loads leaves the page static, never blank.
+
+   `[data-reveal-mode="group"]` marks a block whose children carry the entrance
+   instead (see the stagger rules below). Its container must not animate, or
+   the two systems compound — nested opacity multiplies and the transforms add.
+   --------------------------------------------------------------------------- */
+
+.reveal[data-reveal-state="pending"]:not([data-reveal-mode="group"]) {
   opacity: 0;
   transform: translateY(1rem);
 }
 
-.reveal[data-reveal-state="visible"] {
+.reveal[data-reveal-state="visible"]:not([data-reveal-mode="group"]) {
   animation: reveal-in 600ms var(--ease-out-expo) both;
 }
 
@@ -182,19 +273,52 @@ p {
    Delay is carried by --stagger-index, set once per item in the markup, so the
    rule scales to any list length without a chain of :nth-child selectors.
 
+   Scoped to [data-reveal-mode="group"], which ui/reveal.tsx sets on any block
+   containing a staggered child. That scoping is what stops the container
+   animating as well: a group entrance is EITHER the parent or the children,
+   never both.
+
    Only opacity and transform animate — both compositor-only, so this stays
    smooth on mid-range phones.
    --------------------------------------------------------------------------- */
 
-.reveal[data-reveal-state="visible"] [data-stagger] {
+.reveal[data-reveal-mode="group"][data-reveal-state="pending"] [data-stagger] {
+  opacity: 0;
+}
+
+.reveal[data-reveal-mode="group"][data-reveal-state="visible"] [data-stagger] {
   animation: reveal-in 600ms var(--ease-out-expo) both;
   animation-delay: calc(var(--stagger-index, 0) * 70ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal[data-reveal-state="visible"] [data-stagger] {
+  .reveal[data-reveal-mode="group"] [data-stagger] {
     animation: none;
+    opacity: 1;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Native select chevron.
+
+   Lives here rather than on the component because the marker is an inline SVG
+   data URI and a data URI cannot read a CSS variable — the stroke has to be a
+   literal colour. A literal colour inside a component is exactly what the
+   token rule forbids, so the declaration moves to the stylesheet, where the
+   value sits beside the token it is copied from (--color-ink-muted, #52606D)
+   and can be found by anyone changing the palette.
+
+   `appearance: none` removes the platform marker; everything else about the
+   control — keyboard behaviour, typeahead, the native picker on a phone —
+   is left alone.
+   --------------------------------------------------------------------------- */
+
+.field-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2352606D' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  background-size: 1.25rem;
 }
 
 /* ---------------------------------------------------------------------------
@@ -272,6 +396,19 @@ p {
   );
 }
 
+/* The third temperature: a tinted white, not a colour. Same generated-depth
+   treatment as the others so it sits in the same family — one wash pulled from
+   the brand teal, at a lower percentage than ground-surface uses because the
+   base is already tinted and two teals stacked turn muddy. */
+.ground-soft {
+  background-color: var(--color-soft);
+  background-image: radial-gradient(
+    60rem 40rem at 10% 0%,
+    color-mix(in oklab, var(--color-brand) 6%, transparent),
+    transparent 62%
+  );
+}
+
 /* ---------------------------------------------------------------------------
    Optional background artwork on a ground.
 
@@ -326,6 +463,18 @@ p {
   --tone-border: var(--color-line);
 }
 
+/* Light ground, so the ink-based defaults still apply — with one exception
+   that is the whole reason this block exists. --color-ink-subtle measures
+   4.19:1 here against 4.52:1 on white, so the :root eyebrow colour would ship
+   a sub-AA label on every section using this surface. It is remapped one step
+   darker; nothing else changes. Borders step up to line-strong because a
+   hairline sized for white is nearly invisible against a tint. */
+.ground-soft {
+  --tone-eyebrow: var(--color-ink-muted);
+  --tone-muted: var(--color-ink-muted);
+  --tone-border: var(--color-line-strong);
+}
+
 .ground-ink,
 .ground-brand {
   --tone-eyebrow: var(--color-line-strong);
@@ -335,57 +484,29 @@ p {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero entrance.
+   Hero entrance — DELIBERATELY NOT HERE.
 
-   The hero is above the fold, so it cannot use the scroll reveal — there is no
-   scroll event to wait for. It animates on load instead, staggered so the
-   section assembles rather than appearing as one slab.
+   The fold is sequenced by ui/hero-motion.tsx, homepage-only. A CSS keyframe
+   sequence used to live at this spot and was removed when Motion took the job
+   over: both systems set opacity and transform on the same elements, and two
+   animations racing on one property is how an entrance lands at the wrong
+   value or flickers back to its start.
 
-   `both` fill mode holds the from-state before the delay elapses, which is
-   what stops a flash of finished layout on a fast connection.
-
-   Deliberately short: 500ms with a 90ms step means the last element has landed
-   inside a second. A hero a visitor has to wait through is worse than one that
-   simply appears — this is polish, not a performance.
+   `[data-hero-step]` survives as a MARKER, not a style hook. Motion writes
+   `opacity: 0` into the server HTML, so the attribute is what the <noscript>
+   rule in app/layout.tsx keys off to force the fold visible for a visitor
+   whose JavaScript never runs. Do not attach an animation to it.
    --------------------------------------------------------------------------- */
 
-[data-hero-step] {
-  animation: hero-in 500ms var(--ease-out-expo) both;
-  animation-delay: calc(var(--hero-step, 0) * 90ms);
-}
+/* ---------------------------------------------------------------------------
+   NO AMBIENT LOOP.
 
-@keyframes hero-in {
-  from {
-    opacity: 0;
-    transform: translateY(0.75rem);
-  }
+   A 9s infinite float on the hero mark was removed on 2026-08-25. Its own
+   justification was that the amplitude sat below the threshold where the eye
+   tracks it as movement — which is an argument that it carried no information
+   while keeping the compositor awake for the whole visit, on every device,
+   forever. Signature motion assembles the fold and then stops.
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* The artwork settles rather than sliding, so the type stays the subject. */
-.hero-ground {
-  animation: hero-ground-in 1200ms var(--ease-out-expo) both;
-}
-
-@keyframes hero-ground-in {
-  from {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-hero-step],
-  .hero-ground {
-    animation: none;
-  }
-}
+   If a future effect needs it back: transform only, decorative elements only,
+   and it must survive the question "what does the visitor learn from this".
+   --------------------------------------------------------------------------- */
