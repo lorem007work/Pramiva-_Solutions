@@ -63,5 +63,8 @@ next-env.d.ts
 # Design references — kept locally, never deployed.
 /design-refs/
 
+# Deployment bundle, rebuilt from out/ each release.
+/pramiva-deploy.zip
+
 # Local review scratch (raw photo exports, not deliverables)
 tmp/
