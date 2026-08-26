@@ -87,8 +87,18 @@ export const site = {
   /** The company's own Google Business Profile listing. */
   mapUrl: "https://share.google/Bf6ujO5DWbSeZ70f5",
 
-  /** Baked into canonical URLs and the sitemap AT BUILD TIME. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
+  // Baked into canonicals and the sitemap at build time. No prod fallback:
+  // the old "https://example.com" default shipped silently from any clone
+  // without .env.local, and a wrong canonical de-indexes the site.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.NODE_ENV === "production"
+      ? (() => {
+          throw new Error(
+            "NEXT_PUBLIC_SITE_URL is required for a production build — it is baked into every canonical URL and the sitemap.",
+          );
+        })()
+      : "http://localhost:3000"),
 
   /** Only add keys management confirms exist (Q11). Empty links look worse than none. */
   social: {} as Record<string, string>,

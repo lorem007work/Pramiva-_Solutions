@@ -43,7 +43,7 @@ export function TeamPreview() {
         </h2>
       </div>
 
-      <div className="border-t border-line-strong pt-block lg:col-span-6 lg:col-start-7">
+      <div className="border-t-2 border-ink pt-block lg:col-span-6 lg:col-start-7">
         <div className="space-y-6">
           {team.description.map((paragraph, index) => (
             <p

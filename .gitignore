@@ -56,6 +56,12 @@ next-env.d.ts
 /pramiva-team-assets/
 /pramiva-team-section-standalone.html
 *.png
+# ...but shipped assets under public/images/ ARE deliverables. Without this the
+# hero mark is absent from a fresh clone and the fold renders a broken image.
+!public/images/**/*.png
+
+# Design references — kept locally, never deployed.
+/design-refs/
 
 # Local review scratch (raw photo exports, not deliverables)
 tmp/

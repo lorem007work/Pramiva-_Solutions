@@ -43,10 +43,11 @@ export const homepage = {
   hero: {
     /** CONFIRMED — business type and location, assembled from confirmed facts. */
     eyebrow: site.descriptor,
-    /** CONFIRMED — the three approved capability areas, verbatim. */
-    title: "Digital marketing, customer systems and customer service.",
-    /** CONFIRMED — the markets clause from the approved description. */
-    lead: "Supporting businesses in Nepal and internationally.",
+    /** CONFIRMED — the company tagline, verbatim. Public on the logo already. */
+    title: site.tagline,
+    /** CONFIRMED — the three approved capability areas joined to the markets
+        clause. Both halves are approved strings; nothing new is asserted. */
+    lead: "Digital marketing, customer systems and customer service — supporting businesses in Nepal and internationally.",
   },
 
   positioning: {

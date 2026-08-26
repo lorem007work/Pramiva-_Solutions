@@ -15,8 +15,9 @@ export function createPageMetadata(route: RouteSeo): Metadata {
     title: route.title,
     description: route.description,
     alternates: { canonical: route.path },
+    // No title here: template applies to `title` only, so an explicit one
+    // shipped og:title="About" unbranded. Omitted, it inherits the full title.
     openGraph: {
-      title: route.title,
       description: route.description,
       url: route.path,
       siteName: site.name,
@@ -26,9 +27,9 @@ export function createPageMetadata(route: RouteSeo): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: route.title,
       description: route.description,
-      images: [socialImage.url],
+      // The whole object, not socialImage.url: a bare string discards the alt.
+      images: [socialImage],
     },
   };
 }

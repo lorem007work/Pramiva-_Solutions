@@ -8,98 +8,118 @@ import { ctas } from "@/data/navigation";
 import { homepage } from "@/data/homepage";
 import { pillars } from "@/data/pillars";
 
-// Full-bleed fold. The supplied brand artwork spans the whole section rather
-// than sitting in a panel: boxed, its own near-white background showed as a
-// pasted-in rectangle against the page.
-//
-// The headline stays real text. The source banner had it baked into the image,
-// which no crawler or screen reader can read and which softens on a phone.
+// Dark premium fold: ink ground with the brand arcs artwork, display tagline,
+// circular mark as the focal graphic. Headline stays real text.
 export function HeroSplit() {
   const { hero } = homepage;
 
   return (
     <HeroSequence>
       <Section
-        tone="surface"
+        tone="ink"
+        backgroundImage="/images/brand/hero-bg.webp"
+        backgroundPosition="right center"
         aria-labelledby="home-hero-title"
         className="relative overflow-hidden"
-        containerClassName="grid items-center gap-x-block gap-y-10 lg:min-h-[34rem] lg:grid-cols-12"
       >
-        {/*
-          Container sets no positioning, so `inset-0` resolves against the
-          section and the artwork covers the full bleed, gutters included.
-        */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          {/*
-            The artwork is portrait and the fold is landscape. Filling the width
-            would crop away the arrow and the icon circles, so it is anchored to
-            the right at its own proportions and allowed to run full height.
-          */}
-          <Image
-            src="/images/brand/hero-illustration.webp"
-            alt=""
-            width={728}
-            height={880}
-            priority
-            className="absolute inset-y-0 right-0 h-full w-auto max-w-none object-contain object-right opacity-60 [mask-image:linear-gradient(to_right,transparent_0%,#000_22%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_22%)] sm:opacity-70 lg:opacity-100"
-          />
-          {/*
-            Copy sits on the left, so the ground is held opaque there and
-            released across the middle. Without this the headline would land on
-            the busiest part of the artwork at some widths.
-          */}
-          <div className="absolute inset-0 bg-gradient-to-r from-surface from-25% via-surface/75 via-55% to-transparent" />
-        </div>
-
-        <div className="relative z-10 lg:col-span-7 lg:col-start-1">
+        <div className="relative">
           <HeroItem>
-            <Eyebrow>{hero.eyebrow}</Eyebrow>
+            <Eyebrow className="text-accent">{hero.eyebrow}</Eyebrow>
           </HeroItem>
 
-          {/* ch, not px: text-h1 is a clamp, so a fixed width regains lines as
-              it scales. 18ch holds three lines at the sizes that matter. */}
           <HeroItem>
-            <h1 id="home-hero-title" className="mt-5 max-w-[18ch] text-h1">
+            <h1
+              id="home-hero-title"
+              className="mt-6 max-w-[16ch] text-display font-semibold"
+            >
               {hero.title}
             </h1>
           </HeroItem>
 
-          <HeroItem>
-            <p className="mt-6 max-w-lead text-lead text-[color:var(--tone-muted)]">
-              {hero.lead}
-            </p>
-          </HeroItem>
+          <div className="mt-section-sm grid gap-x-block gap-y-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-6">
+              <HeroItem>
+                <span
+                  aria-hidden="true"
+                  className="mb-7 block h-0.5 w-16 bg-accent"
+                />
+                <p className="max-w-lead text-lead text-[color:var(--tone-muted)]">
+                  {hero.lead}
+                </p>
+              </HeroItem>
 
-          <HeroItem className="mt-block flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <Button href={ctas.heroPrimary.href} className="w-full sm:w-auto">
-              {ctas.heroPrimary.label}
-            </Button>
-            <Button
-              href={ctas.heroSecondary.href}
-              variant="secondary"
-              className="w-full sm:w-auto"
-            >
-              {ctas.heroSecondary.label}
-            </Button>
-          </HeroItem>
-
-          {/* The three capability areas, as the supplied banner shows them.
-              Titles come from data/pillars.ts — nothing new is asserted. */}
-          <HeroItem>
-            <ul className="mt-block flex flex-wrap gap-x-5 gap-y-3 border-t border-line pt-6">
-              {pillars.map((pillar) => (
-                <li
-                  key={pillar.group}
-                  className="flex items-center gap-2.5 text-sm text-[color:var(--tone-muted)]"
+              <HeroItem className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <Button
+                  href={ctas.heroPrimary.href}
+                  className="w-full sm:w-auto"
                 >
-                  <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-canvas text-brand">
-                    <ServiceIcon name={pillar.icon} className="size-4" />
-                  </span>
-                  {pillar.title}
-                </li>
-              ))}
-            </ul>
-          </HeroItem>
+                  {ctas.heroPrimary.label}
+                  <span aria-hidden="true">→</span>
+                </Button>
+                <Button
+                  href={ctas.heroSecondary.href}
+                  variant="outline-inverse"
+                  className="w-full sm:w-auto"
+                >
+                  {ctas.heroSecondary.label}
+                  <span aria-hidden="true">→</span>
+                </Button>
+              </HeroItem>
+
+              <HeroItem>
+                {/* Titles come from data/pillars.ts — nothing new asserted. */}
+                <ul className="mt-block flex flex-wrap gap-x-5 gap-y-6 border-t border-[color:var(--tone-border)] pt-8">
+                  {pillars.map((pillar, index) => (
+                    <li
+                      key={pillar.group}
+                      className="flex items-center gap-3 border-[color:var(--tone-border)] pr-5 not-last:border-r"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-[color:var(--tone-border)] text-accent"
+                      >
+                        <ServiceIcon name={pillar.icon} className="size-5" />
+                      </span>
+                      <span className="flex flex-col">
+                        <span
+                          aria-hidden="true"
+                          className="text-xs font-semibold text-accent"
+                        >
+                          0{index + 1}
+                        </span>
+                        <span className="text-sm font-medium">
+                          {pillar.title}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </HeroItem>
+            </div>
+
+            <HeroItem
+              variant="mark"
+              className="hidden lg:block lg:col-span-5 lg:col-start-8"
+            >
+              {/* The circular brand mark, full colour, on a soft glow. */}
+              <div
+                aria-hidden="true"
+                className="relative flex items-center justify-center"
+              >
+                <div className="absolute inset-[-25%] rounded-full [background:radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_38%,transparent),transparent_70%)]" />
+                <div className="absolute inset-[-8%] rounded-full [background:radial-gradient(closest-side,color-mix(in_oklab,var(--color-brand)_30%,transparent),transparent_65%)]" />
+                <Image
+                  src="/images/brand/mark-circle.png"
+                  alt=""
+                  width={512}
+                  height={512}
+                  // No `priority`: it preloads with no media attr, so phones
+                  // downloaded this 16 KB decoration behind `hidden lg:block`.
+                  className="relative h-auto w-[21rem]"
+                />
+              </div>
+            </HeroItem>
+          </div>
         </div>
       </Section>
     </HeroSequence>

@@ -59,11 +59,11 @@ export function SectionHeading({
           })}
     >
       {eyebrow ? (
-        <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+        <p className="text-eyebrow font-semibold uppercase text-[color:var(--tone-eyebrow)]">
           {eyebrow}
         </p>
       ) : null}
-      <Heading id={id} className={`${eyebrow ? "mt-4" : ""} ${sizeClass}`}>
+      <Heading id={id} className={`${eyebrow ? "mt-5" : ""} ${sizeClass} font-semibold`}>
         {title}
       </Heading>
       {description ? (

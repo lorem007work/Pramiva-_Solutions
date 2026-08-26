@@ -80,3 +80,87 @@ npm run build   # must pass before commit; emits out/; check First Load JS
 npm run lint && npm run build
 grep -rn "PLACEHOLDER:" src/    # expected during build; must be empty before launch
 ```
+
+---
+
+## Design & Front-End Skill Routing
+
+Installed user-scope: **Genjutsu** (`cast`, `paint` + 15 sub-skills) and **Design DNA**.
+Genjutsu already provides ui-ux-pro-max, motion-principles, gsap, threejs-r3f,
+mobile-principles, desktop-principles and design-audit — never install standalone
+equivalents.
+
+### Decision model
+
+| Task | Use |
+|---|---|
+| UI, layout, usability, visual hierarchy | Genjutsu (`paint`, `ui-ux-pro-max`) |
+| Screenshot or reference site supplied | Design DNA |
+| Basic animation — hover, fade, transform | Plain CSS. No skill needed |
+| Complex timeline / scroll-driven sequence | Genjutsu `cast` → `gsap` — **gated, see below** |
+| Interactive 3D, WebGL, product viewer | Genjutsu `cast` → `threejs-r3f` — **gated, see below** |
+| Reviewing an existing interface | Genjutsu `design-audit` |
+
+Skills may combine when justified. Do not invoke heavyweight skills for small jobs.
+
+### Genjutsu — general UI/UX
+
+Use for website design, landing pages, dashboards, ecommerce, product pages,
+component design, responsive layouts, mobile optimisation, visual hierarchy,
+typography, spacing, colour, accessibility, conversion-focused interfaces,
+redesign and front-end polish.
+
+### Design DNA
+
+Use when a screenshot or reference URL is supplied, an existing visual style
+needs analysing, a design system needs extracting, or the user wants another
+interface's visual language reproduced. **For understanding, not blind copying** —
+and never to reproduce a competitor's branding.
+
+### Motion
+
+Animate to serve hierarchy, feedback, orientation, transitions or perceived
+quality. Never decoration. Rule 14 still binds: only `opacity` and `transform`.
+Rule 7 still binds: reveals are CSS via `ui/reveal.tsx`; `motion` is reachable
+only from `sections/hero-split.tsx`.
+
+### 🔴 GSAP and Three.js are GATED on this project
+
+The routing above says when these are *technically* right. On this codebase they
+are additionally blocked by rules that still apply:
+
+- **Rule 10** — no new package without written justification. GSAP and Three.js
+  are both new packages.
+- **Rule 7 / budget** — every route except `/` sits under 185 KB gz. GSAP adds
+  ~25 KB; Three.js adds 150 KB+ and would breach it several times over.
+- **Rule 14** — WebGL animates neither `opacity` nor `transform`.
+- A third motion system alongside CSS reveals and `motion` is a maintenance cost
+  this five-page static site has not earned.
+
+**Ask the owner before installing either.** Prefer CSS; then the existing
+`motion` island; only then propose GSAP or Three.js with a measured budget cost.
+
+### Mobile-first — always
+
+Verify every UI change at **360, 390, 430 px**, tablet, then desktop. Check
+navigation, text wrapping, tap targets (44 px minimum), forms, overflow,
+spacing, images, sticky elements and interaction states.
+
+### Accessibility — always
+
+Semantic HTML, keyboard navigation, visible focus, contrast, accessible labels,
+and `prefers-reduced-motion` honoured. Brand green `#389970` stays decorative
+(3.52:1); use `#2A7355` when green must carry text.
+
+### Performance
+
+Visual quality must not cost performance. Avoid unnecessary JavaScript, large
+libraries for trivial effects, unoptimised WebGL, excessive animation, large
+uncompressed assets and duplicated dependencies. Measure the gzipped bundle
+after any change that adds client code.
+
+### Existing code first
+
+Before redesigning: inspect the current implementation, understand existing
+behaviour, identify affected files, preserve what works, and make the smallest
+maintainable change that achieves the goal. Do not rewrite working systems.

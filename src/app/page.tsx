@@ -59,11 +59,24 @@ const jsonLd = buildHomeJsonLd();
 export default function Home() {
   return (
     <main id="main">
+      {/* The LCP element. It reaches the browser through a CSS custom property,
+          so it cannot be discovered until CSSOM is built — measured 228ms late.
+          React 19 hoists this to <head>. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/images/brand/hero-bg.webp"
+        fetchPriority="high"
+      />
       {/* Server-rendered into the static HTML, so crawlers that do not execute
           JavaScript still see it. */}
+      {/* `<` escaped: JSON.stringify does not, so a "</script>" value would
+          close the tag early. All build-time constants today. */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <HeroSplit />
       <AtAGlance />

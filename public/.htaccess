@@ -48,6 +48,15 @@ ErrorDocument 404 /404.html
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set X-Frame-Options "SAMEORIGIN"
+
+  # The 301 only fires after a plaintext request has already left the browser.
+  # ⚠ Cached for the full max-age: if HTTPS breaks, the site goes unreachable.
+  # includeSubDomains omitted until AutoSSL is confirmed on every subdomain.
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # 'unsafe-inline' is required by the Next.js bootstrap and the JSON-LD tag.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
 # --- Compression ------------------------------------------------------------
@@ -68,6 +77,23 @@ ErrorDocument 404 /404.html
 <FilesMatch "^\.">
   Require all denied
 </FilesMatch>
+
+# --- Block PHP's own error log ----------------------------------------------
+# lsphp writes error_log into the script's own directory when php.ini sets no
+# path — public_html/api/error_log, web-readable, leaking SMTP host and paths.
+<FilesMatch "^(error_log|php_errorlog)$">
+  Require all denied
+</FilesMatch>
+
+# --- Next.js prefetch payloads ----------------------------------------------
+# trailingSlash + output:export makes Next WRITE out/about/__next.about/__PAGE__.txt
+# but REQUEST /about/__next.about.__PAGE__.txt — dots where the path has slashes.
+# Every <Link> prefetch 404s without this, so client navigation falls back to
+# full page loads.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(.*)__next\.([^./]+)\.__PAGE__\.txt$ $1__next.$2/__PAGE__.txt [L]
+</IfModule>
 
 # --- Block direct access to the mail library ---------------------------------
 # Verified on the live site: /api/lib/PHPMailer.php returned 200, publicly

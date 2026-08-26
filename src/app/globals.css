@@ -173,7 +173,8 @@ body {
 }
 
 html {
-  scroll-padding-top: 5rem;
+  /* Clears the sticky navbar: h-18 mobile, h-22 from sm. */
+  scroll-padding-top: 5.5rem;
 
   /* Smooth scrolling, done by the browser rather than by a library.
      Lenis is listed in the architecture stack, but it hijacks the scroll
@@ -185,6 +186,12 @@ html {
      does. Wheel and touch scrolling stay native, which is what most people
      actually want. The reduced-motion block below forces it back to `auto`. */
   scroll-behavior: smooth;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 6.5rem;
+  }
 }
 
 /* ---------------------------------------------------------------------------

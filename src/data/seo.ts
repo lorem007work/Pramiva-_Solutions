@@ -38,7 +38,8 @@ export const seo = {
       still lives in exactly one file (CLAUDE.md rule 5).
     */
     title: `${site.name} — business and operations company`,
-    description: site.description,
+    // 154 chars. site.description is 213, so services fell past Google's ~155 cut.
+    description: `Digital marketing, customer systems and customer service from a business and operations company in ${site.location}. Supporting businesses internationally.`,
   },
   about: {
     path: "/about/",

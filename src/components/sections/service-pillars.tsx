@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ServiceIcon } from "@/components/ui/service-icon";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
@@ -62,11 +61,10 @@ export function ServicePillars() {
         </div>
       </div>
 
-      <ul className="mt-section-sm grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3">
         {pillars.map((pillar, index) => {
           const items = pillarServices(pillar);
-          // Anchor index is derived, not hardcoded: /services builds its group
-          // ids from the same array, so reordering there cannot break these.
+          // Anchor index derived from serviceGroups so reordering cannot break it.
           const groupIndex = serviceGroups.findIndex(
             (group) => group.heading === pillar.group,
           );
@@ -77,59 +75,44 @@ export function ServicePillars() {
               key={pillar.group}
               data-stagger
               style={{ "--stagger-index": index + 2 } as React.CSSProperties}
-              /* flex + h-full so all three cards end level regardless of how
-                 many services each one lists. */
-              /*
-                Transform and border-colour only. Animating box-shadow on hover
-                is the usual way this is done and it repaints the card on every
-                frame; a 2px lift is compositor-only and reads the same.
-                `motion-safe:` so a reduced-motion visitor gets the colour
-                change without the movement.
-              */
-              className={`relative flex h-full flex-col rounded-2xl border p-7 transition-[border-color,transform] duration-300 focus-within:border-brand/40 motion-safe:hover:-translate-y-1 sm:p-8 ${
+              className={`relative border-t-2 pt-6 transition-colors duration-300 ${
                 pillar.future
-                  ? "border-dashed border-line-strong bg-surface"
-                  : "border-line bg-canvas hover:border-brand/40"
+                  ? "border-line-strong"
+                  : "border-ink hover:border-brand focus-within:border-brand"
               }`}
             >
               <span
-                className={`inline-flex size-14 items-center justify-center rounded-full ${
+                aria-hidden="true"
+                className={`text-sm font-semibold ${
                   pillar.future
-                    ? "bg-canvas text-ink-muted"
-                    : "bg-brand/8 text-brand"
+                    ? "text-[color:var(--tone-eyebrow)]"
+                    : "text-brand"
                 }`}
               >
-                <ServiceIcon name={pillar.icon} className="size-6" />
+                0{index + 1}
               </span>
 
-              {/* The badge sits ABOVE the title, so the status is read before
-                  the capability rather than discovered after it. */}
+              {/* Badge above the title: status reads before capability. */}
               {pillar.future ? (
-                <Eyebrow as="span" className="mt-7 block">
+                <Eyebrow as="span" className="mt-5 block">
                   {services.futureLabel}
                 </Eyebrow>
               ) : null}
 
-              <h3 className={`text-h3 ${pillar.future ? "mt-2" : "mt-7"}`}>
+              <h3 className={`text-h3 ${pillar.future ? "mt-2" : "mt-5"}`}>
                 <Link
                   href={href}
-                  className="transition-colors duration-200 after:absolute after:inset-0 after:rounded-2xl hover:text-brand"
+                  className="transition-colors duration-200 after:absolute after:inset-0 hover:text-brand"
                 >
                   {pillar.title}
                 </Link>
               </h3>
 
-              {/* The approved service titles, verbatim from services.ts. */}
-              <ul className="mt-5 space-y-2.5 border-t border-line pt-5 text-[color:var(--tone-muted)]">
+              {/* Approved service titles, verbatim from services.ts. */}
+              <ul className="mt-6 divide-y divide-[color:var(--tone-border)] border-t border-[color:var(--tone-border)] text-sm text-[color:var(--tone-muted)]">
                 {items.map((title) => (
-                  <li key={title} className="flex gap-3">
-                    <span
-                      aria-hidden="true"
-                      className={`mt-2.5 size-1.5 shrink-0 rounded-full ${
-                        pillar.future ? "bg-line-strong" : "bg-accent"
-                      }`}
-                    />
-                    <span>{title}</span>
+                  <li key={title} className="py-3">
+                    {title}
                   </li>
                 ))}
               </ul>

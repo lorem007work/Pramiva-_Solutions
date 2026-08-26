@@ -1,5 +1,4 @@
 import { Section } from "@/components/ui/section";
-import { ServiceIcon } from "@/components/ui/service-icon";
 import { serviceGroups } from "@/data/services";
 import { site } from "@/data/site";
 
@@ -38,10 +37,10 @@ export function AtAGlance() {
   );
 
   const facts = [
-    { icon: "calendar", value: String(site.founded), label: "Founded" },
-    { icon: "pin", value: site.location, label: "Based in" },
-    { icon: "globe", value: "Nepal & international", label: "Markets" },
-    { icon: "capability", value: String(capabilityCount), label: "Capabilities" },
+    { value: String(site.founded), label: "Founded" },
+    { value: site.location, label: "Based in" },
+    { value: "Nepal & international", label: "Markets" },
+    { value: String(capabilityCount), label: "Capabilities" },
   ];
 
   return (
@@ -51,45 +50,24 @@ export function AtAGlance() {
       reveal
       aria-label="Company at a glance"
     >
-      {/*
-        Dividers switch axis with the layout, the same way the old hero strip
-        did. Stacked below sm they must be horizontal rules between rows; from
-        sm they sit side by side and become vertical. Getting this wrong is how
-        four facts turn into one undifferentiated block on a phone.
-
-        `divide-*` is not used because it cannot change axis at a breakpoint.
-      */}
-      <dl className="grid gap-y-6 sm:grid-cols-2 sm:gap-y-8 lg:grid-cols-4 lg:gap-y-0">
+      {/* Each fact carries its own top rule, so the set reads as columns at
+          every breakpoint rather than needing axis-switching dividers. */}
+      <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
         {facts.map((fact, index) => (
           <div
             key={fact.label}
             data-stagger
             style={{ "--stagger-index": index } as React.CSSProperties}
-            className="flex items-center gap-4 border-t border-[color:var(--tone-border)] pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-6 lg:first:border-l-0 lg:first:pl-0"
+            // One div only between dl and dt/dd — two breaks the content model
+            // and the assistive-tech pairing. dt first in DOM, value leads visually.
+            className="flex flex-col-reverse gap-1 border-t-2 border-ink pt-5"
           >
-            <span
-              aria-hidden="true"
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-canvas text-brand"
-            >
-              <ServiceIcon name={fact.icon} className="size-5" />
-            </span>
-
-            <div className="min-w-0">
-              {/*
-                Order is reversed against the DOM: <dt> is the label and must
-                come first for the definition list to be valid, but visually the
-                value leads. `flex-col-reverse` keeps both true at once instead
-                of choosing between semantics and design.
-              */}
-              <div className="flex flex-col-reverse">
-                <dt className="text-sm text-[color:var(--tone-eyebrow)]">
-                  {fact.label}
-                </dt>
-                {/* text-h3, not h2: these are short values in narrow columns,
-                    and at h2 the longest one collided with its neighbour. */}
-                <dd className="text-h3 text-balance">{fact.value}</dd>
-              </div>
-            </div>
+            <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+              {fact.label}
+            </dt>
+            <dd className="text-h2 font-semibold text-balance text-brand-deep">
+              {fact.value}
+            </dd>
           </div>
         ))}
       </dl>

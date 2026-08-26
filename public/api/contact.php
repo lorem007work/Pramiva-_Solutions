@@ -71,6 +71,17 @@ function rateLimitAllowed(string $ipAddress): ?bool
         return null;
     }
 
+    // Sweep on ~1% of requests. One file per IP, never pruned, grows toward
+    // inode exhaustion under IPv6 rotation.
+    if (random_int(1, 100) === 1) {
+        $stale = time() - 600;
+        foreach (glob($directory . DIRECTORY_SEPARATOR . '*.json') ?: [] as $file) {
+            if (@filemtime($file) < $stale) {
+                @unlink($file);
+            }
+        }
+    }
+
     $path = $directory . DIRECTORY_SEPARATOR . hash('sha256', $ipAddress) . '.json';
     $handle = fopen($path, 'c+');
     if ($handle === false || !flock($handle, LOCK_EX)) {
@@ -238,7 +249,14 @@ require_once __DIR__ . '/lib/PHPMailer.php';
 require_once __DIR__ . '/lib/SMTP.php';
 
 try {
-    $safeName = preg_replace('/[\r\n]+/', ' ', $name) ?? $name;
+    // Flatten every single-line field, not just header ones: interior newlines
+    // let a sender forge extra body lines. Only $message stays multi-line.
+    $flatten = static fn (string $value): string =>
+        preg_replace('/[\r\n]+/', ' ', $value) ?? $value;
+
+    $safeName = $flatten($name);
+    $safeCompany = $flatten($company);
+    $safePhone = $flatten($phone);
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = (string) SMTP_HOST;
@@ -255,10 +273,10 @@ try {
     $mail->addReplyTo($email, $safeName);
     $mail->Subject = 'New website enquiry from ' . $safeName;
     $mail->Body = implode(PHP_EOL, [
-        'Name: ' . $name,
+        'Name: ' . $safeName,
         'Email: ' . $email,
-        'Company: ' . ($company !== '' ? $company : 'Not provided'),
-        'Phone: ' . ($phone !== '' ? $phone : 'Not provided'),
+        'Company: ' . ($safeCompany !== '' ? $safeCompany : 'Not provided'),
+        'Phone: ' . ($safePhone !== '' ? $safePhone : 'Not provided'),
         'Area of interest: ' . ($interest !== '' ? $interest : 'Not specified'),
         '',
         'Message:',

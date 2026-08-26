@@ -53,11 +53,11 @@ export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
 
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
 
-      <h2 id={id} className={`max-w-[20ch] text-h1 ${eyebrow ? "mt-4" : ""}`}>
+      <h2 id={id} className={`max-w-[18ch] text-display font-semibold ${eyebrow ? "mt-5" : ""}`}>
         {title}
       </h2>
 
-      <p className="mt-6 max-w-lead text-lead text-[color:var(--tone-muted)]">
+      <p className="mt-7 max-w-lead text-lead text-[color:var(--tone-muted)] leading-relaxed">
         {description}
       </p>
 

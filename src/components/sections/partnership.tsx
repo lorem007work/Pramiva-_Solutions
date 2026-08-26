@@ -51,27 +51,26 @@ export function Partnership() {
         stagger={0}
       />
 
-      <ul className="mt-block flex flex-wrap items-center justify-center gap-x-6 gap-y-6 sm:mt-section-sm sm:gap-x-12 lg:gap-x-16">
+      {/* Grid, not flex-wrap: columns keep every cell identical and guarantee
+          the rows align. Five columns at lg puts the whole set on one row. */}
+      <ul className="mt-block grid grid-cols-2 gap-4 sm:mt-section-sm sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">
         {brands.map((brand, index) => (
           <li
             key={brand.name}
             data-stagger
             style={{ "--stagger-index": index + 1 } as React.CSSProperties}
-            className="flex items-center justify-center"
+            // Fixed cell per mark. Aspect ratios span 0.90-3.45, so locking
+            // only height gave a 3.3x width spread and rows that never aligned.
+            className="flex h-24 items-center justify-center rounded-2xl border border-line bg-surface p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:p-5 lg:h-32 lg:p-6"
           >
-            {/*
-              These marks range from 0.90 to 3.45 in aspect ratio — one is
-              near-square, another a long wordmark. Constraining both axes with
-              object-contain lets each fill whichever dimension binds first,
-              which is what makes a mixed set read as evenly weighted rather
-              than one mark looking half the size of the others.
-            */}
             <Image
               src={brand.logo.src}
               alt={`${brand.name} logo`}
               width={brand.logo.width}
               height={brand.logo.height}
-              className="h-12 w-auto max-w-[9rem] object-contain sm:h-14 sm:max-w-[10.5rem]"
+              // h/w-full, not max-*: a cap gives no size, so a not-yet-loaded
+              // lazy image collapsed to 0x0 and shifted on load.
+              className="h-full w-full object-contain"
             />
           </li>
         ))}
