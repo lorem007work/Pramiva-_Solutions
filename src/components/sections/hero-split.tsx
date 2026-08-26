@@ -9,7 +9,7 @@ import { homepage } from "@/data/homepage";
 import { pillars } from "@/data/pillars";
 
 // Dark premium fold: ink ground with the brand arcs artwork, display tagline,
-// circular mark as the focal graphic. Headline stays real text.
+// services visual as the focal graphic. Headline stays real text.
 export function HeroSplit() {
   const { hero } = homepage;
 
@@ -37,7 +37,7 @@ export function HeroSplit() {
           </HeroItem>
 
           <div className="mt-section-sm grid gap-x-block gap-y-12 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-5">
               <HeroItem>
                 <span
                   aria-hidden="true"
@@ -66,8 +66,10 @@ export function HeroSplit() {
                 </Button>
               </HeroItem>
 
-              <HeroItem>
-                {/* Titles come from data/pillars.ts — nothing new asserted. */}
+              {/* lg:hidden — from lg the visual beside this carries the same
+                  three areas. Below lg that image is too small to read, so the
+                  live text is what a phone gets. */}
+              <HeroItem className="lg:hidden">
                 <ul className="mt-block flex flex-wrap gap-x-5 gap-y-6 border-t border-[color:var(--tone-border)] pt-8">
                   {pillars.map((pillar, index) => (
                     <li
@@ -99,25 +101,23 @@ export function HeroSplit() {
 
             <HeroItem
               variant="mark"
-              className="hidden lg:block lg:col-span-5 lg:col-start-8"
+              className="hidden lg:block lg:col-span-7 lg:col-start-6"
             >
-              {/* The circular brand mark, full colour, on a soft glow. */}
-              <div
+              {/*
+                Decorative: the three capability areas it depicts are published
+                as real text in the lead above and in ServicePillars below, so
+                nothing here is the only copy of anything.
+              */}
+              <Image
+                src="/images/brand/home-services-visual.webp"
+                alt=""
                 aria-hidden="true"
-                className="relative flex items-center justify-center"
-              >
-                <div className="absolute inset-[-25%] rounded-full [background:radial-gradient(closest-side,color-mix(in_oklab,var(--color-accent)_38%,transparent),transparent_70%)]" />
-                <div className="absolute inset-[-8%] rounded-full [background:radial-gradient(closest-side,color-mix(in_oklab,var(--color-brand)_30%,transparent),transparent_65%)]" />
-                <Image
-                  src="/images/brand/mark-circle.png"
-                  alt=""
-                  width={512}
-                  height={512}
-                  // No `priority`: it preloads with no media attr, so phones
-                  // downloaded this 16 KB decoration behind `hidden lg:block`.
-                  className="relative h-auto w-[21rem]"
-                />
-              </div>
+                width={1672}
+                height={941}
+                // No `priority`: hidden below lg, and a preload carries no media
+                // attribute, so phones would download it for nothing.
+                className="h-auto w-full"
+              />
             </HeroItem>
           </div>
         </div>
