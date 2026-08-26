@@ -66,10 +66,10 @@ export function HeroSplit() {
                 </Button>
               </HeroItem>
 
-              {/* lg:hidden — from lg the visual beside this carries the same
-                  three areas. Below lg that image is too small to read, so the
-                  live text is what a phone gets. */}
-              <HeroItem className="lg:hidden">
+              {/* Kept at every width. The visual now shows on phones too, where
+                  its baked-in labels are far too small to read, so this list is
+                  what actually communicates the three areas there. */}
+              <HeroItem>
                 <ul className="mt-block flex flex-wrap gap-x-5 gap-y-6 border-t border-[color:var(--tone-border)] pt-8">
                   {pillars.map((pillar, index) => (
                     <li
@@ -101,21 +101,20 @@ export function HeroSplit() {
 
             <HeroItem
               variant="mark"
-              className="hidden lg:block lg:col-span-7 lg:col-start-6"
+              className="order-first lg:order-none lg:col-span-7 lg:col-start-6"
             >
               {/*
-                Decorative: the three capability areas it depicts are published
-                as real text in the lead above and in ServicePillars below, so
-                nothing here is the only copy of anything.
+                Named, not enumerated. The areas it depicts are listed as real
+                text immediately beside it, and WCAG says not to repeat adjacent
+                copy in alt — a screen reader would hear the same three twice.
               */}
               <Image
                 src="/images/brand/home-services-visual.webp"
-                alt=""
-                aria-hidden="true"
+                alt="Diagram of the company brand mark branching out to its capability areas."
                 width={1672}
                 height={941}
-                // No `priority`: hidden below lg, and a preload carries no media
-                // attribute, so phones would download it for nothing.
+                // Lazy, never `priority`: a preload carries no media attribute,
+                // and this sits below the copy on a phone.
                 className="h-auto w-full"
               />
             </HeroItem>

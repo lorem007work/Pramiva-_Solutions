@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, domAnimation, m, useReducedMotion } from "motion/react";
+import { LazyMotion, MotionConfig, domAnimation, m } from "motion/react";
 import type { ReactNode } from "react";
 
 /**
@@ -89,27 +89,32 @@ type SequenceProps = {
  * Wraps the whole fold and owns its rhythm. Children opt into the sequence by
  * being a `HeroItem` or a `HeroMark`; anything else renders untouched.
  *
- * Under `prefers-reduced-motion` this drops the library entirely rather than
- * running a zero-duration imitation of the same sequence — no variants, no
- * inline `opacity: 0` in the server HTML, nothing to hydrate away.
+ * REDUCED MOTION IS HANDLED BY MotionConfig, NOT BY A BRANCH.
+ *
+ * This used to return a plain <div> when useReducedMotion() was true. That
+ * hook returns null on the server, so the server always emitted the motion
+ * path — `<div data-hero-step style="opacity:0">` — while a reduced-motion
+ * client rendered a bare <div>. React 19 reported "some attributes of the
+ * server rendered HTML didn't match... This won't be patched up" and left the
+ * inline opacity:0 in place, so the entire fold was invisible to exactly the
+ * users the branch existed to serve.
+ *
+ * `reducedMotion="user"` keeps ONE tree for server and client and lets Motion
+ * drop the transforms while still animating opacity to 1.
  */
 export function HeroSequence({ children, className = "" }: SequenceProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <LazyMotion features={domAnimation} strict>
-      <m.div
-        className={className}
-        variants={sequence}
-        initial="hidden"
-        animate="shown"
-      >
-        {children}
-      </m.div>
+      <MotionConfig reducedMotion="user">
+        <m.div
+          className={className}
+          variants={sequence}
+          initial="hidden"
+          animate="shown"
+        >
+          {children}
+        </m.div>
+      </MotionConfig>
     </LazyMotion>
   );
 }
@@ -134,12 +139,6 @@ export function HeroItem({
   className = "",
   variant = "copy",
 }: ItemProps) {
-  const prefersReducedMotion = useReducedMotion();
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <LazyMotion features={domAnimation} strict>
       <m.div
