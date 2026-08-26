@@ -46,7 +46,7 @@ export function AtAGlance() {
 
   return (
     <Section
-      tone="soft"
+      tone="canvas"
       spacing="compact"
       reveal
       aria-label="Company at a glance"

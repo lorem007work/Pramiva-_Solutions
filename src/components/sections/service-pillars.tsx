@@ -41,7 +41,7 @@ export function ServicePillars() {
   const { services } = homepage;
 
   return (
-    <Section tone="canvas" reveal aria-labelledby="home-services-title">
+    <Section tone="soft" reveal aria-labelledby="home-services-title">
       <div className="grid items-end gap-block lg:grid-cols-12">
         <SectionHeading
           id="home-services-title"
