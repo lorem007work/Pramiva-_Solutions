@@ -71,7 +71,7 @@ export function Partnership() {
               alt={`${brand.name} logo`}
               width={brand.logo.width}
               height={brand.logo.height}
-              className="h-10 w-auto max-w-[7.5rem] object-contain sm:max-w-[8rem]"
+              className="h-12 w-auto max-w-[9rem] object-contain sm:h-14 sm:max-w-[10.5rem]"
             />
           </li>
         ))}

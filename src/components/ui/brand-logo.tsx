@@ -28,8 +28,8 @@ export function BrandLogo({
     <Image
       src="/images/brand/pramiva-logo.webp"
       alt=""
-      width={640}
-      height={213}
+      width={416}
+      height={138}
       priority={priority}
       loading={priority ? "eager" : "lazy"}
       className={`${inverted ? "brightness-0 invert" : ""} ${className}`}

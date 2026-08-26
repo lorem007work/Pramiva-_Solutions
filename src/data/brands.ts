@@ -34,22 +34,22 @@ export const brands: Brand[] = [
   {
     name: "Turf Man",
     sector: "Turf & lawn supply",
-    logo: { src: "/images/brands/turf-man.webp", width: 430, height: 480 },
+    logo: { src: "/images/brands/turf-man.webp", width: 100, height: 112 },
   },
   {
     name: "Perth Landscaper",
     sector: "Landscaping",
-    logo: { src: "/images/brands/perth-landscaper.webp", width: 480, height: 257 },
+    logo: { src: "/images/brands/perth-landscaper.webp", width: 209, height: 112 },
   },
   {
     name: "Cleaning Team",
     sector: "Cleaning services",
-    logo: { src: "/images/brands/cleaning-team.webp", width: 480, height: 322 },
+    logo: { src: "/images/brands/cleaning-team.webp", width: 167, height: 112 },
   },
   {
     name: "Carry or Drag",
     sector: "E-commerce retail",
-    logo: { src: "/images/brands/carry-or-drag.webp", width: 480, height: 331 },
+    logo: { src: "/images/brands/carry-or-drag.webp", width: 162, height: 112 },
   },
   {
     name: "Hardtrex",
@@ -58,6 +58,6 @@ export const brands: Brand[] = [
        baked in, which rendered as a grey box on the light section. The
        background is an export artifact, not part of the mark — the logo itself
        is unaltered. Dimensions updated to match the new file. */
-    logo: { src: "/images/brands/hardtrex.webp", width: 600, height: 176 },
+    logo: { src: "/images/brands/hardtrex.webp", width: 336, height: 99 },
   },
 ];
