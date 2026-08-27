@@ -39,7 +39,7 @@ export const seo = {
     */
     title: `${site.name} — business and operations company`,
     // 154 chars. site.description is 213, so services fell past Google's ~155 cut.
-    description: `Digital marketing, customer systems and customer service from a business and operations company in ${site.location}. Supporting businesses internationally.`,
+    description: `Digital marketing and customer solutions from a business and operations company in ${site.location}. Supporting businesses internationally.`,
   },
   about: {
     path: "/about/",
@@ -50,7 +50,7 @@ export const seo = {
     path: "/services/",
     title: "Services",
     description:
-      "Digital marketing, customer systems and customer service for businesses in Nepal and internationally.",
+      "Digital marketing and customer solutions for businesses in Nepal and internationally.",
   },
   careers: {
     path: "/careers/",

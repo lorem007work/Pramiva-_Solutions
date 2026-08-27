@@ -52,7 +52,7 @@ export function AtAGlance() {
     >
       {/* Each fact carries its own top rule, so the set reads as columns at
           every breakpoint rather than needing axis-switching dividers. */}
-      <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 lg:grid-cols-4">
         {facts.map((fact, index) => (
           <div
             key={fact.label}
@@ -63,7 +63,7 @@ export function AtAGlance() {
             <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
               {fact.label}
             </dt>
-            <dd className="text-h2 font-semibold text-balance text-brand-deep lg:text-h3">
+            <dd className="text-h3 font-semibold text-balance text-brand-deep sm:text-h2 lg:text-h3">
               {fact.value}
             </dd>
           </div>

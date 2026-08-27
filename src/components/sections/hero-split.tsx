@@ -69,7 +69,7 @@ export function HeroSplit() {
                   {pillars.map((pillar, index) => (
                     <li
                       key={pillar.group}
-                      className="flex items-center gap-3 border-[color:var(--tone-border)] pr-5 not-last:border-r"
+                      className="flex items-center gap-3 border-[color:var(--tone-border)] lg:pr-5 lg:not-last:border-r"
                     >
                       <span
                         aria-hidden="true"

@@ -304,7 +304,7 @@ html {
 
 .reveal[data-reveal-mode="group"][data-reveal-state="visible"] [data-stagger] {
   animation: reveal-in 600ms var(--ease-out-expo) both;
-  animation-delay: calc(var(--stagger-index, 0) * 70ms);
+  animation-delay: calc(var(--stagger-index, 0) * var(--stagger-step, 70ms));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -372,7 +372,7 @@ html {
 /* Near-black, lifted by a teal wash top-left and a green one bottom-right. */
 .ground-ink {
   background-color: var(--color-ink);
-  background-image:
+  --ground-washes:
     radial-gradient(
       70rem 45rem at 12% -15%,
       color-mix(in oklab, var(--color-brand) 55%, transparent),
@@ -383,12 +383,13 @@ html {
       color-mix(in oklab, var(--color-accent) 30%, transparent),
       transparent 68%
     );
+  background-image: var(--ground-washes);
 }
 
 /* Deep brand teal. White body copy on this sits at 7.4:1 — AAA. */
 .ground-brand {
   background-color: var(--color-brand-deep);
-  background-image:
+  --ground-washes:
     radial-gradient(
       65rem 45rem at 85% -20%,
       color-mix(in oklab, var(--color-accent) 42%, transparent),
@@ -399,16 +400,18 @@ html {
       color-mix(in oklab, var(--color-ink) 45%, transparent),
       transparent 65%
     );
+  background-image: var(--ground-washes);
 }
 
 /* Barely-there tint so light sections are not plain #FAFAFA either. */
 .ground-surface {
   background-color: var(--color-surface);
-  background-image: radial-gradient(
+  --ground-washes: radial-gradient(
     60rem 40rem at 90% 0%,
     color-mix(in oklab, var(--color-brand) 7%, transparent),
     transparent 60%
   );
+  background-image: var(--ground-washes);
 }
 
 /* The third temperature: a tinted white, not a colour. Same generated-depth
@@ -417,11 +420,12 @@ html {
    base is already tinted and two teals stacked turn muddy. */
 .ground-soft {
   background-color: var(--color-soft);
-  background-image: radial-gradient(
+  --ground-washes: radial-gradient(
     60rem 40rem at 10% 0%,
     color-mix(in oklab, var(--color-brand) 6%, transparent),
     transparent 62%
   );
+  background-image: var(--ground-washes);
 }
 
 /* ---------------------------------------------------------------------------
@@ -431,11 +435,16 @@ html {
    washes and grain, never above them.
 
    The scrim is the important part. Whatever artwork arrives, body copy must
-   still clear WCAG AA, so the ground's own colour is laid over the image at
-   72% and the type sits above that. White on brand-deep is 7.4:1 before the
-   image and stays close to it after, because the image can only lighten the
-   ground by the remaining 28%. That is what stops a background making the
-   page unreadable — the guarantee is in the CSS, not in the artwork brief.
+   still clear WCAG AA, so the ground's own colour is laid over the image and
+   the type sits above that. The image can only lighten the ground by whatever
+   the scrim leaves it. That is what stops a background making the page
+   unreadable — the guarantee is in the CSS, not in the artwork brief.
+
+   The scrim carries --ground-washes rather than colour alone. Both the ground
+   and the artwork otherwise set background-image on the same element at equal
+   specificity, and .ground-art wins on source order, so the washes were being
+   replaced instead of layered and the art sections lost the depth treatment
+   every other section keeps.
    --------------------------------------------------------------------------- */
 
 .ground-art {
@@ -452,10 +461,21 @@ html {
   z-index: -1;
   pointer-events: none;
   background-color: inherit;
+  background-image: var(--ground-washes, none);
   /* 0.55 rather than 0.72: the supplied artwork is already near-black where
      text sits, so a heavier scrim only hid the arcs without buying contrast.
      Measured on the rendered page after the change - see the commit. */
   opacity: 0.55;
+}
+
+/* `cover` fits height on a narrow viewport, so a 16:9 frame is cropped to a
+   thin vertical slice. On this artwork the highlight sits in the right third
+   and backgroundPosition points at it, so the darkest-by-design sections turn
+   brightest on a phone and the 0.55 scrim above no longer holds. */
+@media (max-width: 40rem) {
+  .ground-art::before {
+    opacity: 0.82;
+  }
 }
 
 /* ---------------------------------------------------------------------------

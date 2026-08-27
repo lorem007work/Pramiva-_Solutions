@@ -22,7 +22,10 @@ export function Team() {
         grid would force one aspect ratio and crop heads out of the wide team
         shot. Columns let each photograph keep its own proportions.
       */}
-      <div className="mt-section-sm gap-4 sm:columns-2 lg:columns-3 lg:gap-6">
+      <div
+        style={{ "--stagger-step": "40ms" } as React.CSSProperties}
+        className="mt-section-sm gap-4 sm:columns-2 lg:columns-3 lg:gap-6"
+      >
         {workspace.photos.map((photo, index) => (
           <figure
             key={photo.src}

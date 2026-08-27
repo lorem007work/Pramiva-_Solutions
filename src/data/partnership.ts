@@ -25,5 +25,5 @@
 
 export const partnership = {
   eyebrow: "Partnership",
-  title: "Brands supported through an international client partnership.",
+  title: "Some of the brands we support.",
 } as const;

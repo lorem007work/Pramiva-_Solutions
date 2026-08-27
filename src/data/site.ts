@@ -44,11 +44,11 @@ export const site = {
    * it reads as body copy. Used for the hero lead and page introductions.
    */
   summary:
-    "A business and operations company based in Lalitpur, Nepal, supporting businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
+    "A business and operations company based in Lalitpur, Nepal, supporting businesses in Nepal and internationally through digital marketing and customer solutions.",
 
   /** CONFIRMED — the approved company description, verbatim. Used for SEO. */
   description:
-    "Pramiva Solutions Private Limited is a business and operations company based in Lalitpur, Nepal. We support businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
+    "Pramiva Solutions Private Limited is a business and operations company based in Lalitpur, Nepal. We support businesses in Nepal and internationally through digital marketing and customer solutions.",
 
   /** CONFIRMED — the company's stated vision, verbatim. Do not paraphrase. */
   vision:

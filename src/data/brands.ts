@@ -16,10 +16,10 @@
  * Public Shed was previously absent only because no logo had been supplied.
  * One was supplied 2026-08-26 and is now listed. It is within §6's six names.
  *
- * MULCH EXPRESS AND GORKHA FLOORING ARE NOT. Neither appears in §6, in
- * CLAUDE.md rule 4, or in any prior assessment; both were added 2026-08-26 on
- * the owner's instruction to use every logo in the folder. They carry less
- * clearance than the other six, not equal clearance.
+ * MULCH EXPRESS AND GORKHA FLOORING appear in neither §6 nor CLAUDE.md rule 4
+ * nor any prior assessment. That gap was put to the owner directly on
+ * 2026-08-27 and they cleared both for publication. Their basis is the same as
+ * the other six: an owner ruling, with no written citation on file.
  *
  * Logos were supplied as raw exports (PNG/JPG, up to 4494px, mixed
  * backgrounds) and processed before use: trimmed to their visible bounds,

@@ -70,3 +70,10 @@ next-env.d.ts
 
 # Local review scratch (raw photo exports, not deliverables)
 tmp/
+
+# Local working documents and runbooks. DEPLOY.md names server paths and the
+# other sites on that cPanel account; this repo is public.
+/DEPLOY.md
+/AGENTS.md
+/documntation.md
+/Nepal Pramiva Solutions.md

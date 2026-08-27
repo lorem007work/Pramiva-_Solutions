@@ -58,10 +58,10 @@ export const homepage = {
   /** Framing for the three capability pillars. The pillars are in pillars.ts. */
   services: {
     eyebrow: "What we do",
-    title: "Three areas we support.",
+    title: "Areas we support.",
     /** CONFIRMED — the approved high-level description of the offer. */
     description:
-      "We support businesses in Nepal and internationally through digital marketing, customer systems and customer service.",
+      "We support businesses in Nepal and internationally through digital marketing and customer solutions.",
     /** Structural label applied to the pillar that is not sold today. */
     futureLabel: "Future direction",
   },
@@ -83,7 +83,7 @@ export const homepage = {
     title: "The people behind the work.",
     description: [
       `Meet the team working from ${site.location}.`,
-      "We work with businesses in Nepal and internationally, supporting them through digital marketing, customer systems and customer service.",
+      "We work with businesses in Nepal and internationally, supporting them through digital marketing and customer solutions.",
     ],
     /** Never the company name — see CLAUDE.md rule 5. */
     ctaLabel: "More about the company",

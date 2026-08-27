@@ -21,7 +21,7 @@ export const about = {
     title: "What we do, in plain terms.",
     paragraphs: [
       `We are a business and operations company, founded in ${site.founded} and based in ${site.location}.`,
-      "We work with businesses in Nepal and internationally, supporting them through digital marketing, customer systems and customer service.",
+      "We work with businesses in Nepal and internationally, supporting them through digital marketing and customer solutions.",
       "AI and automation solutions are a future direction for the company rather than something we offer today.",
     ],
   },
