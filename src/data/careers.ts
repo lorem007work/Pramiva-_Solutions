@@ -59,6 +59,7 @@ export const careers = {
 
   process: {
     eyebrow: "02 — How we hire",
+    photoSrc: "/images/office/office-room-1.webp",
     title: "Four stages, and you always know where you stand.",
     description:
       "Every application moves through the same sequence, whatever the role.",
@@ -96,6 +97,7 @@ export const careers = {
 
   onboarding: {
     eyebrow: "03 — Your first months",
+    photoSrc: "/images/office/office-active-blurred.webp",
     title: "A structured start, not a desk and good luck.",
     description:
       "New joiners follow the same programme, with formal reviews at 30, 60 and 90 days.",

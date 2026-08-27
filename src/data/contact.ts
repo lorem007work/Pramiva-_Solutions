@@ -43,6 +43,32 @@ export const contact = {
     fallbackPrefix: "You can also email",
   },
 
+  enquiry: {
+    eyebrow: "Before you write",
+    title: "What to include.",
+    description:
+      "A few lines on each of these makes the first reply a useful one rather than a request for more detail.",
+    points: [
+      {
+        title: "The work",
+        description:
+          "Which part of your operation needs support, and what is being handled today.",
+      },
+      {
+        title: "The scale",
+        description:
+          "Roughly how much is involved. An approximate figure is enough to work from.",
+      },
+      {
+        title: "The timing",
+        description:
+          "When you would like to start, and anything fixed you are working around.",
+      },
+    ],
+    areasLabel: "Areas we support",
+    photoSrc: "/images/office/office-sign.webp",
+  },
+
   details: {
     heading: "Contact details",
     mapLabel: "View on map",

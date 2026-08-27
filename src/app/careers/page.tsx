@@ -2,6 +2,8 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import Image from "next/image";
+import { about } from "@/data/about";
 import { careers } from "@/data/careers";
 import { seo } from "@/data/seo";
 import { createPageMetadata } from "@/lib/metadata";
@@ -10,6 +12,13 @@ export const metadata = createPageMetadata(seo.careers);
 
 export default function CareersPage() {
   const { header, philosophy, process, onboarding, openings, cta } = careers;
+  const photoFor = (src: string) => {
+    const found = about.workspace.photos.find((p) => p.src === src);
+    if (!found) throw new Error(`CareersPage: no photo matches ${src}`);
+    return found;
+  };
+  const processPhoto = photoFor(process.photoSrc);
+  const onboardingPhoto = photoFor(onboarding.photoSrc);
 
   return (
     <main id="main">
@@ -111,6 +120,15 @@ export default function CareersPage() {
           <p className="mt-section-sm max-w-copy text-lead text-[color:var(--tone-muted)]">
             {process.description}
           </p>
+
+          <Image
+            src={processPhoto.src}
+            alt={processPhoto.alt}
+            width={processPhoto.width}
+            height={processPhoto.height}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="mt-section-sm w-full rounded-2xl border border-[color:var(--tone-border)]"
+          />
         </div>
 
         <ol className="border-t border-[color:var(--tone-border)] pt-block lg:col-span-6 lg:col-start-7">
@@ -160,6 +178,15 @@ export default function CareersPage() {
           <p className="mt-section-sm max-w-copy text-lead text-[color:var(--tone-muted)]">
             {onboarding.description}
           </p>
+
+          <Image
+            src={onboardingPhoto.src}
+            alt={onboardingPhoto.alt}
+            width={onboardingPhoto.width}
+            height={onboardingPhoto.height}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="mt-section-sm w-full rounded-2xl border border-[color:var(--tone-border)]"
+          />
         </div>
 
         <div className="grid gap-x-block gap-y-block border-t border-[color:var(--tone-border)] pt-block sm:grid-cols-2 lg:col-span-6 lg:col-start-7">

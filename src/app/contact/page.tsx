@@ -1,7 +1,11 @@
+import Image from "next/image";
 import { ContactForm } from "@/components/forms/contact-form";
+import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { about } from "@/data/about";
 import { contact } from "@/data/contact";
+import { serviceGroups } from "@/data/services";
 import { seo } from "@/data/seo";
 import { site } from "@/data/site";
 import { isPlaceholder } from "@/lib/utils";
@@ -17,7 +21,9 @@ export const metadata = createPageMetadata(seo.contact);
  * page, and a button linking to the page you are already on is noise.
  */
 export default function ContactPage() {
-  const { header, form, details } = contact;
+  const { header, form, details, enquiry } = contact;
+  const photo = about.workspace.photos.find((p) => p.src === enquiry.photoSrc);
+  if (!photo) throw new Error(`ContactPage: no photo matches ${enquiry.photoSrc}`);
 
   return (
     <main id="main">
@@ -114,6 +120,72 @@ export default function ContactPage() {
             </div>
           </dl>
         </section>
+      </Section>
+
+      <Section
+        tone="soft"
+        reveal
+        aria-labelledby="contact-enquiry-title"
+        containerClassName="grid gap-section-sm lg:grid-cols-12"
+      >
+        <div
+          data-stagger
+          style={{ "--stagger-index": 0 } as React.CSSProperties}
+          className="lg:col-span-5"
+        >
+          <Eyebrow>{enquiry.eyebrow}</Eyebrow>
+          <h2 id="contact-enquiry-title" className="mt-4 max-w-2xl text-h1">
+            {enquiry.title}
+          </h2>
+          <p className="mt-section-sm max-w-copy text-lead text-[color:var(--tone-muted)]">
+            {enquiry.description}
+          </p>
+
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="mt-section-sm w-full rounded-2xl border border-[color:var(--tone-border)]"
+          />
+        </div>
+
+        <div className="border-t border-[color:var(--tone-border)] pt-block lg:col-span-6 lg:col-start-7">
+          <dl className="space-y-6">
+            {enquiry.points.map((point, index) => (
+              <div
+                key={point.title}
+                data-stagger
+                style={{ "--stagger-index": index + 1 } as React.CSSProperties}
+              >
+                <dt className="text-h3">{point.title}</dt>
+                <dd className="mt-2 max-w-copy text-[color:var(--tone-muted)]">
+                  {point.description}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <h3 className="mt-section-sm border-t border-[color:var(--tone-border)] pt-block text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+            {enquiry.areasLabel}
+          </h3>
+          <ul className="mt-5 grid gap-x-block gap-y-2.5 text-[color:var(--tone-muted)] sm:grid-cols-2">
+            {serviceGroups.flatMap((group) => group.services).map((service, index) => (
+              <li
+                key={service.title}
+                data-stagger
+                style={{ "--stagger-index": index + 4 } as React.CSSProperties}
+                className="flex gap-2.5"
+              >
+                <span aria-hidden="true" className="text-accent-text">
+                  —
+                </span>
+                <span className="max-w-copy">{service.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Section>
     </main>
   );

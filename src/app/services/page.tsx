@@ -1,4 +1,5 @@
 import { CtaBand } from "@/components/sections/cta-band";
+import { Partnership } from "@/components/sections/partnership";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { seo } from "@/data/seo";
@@ -135,6 +136,8 @@ export default function ServicesPage() {
           })}
         </div>
       </Section>
+
+      <Partnership />
 
       <CtaBand id="services-cta-title" {...cta} />
     </main>
