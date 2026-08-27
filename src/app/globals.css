@@ -337,54 +337,6 @@ html {
   background-size: 1.25rem;
 }
 
-/* ---------------------------------------------------------------------------
-   Button and interactive elements polish.
-
-   Enhanced hover and focus states for better micro-interactions across
-   all interactive elements. Uses Motion.dev scroll animations on sections
-   and smooth transitions on buttons.
-   --------------------------------------------------------------------------- */
-
-button,
-a[role="button"],
-[role="button"] {
-  position: relative;
-  transition-property: background-color, color, border-color, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-button:active,
-a[role="button"]:active,
-[role="button"]:active {
-  transform: scale(0.98);
-  transition-duration: 50ms;
-}
-
-/* Link polish — enhance clarity and interactivity */
-a:not([class*="btn"]):not([class*="button"]) {
-  transition: color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Card and section polish — subtle elevation on hover */
-[class*="card"],
-[class*="pillar"],
-[class*="figure"],
-figure {
-  transition-property: box-shadow, transform, border-color;
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@media (hover: hover) {
-  [class*="card"]:hover,
-  [class*="pillar"]:hover,
-  [class*="figure"]:hover,
-  figure:hover {
-    transform: translateY(-2px);
-  }
-}
-
 /* Rich section grounds.
 
    Flat #0A0A0A reads as cheap at full-bleed size — there is nothing for the
