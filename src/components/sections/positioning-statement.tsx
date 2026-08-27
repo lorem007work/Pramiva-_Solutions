@@ -1,6 +1,5 @@
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { homepage } from "@/data/homepage";
 import { withNonBreakingHyphens } from "@/lib/utils";
 
@@ -46,7 +45,11 @@ export function PositioningStatement() {
         third of the band to themselves, uninterrupted. That is the composition
         the background was drawn for: artwork one side, type the other.
       */}
-      <ScrollReveal className="md:col-span-9 md:col-start-4">
+      <div
+        data-stagger
+        style={{ "--stagger-index": 0 } as React.CSSProperties}
+        className="md:col-span-9 md:col-start-4"
+      >
         <Eyebrow>{positioning.eyebrow}</Eyebrow>
 
         <h2
@@ -55,7 +58,7 @@ export function PositioningStatement() {
         >
           {withNonBreakingHyphens(positioning.statement)}
         </h2>
-      </ScrollReveal>
+      </div>
     </Section>
   );
 }

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { about } from "@/data/about";
 import { homepage } from "@/data/homepage";
 
@@ -82,21 +81,24 @@ export function TeamPreview() {
 
       <div className="grid grid-cols-2 items-end gap-4 sm:gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
         {glimpse.map(({ photo, span, sizes }, index) => (
-          <ScrollReveal key={photo.src} delay={index * 0.15} className={span}>
-            <figure>
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                sizes={sizes}
-                className="w-full rounded-2xl border border-[color:var(--tone-border)]"
-              />
-              <figcaption className="mt-3 text-sm text-[color:var(--tone-eyebrow)]">
-                {photo.caption}
-              </figcaption>
-            </figure>
-          </ScrollReveal>
+          <figure
+            key={photo.src}
+            data-stagger
+            style={{ "--stagger-index": index + 2 } as React.CSSProperties}
+            className={span}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              sizes={sizes}
+              className="w-full rounded-2xl border border-[color:var(--tone-border)]"
+            />
+            <figcaption className="mt-3 text-sm text-[color:var(--tone-eyebrow)]">
+              {photo.caption}
+            </figcaption>
+          </figure>
         ))}
       </div>
     </Section>

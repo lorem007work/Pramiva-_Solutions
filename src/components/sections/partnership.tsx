@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { brands } from "@/data/brands";
 import { partnership } from "@/data/partnership";
 
@@ -53,17 +52,20 @@ export function Partnership() {
           the rows align. Column counts divide the set exactly — no orphan. */}
       <ul className="mt-block grid grid-cols-2 gap-4 sm:mt-section-sm sm:grid-cols-4 sm:gap-5 lg:grid-cols-4">
         {brands.map((brand, index) => (
-          <ScrollReveal key={brand.name} delay={index * 0.08}>
-            <li className="flex h-24 items-center justify-center rounded-2xl border border-line bg-surface p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:p-5 lg:h-32 lg:p-6">
-              <Image
-                src={brand.logo.src}
-                alt={`${brand.name} logo`}
-                width={brand.logo.width}
-                height={brand.logo.height}
-                className="h-full w-full object-contain"
-              />
-            </li>
-          </ScrollReveal>
+          <li
+            key={brand.name}
+            data-stagger
+            style={{ "--stagger-index": index + 1 } as React.CSSProperties}
+            className="flex h-24 items-center justify-center rounded-2xl border border-line bg-surface p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:p-5 lg:h-32 lg:p-6"
+          >
+            <Image
+              src={brand.logo.src}
+              alt={`${brand.name} logo`}
+              width={brand.logo.width}
+              height={brand.logo.height}
+              className="h-full w-full object-contain"
+            />
+          </li>
         ))}
       </ul>
     </Section>

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ScrollReveal, ScaleReveal } from "@/components/ui/scroll-reveal";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
@@ -72,18 +71,16 @@ export function ServicePillars() {
           const href = `/services/#service-group-${groupIndex + 1}`;
 
           return (
-            <ScaleReveal
+            <li
               key={pillar.group}
-              delay={index * 0.15}
-              className="md:row-span-3"
+              data-stagger
+              style={{ "--stagger-index": index + 2 } as React.CSSProperties}
+              className={`relative border-t-2 pt-6 transition-colors duration-300 md:row-span-3 md:grid md:grid-rows-subgrid ${
+                pillar.future
+                  ? "border-line-strong"
+                  : "border-ink hover:border-brand focus-within:border-brand"
+              }`}
             >
-              <div
-                className={`relative border-t-2 pt-6 transition-colors duration-300 md:grid md:grid-rows-subgrid ${
-                  pillar.future
-                    ? "border-line-strong"
-                    : "border-ink hover:border-brand focus-within:border-brand"
-                }`}
-              >
               <div className="flex items-baseline justify-between gap-3">
                 <span
                   aria-hidden="true"
@@ -120,8 +117,7 @@ export function ServicePillars() {
                   </li>
                 ))}
               </ul>
-              </div>
-            </ScaleReveal>
+            </li>
           );
         })}
       </ul>
