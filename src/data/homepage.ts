@@ -45,9 +45,8 @@ export const homepage = {
     eyebrow: site.descriptor,
     /** CONFIRMED — the company tagline, verbatim. Public on the logo already. */
     title: site.tagline,
-    /** CONFIRMED — the three approved capability areas joined to the markets
-        clause. Both halves are approved strings; nothing new is asserted. */
-    lead: "Digital marketing, customer systems and customer service — supporting businesses in Nepal and internationally.",
+    /** CONFIRMED 2026-08-26 by the owner. */
+    lead: "Digital marketing and customer solutions — in Nepal and internationally.",
   },
 
   positioning: {

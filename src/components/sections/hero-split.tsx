@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { HeroItem, HeroSequence } from "@/components/ui/hero-motion";
@@ -8,8 +7,7 @@ import { ctas } from "@/data/navigation";
 import { homepage } from "@/data/homepage";
 import { pillars } from "@/data/pillars";
 
-// Dark premium fold: ink ground with the brand arcs artwork, display tagline,
-// services visual as the focal graphic. Headline stays real text.
+// Dark premium fold: ink ground with the brand arcs artwork, display tagline.
 export function HeroSplit() {
   const { hero } = homepage;
 
@@ -36,8 +34,8 @@ export function HeroSplit() {
             </h1>
           </HeroItem>
 
-          <div className="mt-section-sm grid gap-x-block gap-y-12 lg:grid-cols-12 lg:items-center">
-            <div className="lg:col-span-5">
+          <div className="mt-section-sm">
+            <div className="max-w-3xl">
               <HeroItem>
                 <span
                   aria-hidden="true"
@@ -66,9 +64,6 @@ export function HeroSplit() {
                 </Button>
               </HeroItem>
 
-              {/* Kept at every width. The visual now shows on phones too, where
-                  its baked-in labels are far too small to read, so this list is
-                  what actually communicates the three areas there. */}
               <HeroItem>
                 <ul className="mt-block flex flex-wrap gap-x-5 gap-y-6 border-t border-[color:var(--tone-border)] pt-8">
                   {pillars.map((pillar, index) => (
@@ -99,25 +94,6 @@ export function HeroSplit() {
               </HeroItem>
             </div>
 
-            <HeroItem
-              variant="mark"
-              className="order-first lg:order-none lg:col-span-7 lg:col-start-6"
-            >
-              {/*
-                Named, not enumerated. The areas it depicts are listed as real
-                text immediately beside it, and WCAG says not to repeat adjacent
-                copy in alt — a screen reader would hear the same three twice.
-              */}
-              <Image
-                src="/images/brand/home-services-visual.webp"
-                alt="Diagram of the company brand mark branching out to its capability areas."
-                width={1672}
-                height={941}
-                // Lazy, never `priority`: a preload carries no media attribute,
-                // and this sits below the copy on a phone.
-                className="h-auto w-full"
-              />
-            </HeroItem>
           </div>
         </div>
       </Section>

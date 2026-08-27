@@ -1,5 +1,9 @@
 import { CtaBand } from "@/components/sections/cta-band";
+import { Disciplines } from "@/components/sections/disciplines";
+import { History } from "@/components/sections/history";
 import { Team } from "@/components/sections/team";
+import { Values } from "@/components/sections/values";
+import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { about } from "@/data/about";
@@ -14,8 +18,8 @@ export const metadata = createPageMetadata(seo.about);
  * About page. Content stays server-rendered; Section adds a narrow Reveal
  * boundary around selected below-the-fold content.
  *
- * Team photographs are included for local review. Client names, internal
- * process copy and induction-derived values remain outside the public page.
+ * Team photographs are included for local review. Client names and internal
+ * process copy remain outside the public page.
  */
 export default function AboutPage() {
   const { header, story, vision, cta } = about;
@@ -51,7 +55,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="border-t border-line-strong pt-block lg:col-span-6 lg:col-start-7">
+        <div className="border-t border-[color:var(--tone-border)] pt-block lg:col-span-6 lg:col-start-7">
           <div className="space-y-6">
             {story.paragraphs.map((paragraph, index) => (
               <p
@@ -69,6 +73,8 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <History />
+
       <Team />
 
       <Section
@@ -77,12 +83,10 @@ export default function AboutPage() {
         aria-labelledby="about-vision-title"
         containerClassName="grid gap-block md:grid-cols-12"
       >
-        <div className="flex items-start justify-between gap-6 border-t border-slate pt-5 md:col-span-3 md:flex-col">
-          <p className="text-eyebrow uppercase text-line-strong">
-            {vision.eyebrow}
-          </p>
+        <div className="flex items-start justify-between gap-6 border-t border-[color:var(--tone-border)] pt-5 md:col-span-3 md:flex-col">
+          <Eyebrow>{vision.eyebrow}</Eyebrow>
           <p aria-hidden="true" className="text-h2 text-accent">
-            03
+            04
           </p>
         </div>
 
@@ -100,6 +104,10 @@ export default function AboutPage() {
           {withNonBreakingHyphens(vision.statement)}
         </h2>
       </Section>
+
+      <Values />
+
+      <Disciplines />
 
       <CtaBand id="about-cta-title" {...cta} />
     </main>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ScrollReveal, ScaleReveal } from "@/components/ui/scroll-reveal";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
@@ -61,7 +62,7 @@ export function ServicePillars() {
         </div>
       </div>
 
-      <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3">
+      <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3 md:grid-rows-[auto_auto_auto] md:gap-y-0">
         {pillars.map((pillar, index) => {
           const items = pillarServices(pillar);
           // Anchor index derived from serviceGroups so reordering cannot break it.
@@ -71,35 +72,38 @@ export function ServicePillars() {
           const href = `/services/#service-group-${groupIndex + 1}`;
 
           return (
-            <li
+            <ScaleReveal
               key={pillar.group}
-              data-stagger
-              style={{ "--stagger-index": index + 2 } as React.CSSProperties}
-              className={`relative border-t-2 pt-6 transition-colors duration-300 ${
-                pillar.future
-                  ? "border-line-strong"
-                  : "border-ink hover:border-brand focus-within:border-brand"
-              }`}
+              delay={index * 0.15}
+              className="md:row-span-3"
             >
-              <span
-                aria-hidden="true"
-                className={`text-sm font-semibold ${
+              <div
+                className={`relative border-t-2 pt-6 transition-colors duration-300 md:grid md:grid-rows-subgrid ${
                   pillar.future
-                    ? "text-[color:var(--tone-eyebrow)]"
-                    : "text-brand"
+                    ? "border-line-strong"
+                    : "border-ink hover:border-brand focus-within:border-brand"
                 }`}
               >
-                0{index + 1}
-              </span>
+              <div className="flex items-baseline justify-between gap-3">
+                <span
+                  aria-hidden="true"
+                  className={`text-sm font-semibold ${
+                    pillar.future
+                      ? "text-[color:var(--tone-eyebrow)]"
+                      : "text-brand"
+                  }`}
+                >
+                  0{index + 1}
+                </span>
 
-              {/* Badge above the title: status reads before capability. */}
-              {pillar.future ? (
-                <Eyebrow as="span" className="mt-5 block">
-                  {services.futureLabel}
-                </Eyebrow>
-              ) : null}
+                {pillar.future ? (
+                  <Eyebrow as="span" className="text-right">
+                    {services.futureLabel}
+                  </Eyebrow>
+                ) : null}
+              </div>
 
-              <h3 className={`text-h3 ${pillar.future ? "mt-2" : "mt-5"}`}>
+              <h3 className="mt-5 text-h3">
                 <Link
                   href={href}
                   className="transition-colors duration-200 after:absolute after:inset-0 hover:text-brand"
@@ -116,7 +120,8 @@ export function ServicePillars() {
                   </li>
                 ))}
               </ul>
-            </li>
+              </div>
+            </ScaleReveal>
           );
         })}
       </ul>

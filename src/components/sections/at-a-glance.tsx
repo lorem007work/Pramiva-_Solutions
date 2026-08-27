@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { serviceGroups } from "@/data/services";
 import { site } from "@/data/site";
 
@@ -54,21 +55,18 @@ export function AtAGlance() {
           every breakpoint rather than needing axis-switching dividers. */}
       <dl className="grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
         {facts.map((fact, index) => (
-          <div
+          <ScrollReveal
             key={fact.label}
-            data-stagger
-            style={{ "--stagger-index": index } as React.CSSProperties}
-            // One div only between dl and dt/dd — two breaks the content model
-            // and the assistive-tech pairing. dt first in DOM, value leads visually.
+            delay={index * 0.1}
             className="flex flex-col-reverse gap-1 border-t-2 border-ink pt-5"
           >
             <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
               {fact.label}
             </dt>
-            <dd className="text-h2 font-semibold text-balance text-brand-deep">
+            <dd className="text-h2 font-semibold text-balance text-brand-deep lg:text-h3">
               {fact.value}
             </dd>
-          </div>
+          </ScrollReveal>
         ))}
       </dl>
     </Section>

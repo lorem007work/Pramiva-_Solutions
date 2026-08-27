@@ -45,7 +45,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
                       <Link
                         href={link.href}
                         aria-current={isCurrent ? "page" : undefined}
-                        className={`relative inline-flex min-h-11 items-center text-sm transition-colors duration-150 after:absolute after:right-0 after:bottom-0 after:left-0 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:text-brand hover:after:origin-left hover:after:scale-x-100 ${isCurrent ? "font-medium text-brand after:scale-x-100" : "text-ink-muted"}`}
+                        className={`relative inline-flex min-h-11 items-center text-sm transition-colors duration-150 after:absolute after:right-0 after:bottom-2 after:left-0 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-[var(--ease-out-expo)] hover:text-brand hover:after:origin-left hover:after:scale-x-100 ${isCurrent ? "font-medium text-brand after:scale-x-100" : "text-ink-muted"}`}
                       >
                         {link.label}
                       </Link>
@@ -65,7 +65,7 @@ export function Navbar({ siteName, links, primaryCta }: NavbarProps) {
           <button
             type="button"
             onClick={() => setIsMenuOpen(true)}
-            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-[background-color,border-color,color,transform] duration-200 hover:border-ink motion-safe:active:scale-95 md:hidden"
+            className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-line-strong text-ink transition-[background-color,border-color,color,transform] duration-200 hover:border-ink hover:bg-ink hover:text-canvas motion-safe:active:scale-95 md:hidden"
             aria-label="Open navigation"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"

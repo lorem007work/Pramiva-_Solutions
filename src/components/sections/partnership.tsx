@@ -1,18 +1,16 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { brands } from "@/data/brands";
 import { partnership } from "@/data/partnership";
 
 /**
  * Client logo rail.
  *
- * 🔴 CONTENTS FROZEN. See data/partnership.ts and data/brands.ts. Whether
- * these brands may be named at all is unresolved — the repo and
- * docs/CONTENT-INVENTORY.md §6 currently contradict each other on whether the
- * client consented. This redesign changes how the section LOOKS and removes a
- * barred sentence from its copy. It does not add a brand, a name, a sector, a
- * logo, or any statement about the work performed.
+ * Naming resolved 2026-08-26: the owner re-confirmed SNS consent when the
+ * contradiction was put to them. See data/brands.ts — the citation for the
+ * underlying written agreement is still outstanding.
  *
  * WHY IT MOVED OFF THE DARK GROUND
  *
@@ -52,27 +50,20 @@ export function Partnership() {
       />
 
       {/* Grid, not flex-wrap: columns keep every cell identical and guarantee
-          the rows align. Five columns at lg puts the whole set on one row. */}
-      <ul className="mt-block grid grid-cols-2 gap-4 sm:mt-section-sm sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">
+          the rows align. Column counts divide the set exactly — no orphan. */}
+      <ul className="mt-block grid grid-cols-2 gap-4 sm:mt-section-sm sm:grid-cols-4 sm:gap-5 lg:grid-cols-4">
         {brands.map((brand, index) => (
-          <li
-            key={brand.name}
-            data-stagger
-            style={{ "--stagger-index": index + 1 } as React.CSSProperties}
-            // Fixed cell per mark. Aspect ratios span 0.90-3.45, so locking
-            // only height gave a 3.3x width spread and rows that never aligned.
-            className="flex h-24 items-center justify-center rounded-2xl border border-line bg-surface p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:p-5 lg:h-32 lg:p-6"
-          >
-            <Image
-              src={brand.logo.src}
-              alt={`${brand.name} logo`}
-              width={brand.logo.width}
-              height={brand.logo.height}
-              // h/w-full, not max-*: a cap gives no size, so a not-yet-loaded
-              // lazy image collapsed to 0x0 and shifted on load.
-              className="h-full w-full object-contain"
-            />
-          </li>
+          <ScrollReveal key={brand.name} delay={index * 0.08}>
+            <li className="flex h-24 items-center justify-center rounded-2xl border border-line bg-surface p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:p-5 lg:h-32 lg:p-6">
+              <Image
+                src={brand.logo.src}
+                alt={`${brand.name} logo`}
+                width={brand.logo.width}
+                height={brand.logo.height}
+                className="h-full w-full object-contain"
+              />
+            </li>
+          </ScrollReveal>
         ))}
       </ul>
     </Section>

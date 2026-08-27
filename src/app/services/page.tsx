@@ -23,6 +23,12 @@ export default function ServicesPage() {
 
   return (
     <main id="main">
+      <link
+        rel="preload"
+        as="image"
+        href="/images/brand/services-bg.webp"
+        fetchPriority="high"
+      />
       <Section
         tone="ink"
         backgroundImage="/images/brand/services-bg.webp"
@@ -84,15 +90,42 @@ export default function ServicesPage() {
                   {group.services.map((service) => (
                     <li
                       key={service.title}
-                      className="group border-b border-line py-block first:pt-0 last:border-b-0 last:pb-0"
+                      className="border-b border-line py-block first:pt-0 last:border-b-0 last:pb-0"
                     >
                       <div className="grid gap-4 md:grid-cols-12">
-                        <h4 className="text-h3 transition-colors duration-150 group-hover:text-brand md:col-span-5">
+                        <h4 className="text-h3 md:col-span-5">
                           {service.title}
                         </h4>
-                        <p className="max-w-copy text-[color:var(--tone-muted)] md:col-span-7">
-                          {service.description}
-                        </p>
+                        <div className="md:col-span-7">
+                          <p className="max-w-copy text-[color:var(--tone-muted)]">
+                            {service.description}
+                          </p>
+                          {service.details ? (
+                            <ul className="mt-5 grid gap-x-block gap-y-2 text-sm text-[color:var(--tone-muted)] sm:grid-cols-2">
+                              {service.details.map((detail) => (
+                                <li key={detail} className="flex gap-2.5">
+                                  <span
+                                    aria-hidden="true"
+                                    className="text-accent-text"
+                                  >
+                                    —
+                                  </span>
+                                  <span>{detail}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
+                          {service.audience ? (
+                            <p className="mt-5 max-w-copy border-t border-[color:var(--tone-border)] pt-4 text-sm text-[color:var(--tone-muted)]">
+                              <span className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+                                {catalogue.audienceLabel}
+                              </span>
+                              <span className="mt-1 block">
+                                {service.audience}
+                              </span>
+                            </p>
+                          ) : null}
+                        </div>
                       </div>
                     </li>
                   ))}

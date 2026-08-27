@@ -1,33 +1,40 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { about } from "@/data/about";
 import { homepage } from "@/data/homepage";
 
-/**
- * Company introduction, and the homepage's route through to /about.
- *
- * NO IMAGE HERE, DELIBERATELY
- *
- * This has held a staff photo collage and then an office photograph. Both were
- * withdrawn — first no staff photography on the homepage, then no real
- * photographs on the homepage at all.
- *
- * The section is kept rather than deleted because it is the landing page's
- * only narrative link into /about, and the copy is approved and still true
- * without a picture beside it. The photographs live on /about, which is where
- * the button below sends people.
- *
- * It is a TEXT layout, not the old split layout with the image removed. The
- * 6/6 split existed to balance a picture against copy; dropping the picture
- * out of that grid would have left half the section empty, which reads as an
- * image that failed to load. The 5/7 editorial split it uses now is the same
- * arrangement the About and Careers pages already use for this kind of block.
- *
- * `surface` rather than `canvas`: the partnership rail above is canvas, and
- * two white sections running together read as one long section.
- */
+const glimpseLayout = [
+  {
+    src: "/images/office/office-active-blurred.webp",
+    span: "col-span-2 lg:col-span-6",
+    sizes: "(min-width: 1024px) 46vw, 100vw",
+  },
+  {
+    src: "/images/office/office-room-1.webp",
+    span: "lg:col-span-3",
+    sizes: "(min-width: 1024px) 24vw, 50vw",
+  },
+  {
+    src: "/images/office/office-focus-blurred.webp",
+    span: "lg:col-span-3",
+    sizes: "(min-width: 1024px) 24vw, 50vw",
+  },
+];
+
 export function TeamPreview() {
   const { team } = homepage;
+  const glimpse = glimpseLayout.map((entry) => {
+    const photo = about.workspace.photos.find((item) => item.src === entry.src);
+    if (!photo) {
+      throw new Error(
+        `TeamPreview: no photo in about.workspace.photos matches ${entry.src}`,
+      );
+    }
+    return { ...entry, photo };
+  });
 
   return (
     <Section
@@ -36,14 +43,22 @@ export function TeamPreview() {
       aria-labelledby="home-team-title"
       containerClassName="grid gap-section-sm lg:grid-cols-12"
     >
-      <div className="lg:col-span-5">
+      <div
+        data-stagger
+        style={{ "--stagger-index": 0 } as React.CSSProperties}
+        className="lg:col-span-5"
+      >
         <Eyebrow>{team.eyebrow}</Eyebrow>
         <h2 id="home-team-title" className="mt-4 max-w-2xl text-h2">
           {team.title}
         </h2>
       </div>
 
-      <div className="border-t-2 border-ink pt-block lg:col-span-6 lg:col-start-7">
+      <div
+        data-stagger
+        style={{ "--stagger-index": 1 } as React.CSSProperties}
+        className="border-t-2 border-ink pt-block lg:col-span-6 lg:col-start-7"
+      >
         <div className="space-y-6">
           {team.description.map((paragraph, index) => (
             <p
@@ -63,6 +78,26 @@ export function TeamPreview() {
           {team.ctaLabel}
           <span aria-hidden="true">→</span>
         </Button>
+      </div>
+
+      <div className="grid grid-cols-2 items-end gap-4 sm:gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
+        {glimpse.map(({ photo, span, sizes }, index) => (
+          <ScrollReveal key={photo.src} delay={index * 0.15} className={span}>
+            <figure>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                sizes={sizes}
+                className="w-full rounded-2xl border border-[color:var(--tone-border)]"
+              />
+              <figcaption className="mt-3 text-sm text-[color:var(--tone-eyebrow)]">
+                {photo.caption}
+              </figcaption>
+            </figure>
+          </ScrollReveal>
+        ))}
       </div>
     </Section>
   );

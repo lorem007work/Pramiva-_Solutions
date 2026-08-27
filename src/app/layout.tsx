@@ -74,7 +74,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* First focusable element on every page — keyboard users skip the nav. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-6 focus:py-3 focus:text-canvas"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-6 focus:py-3 focus:text-canvas"
         >
           Skip to content
         </a>

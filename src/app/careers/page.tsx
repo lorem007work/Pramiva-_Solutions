@@ -1,4 +1,5 @@
 import { CtaBand } from "@/components/sections/cta-band";
+import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { careers } from "@/data/careers";
@@ -36,9 +37,7 @@ export default function CareersPage() {
         containerClassName="grid gap-section-sm lg:grid-cols-12"
       >
         <div className="lg:col-span-5">
-          <p className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
-            {approach.eyebrow}
-          </p>
+          <Eyebrow>{approach.eyebrow}</Eyebrow>
           <h2 id="careers-approach-title" className="mt-4 max-w-2xl text-h1">
             {approach.title}
           </h2>
@@ -62,14 +61,23 @@ export default function CareersPage() {
         </div>
       </Section>
 
-      <Section tone="surface" reveal aria-labelledby="careers-openings-title">
-        <SectionHeading
-          id="careers-openings-title"
-          eyebrow={openings.eyebrow}
-          title={openings.title}
-          description={openings.description}
-        />
+      <Section
+        tone="canvas"
+        spacing="compact"
+        reveal
+        aria-labelledby="careers-openings-title"
+        containerClassName="grid gap-section-sm lg:grid-cols-12"
+      >
+        <div className="lg:col-span-5">
+          <Eyebrow>{openings.eyebrow}</Eyebrow>
+          <h2 id="careers-openings-title" className="mt-4 max-w-2xl text-h2">
+            {openings.title}
+          </h2>
+        </div>
 
+        <div className="border-t border-line-strong pt-block lg:col-span-6 lg:col-start-7">
+          <p className="max-w-lead text-lead">{openings.description}</p>
+        </div>
       </Section>
 
       <CtaBand id="careers-cta-title" {...cta} />

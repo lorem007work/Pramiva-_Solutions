@@ -45,6 +45,7 @@ export const contact = {
 
   details: {
     heading: "Contact details",
+    mapLabel: "View on map",
     /** Labels only; every value comes from `site.ts`. */
     labels: {
       email: "Email",

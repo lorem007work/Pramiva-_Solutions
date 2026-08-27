@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { Eyebrow } from "@/components/ui/eyebrow";
 import type { NavLink } from "@/data/navigation";
 import { isCurrentPath } from "@/lib/utils";
 
@@ -15,6 +16,8 @@ type MobileMenuProps = {
 
 const focusableSelector =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+const desktopViewport = "(min-width: 48rem)";
 
 export function MobileMenu({
   isOpen,
@@ -60,10 +63,18 @@ export function MobileMenu({
       }
     }
 
+    function handleViewportChange(event: MediaQueryListEvent) {
+      if (event.matches) onClose();
+    }
+
+    const desktop = window.matchMedia(desktopViewport);
+
     document.addEventListener("keydown", handleKeyDown);
+    desktop.addEventListener("change", handleViewportChange);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      desktop.removeEventListener("change", handleViewportChange);
       document.body.style.overflow = previousOverflow;
       previouslyFocused?.focus();
     };
@@ -72,21 +83,16 @@ export function MobileMenu({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-canvas md:hidden">
+    <div className="fixed inset-0 z-50 bg-canvas opacity-100 transition-opacity duration-200 ease-[var(--ease-out-expo)] starting:opacity-0 md:hidden">
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-navigation-title"
-        className="flex h-full flex-col px-5 py-5"
+        className="flex h-full flex-col px-5 pb-5"
       >
-        <div className="flex items-center justify-between border-b border-line pb-5">
-          <p
-            id="mobile-navigation-title"
-            className="text-eyebrow uppercase text-ink-subtle"
-          >
-            Navigation
-          </p>
+        <div className="flex h-18 shrink-0 items-center justify-between border-b border-line sm:h-22">
+          <Eyebrow id="mobile-navigation-title">Navigation</Eyebrow>
           <button
             ref={closeButtonRef}
             type="button"
@@ -101,7 +107,10 @@ export function MobileMenu({
           </button>
         </div>
 
-        <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center">
+        <nav
+          aria-label="Mobile"
+          className="flex min-h-0 flex-1 translate-y-0 flex-col justify-center-safe overflow-y-auto transition-transform duration-300 ease-[var(--ease-out-expo)] starting:translate-y-3"
+        >
           <ul className="divide-y divide-line border-y border-line">
             {links.map((link, index) => {
               const isCurrent = isCurrentPath(pathname, link.href);
@@ -111,12 +120,12 @@ export function MobileMenu({
                     href={link.href}
                     aria-current={isCurrent ? "page" : undefined}
                     onClick={onClose}
-                    className="group flex min-h-16 items-center justify-between py-5 text-h3 transition-colors duration-150 hover:text-brand motion-safe:active:translate-x-1"
+                    className={`group flex min-h-16 items-center justify-between py-5 text-h3 transition-colors duration-150 hover:text-brand motion-safe:active:translate-x-1 ${isCurrent ? "font-medium text-brand" : ""}`}
                   >
                     <span>{link.label}</span>
                     <span
                       aria-hidden="true"
-                      className="text-sm text-ink-subtle transition-colors duration-150 group-hover:text-brand"
+                      className={`text-sm transition-colors duration-150 group-hover:text-brand ${isCurrent ? "text-brand" : "text-ink-subtle"}`}
                     >
                       0{index + 1}
                     </span>
@@ -130,7 +139,7 @@ export function MobileMenu({
         <Link
           href={primaryCta.href}
           onClick={onClose}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand-deep"
+          className="mt-6 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-medium text-canvas transition-colors duration-150 hover:bg-brand-deep"
         >
           {primaryCta.label}
         </Link>

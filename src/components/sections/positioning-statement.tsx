@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { homepage } from "@/data/homepage";
 import { withNonBreakingHyphens } from "@/lib/utils";
 
@@ -45,33 +46,16 @@ export function PositioningStatement() {
         third of the band to themselves, uninterrupted. That is the composition
         the background was drawn for: artwork one side, type the other.
       */}
-      <div className="md:col-span-9 md:col-start-4">
+      <ScrollReveal className="md:col-span-9 md:col-start-4">
         <Eyebrow>{positioning.eyebrow}</Eyebrow>
 
-        {/*
-          text-statement, and NO max-width. Both decisions were measured.
-
-          The old `max-w-[24ch]` never applied: `ch` is the width of the "0"
-          glyph, about 43px in Geist at this size, so 24ch resolved to ~1030px
-          against a column of 864px. It looked like it controlled the measure
-          and never once did.
-
-          Column width turns out to be irrelevant anyway. Sweeping the block
-          from 720px to 1152px produced a byte-identical result every time —
-          `text-wrap: balance` decides the line length itself and caps it well
-          below the available width. So the column is chosen for composition
-          (artwork keeps the left three) and the type size does the typography.
-
-          At text-h1 this set as five lines varying 31% in width. At
-          text-statement it is three lines varying 10.7%. See the token.
-        */}
         <h2
           id="home-positioning-title"
           className="mt-6 text-statement text-balance"
         >
           {withNonBreakingHyphens(positioning.statement)}
         </h2>
-      </div>
+      </ScrollReveal>
     </Section>
   );
 }

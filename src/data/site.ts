@@ -18,8 +18,14 @@ export const site = {
   /** CONFIRMED 2026-08-25 by the owner. Used for legal pages and JSON-LD. */
   legalName: "Pramiva Solutions Private Limited",
 
+  /** CONFIRMED 2026-08-26 by the owner. */
+  founder: "Saradha Neupane",
+
   /** CONFIRMED. Published only where it reads as fact, never as experience. */
   founded: 2025,
+
+  /** CONFIRMED 2026-08-26 by the owner. */
+  legalStructure: "Private Limited Company",
 
   /** CONFIRMED. A city, not a postal address — see `address` below. */
   location: "Lalitpur, Nepal",
@@ -62,8 +68,11 @@ export const site = {
    * is machine-readable rather than human-readable, so it is omitted from the
    * displayed line and carried by `mapUrl` instead, which is what a visitor
    * actually needs to find the office.
+   *
+   * Full street line confirmed 2026-08-26 by the owner.
    */
-  address: "Damodar Marg, Lalitpur 44600, Nepal",
+  address:
+    "160-4 Damodar Marga, Dhungesadu Tole, Thasikhel, Lalitpur 44600, Nepal",
 
   /**
    * The same Q27 answer, split into its parts for structured data.
@@ -78,7 +87,7 @@ export const site = {
    * `country` is the ISO 3166-1 alpha-2 code, which is what schema.org expects.
    */
   addressParts: {
-    street: "Damodar Marg",
+    street: "160-4 Damodar Marga, Dhungesadu Tole, Thasikhel",
     locality: "Lalitpur",
     postalCode: "44600",
     country: "NP",

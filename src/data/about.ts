@@ -26,8 +26,18 @@ export const about = {
     ],
   },
 
+  history: {
+    eyebrow: "02 — Our story",
+    title: "How the company started.",
+    /** CONFIRMED 2026-08-26 by the owner. */
+    paragraphs: [
+      `${site.name} was founded on August 5, 2025, by ${site.founder} with a vision to bridge the gap between businesses in developed countries and cost-effective, high-quality backend solutions.`,
+      "The company was established based on practical experience in growing businesses from startup to multi-million dollar operations across multiple countries.",
+    ],
+  },
+
   workspace: {
-    eyebrow: "02 — Our workspace",
+    eyebrow: "03 — Our workspace",
     title: "Inside the office.",
     description: `A real look at our workspace in ${site.location}.`,
     // Every value describes what the photograph actually shows. Where a
@@ -38,7 +48,7 @@ export const about = {
         src: "/images/office/office-sign.webp",
         width: 1000,
         height: 1333,
-        alt: "The Pramiva Solutions sign above the office entrance in Lalitpur",
+        alt: `The ${site.name} sign above the office entrance in ${site.addressParts.locality}`,
         caption: "The office entrance in Lalitpur.",
       },
       {
@@ -80,13 +90,25 @@ export const about = {
   },
 
   vision: {
-    eyebrow: "03 — Vision",
+    eyebrow: "04 — Vision",
     /** CONFIRMED — verbatim. Do not paraphrase or shorten. */
     statement: site.vision,
   },
 
+  values: {
+    eyebrow: "05 — What we value",
+    title: "How we work.",
+  },
+
+  disciplines: {
+    eyebrow: "06 — Our team",
+    title: "The skills we keep in-house.",
+    description:
+      "The disciplines our team covers.",
+  },
+
   cta: {
-    eyebrow: "04 — Start a conversation",
+    eyebrow: "07 — Start a conversation",
     title: "Tell us what you need handled.",
     description:
       "Send an enquiry and we will come back to you with a practical next step.",

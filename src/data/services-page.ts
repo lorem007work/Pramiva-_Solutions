@@ -26,6 +26,7 @@ export const servicesPage = {
     /** [CONFIRMED] Q5 — approved 2026-08-24. */
     description:
       "Practical support across digital marketing, customer systems and customer communication, with AI and automation as a future direction.",
+    audienceLabel: "Who it is for",
   },
 
   cta: {

@@ -39,7 +39,9 @@ export default function ContactPage() {
       >
         <section
           aria-labelledby="contact-form-title"
-          className="rounded-2xl border border-line bg-canvas p-8 lg:col-span-7"
+          data-stagger
+          style={{ "--stagger-index": 0 } as React.CSSProperties}
+          className="rounded-2xl border border-line bg-canvas p-block lg:col-span-7"
         >
           <h2 id="contact-form-title" className="text-h2">
             {form.heading}
@@ -60,14 +62,16 @@ export default function ContactPage() {
 
         <section
           aria-labelledby="contact-details-title"
+          data-stagger
+          style={{ "--stagger-index": 1 } as React.CSSProperties}
           className="lg:col-span-4 lg:col-start-9"
         >
           <h2 id="contact-details-title" className="text-h3">
             {details.heading}
           </h2>
 
-          <dl className="mt-block space-y-6">
-            <div className="border-t border-line pt-4">
+          <dl className="mt-block grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            <div className="border-t border-line-strong pt-5">
               <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                 {details.labels.email}
               </dt>
@@ -85,12 +89,12 @@ export default function ContactPage() {
               </dd>
             </div>
 
-            <div className="border-t border-line pt-4">
+            <div className="border-t border-line-strong pt-5">
               <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
                 {details.labels.address}
               </dt>
-              <dd className="mt-2 break-words text-[color:var(--tone-muted)]">
-                {site.address}
+              <dd className="mt-2 text-[color:var(--tone-muted)]">
+                <span className="block break-words">{site.address}</span>
                 {/*
                   A link, deliberately not an embedded map. An iframe would pull
                   third-party Google cookies into the page, which creates a
@@ -102,9 +106,9 @@ export default function ContactPage() {
                   href={site.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1 inline-flex min-h-11 items-center text-brand underline-offset-4 hover:underline"
+                  className="mt-1 inline-flex min-h-11 items-center text-brand-deep underline-offset-4 hover:underline"
                 >
-                  View on map
+                  {details.mapLabel}
                 </a>
               </dd>
             </div>

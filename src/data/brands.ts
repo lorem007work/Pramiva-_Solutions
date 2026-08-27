@@ -1,17 +1,25 @@
 /**
  * Named partner brands — Q24 Option B.
  *
- * Confirmed 2026-08-25: management asked for this section, and separately
- * confirmed that SNS itself has agreed in writing to being named publicly —
- * not just an internal instruction, which is what docs/CONTENT-INVENTORY.md
- * §6 required before any brand could be identified here. Written source for
- * that confirmation still needs a one-line citation added to this file and to
- * CONTENT-INVENTORY.md; ask whoever confirmed it for the email or message
- * thread so the record is complete.
+ * THE ONLY BASIS FOR NAMING THESE BRANDS IS AN OWNER RULING ON 2026-08-26.
+ * The contradiction was put to the owner directly and they ruled that SNS has
+ * agreed to being named publicly. No written citation has been supplied yet.
  *
- * Only five brands are listed. The source material names six (this list plus
- * Public Shed), but no Public Shed logo was supplied — nothing is invented to
- * fill the gap. Add it once an asset exists.
+ * docs/CONTENT-INVENTORY.md §6 recorded the opposite — "SNS has not separately
+ * agreed to being named" — and graded this exact configuration "Option C.
+ * Named without consent — Do not. Potential contract breach and damage to the
+ * client's brands." §6 was deleted from the repo on 2026-08-26 as collateral in
+ * an unrelated styling commit. That deletion is NOT a retraction and is not
+ * part of the argument for naming; it is only why the text is no longer on
+ * disk. Recover it with: git show 26cd619^:docs/CONTENT-INVENTORY.md
+ *
+ * Public Shed was previously absent only because no logo had been supplied.
+ * One was supplied 2026-08-26 and is now listed. It is within §6's six names.
+ *
+ * MULCH EXPRESS AND GORKHA FLOORING ARE NOT. Neither appears in §6, in
+ * CLAUDE.md rule 4, or in any prior assessment; both were added 2026-08-26 on
+ * the owner's instruction to use every logo in the folder. They carry less
+ * clearance than the other six, not equal clearance.
  *
  * Logos were supplied as raw exports (PNG/JPG, up to 4494px, mixed
  * backgrounds) and processed before use: trimmed to their visible bounds,
@@ -59,5 +67,20 @@ export const brands: Brand[] = [
        background is an export artifact, not part of the mark — the logo itself
        is unaltered. Dimensions updated to match the new file. */
     logo: { src: "/images/brands/hardtrex.webp", width: 336, height: 99 },
+  },
+  {
+    name: "Public Shed",
+    sector: "Home storage",
+    logo: { src: "/images/brands/public-shed.webp", width: 156, height: 112 },
+  },
+  {
+    name: "Mulch Express",
+    sector: "Mulch and garden supply",
+    logo: { src: "/images/brands/mulch-express.webp", width: 296, height: 77 },
+  },
+  {
+    name: "Gorkha Flooring",
+    sector: "Flooring supply and installation",
+    logo: { src: "/images/brands/gorkha-flooring.webp", width: 298, height: 97 },
   },
 ];

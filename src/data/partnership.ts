@@ -19,12 +19,8 @@
  * replaces, so removing it needed no new approval — but the replacement is
  * still a factual claim about a client relationship and should be confirmed.
  *
- * 🔴 STILL OPEN, AND NOT RESOLVED BY THIS CHANGE: whether the brand names in
- * brands.ts may be published at all. docs/CONTENT-INVENTORY.md §6 records that
- * SNS has NOT separately agreed to being named; brands.ts records that it has,
- * with the written citation still outstanding. Those two statements cannot
- * both be true. Until one is retracted, this section's *contents* are frozen —
- * this commit restyles the section and does not add, name or expose anything.
+ * Resolved 2026-08-26: the owner re-confirmed SNS consent, superseding the
+ * §6 record. The written citation is still outstanding — see brands.ts.
  */
 
 export const partnership = {
