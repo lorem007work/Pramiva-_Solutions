@@ -33,7 +33,7 @@ export type Pillar = {
    * Set on the pillar that is not a service we sell today.
    *
    * The brief is explicit that future work must not be presented as equal to
-   * active work. A visitor who reads "AI and automation" as a current offering
+   * active work. A visitor who reads "AI and Automation" as a current offering
    * and enquires about it has been misled by the layout, not by the words.
    */
   future?: boolean;
@@ -41,22 +41,22 @@ export type Pillar = {
 
 export const pillars: Pillar[] = [
   {
-    group: "Digital marketing",
-    title: "Digital marketing",
+    group: "Digital Marketing",
+    title: "Digital Marketing",
     icon: "megaphone",
   },
   {
-    group: "Customer systems and service",
-    title: "Customer systems and service",
+    group: "Customer Service and Systems",
+    title: "Customer Service and Systems",
     icon: "support",
   },
   {
-    // The group is named "Future direction" — a status, not a capability. The
+    // The group is named "Next Direction" — a status, not a capability. The
     // card is titled by what the capability actually is, and the status moves
     // to the badge, which is where a visitor can see it without reading it as
     // the service name.
-    group: "Future direction",
-    title: "AI and automation",
+    group: "Next Direction",
+    title: "AI and Automation",
     icon: "automation",
     future: true,
   },

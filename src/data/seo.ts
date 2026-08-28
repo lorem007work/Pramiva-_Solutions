@@ -58,9 +58,21 @@ export const seo = {
     description:
       "Join a young, growing business and operations team in Lalitpur, Nepal.",
   },
+  careersApply: {
+    path: "/careers/apply/",
+    title: "Apply",
+    description:
+      "Submit an application to join Pramiva Solutions in Lalitpur, Nepal.",
+  },
   contact: {
     path: "/contact/",
     title: "Contact",
     description: "Send an enquiry or find our contact details.",
+  },
+  privacy: {
+    path: "/privacy/",
+    title: "Privacy",
+    description:
+      "What Pramiva Solutions collects through this website, and how long it is kept.",
   },
 } satisfies Record<string, RouteSeo>;

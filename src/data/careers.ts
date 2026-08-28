@@ -142,16 +142,17 @@ export const careers = {
   },
 
   openings: {
-    eyebrow: "04 — Open roles",
-    title: "No published vacancy list.",
+    eyebrow: "04 — Opportunities",
+    title: "Where you can contribute.",
     description:
-      "We are not advertising specific roles at the moment. Send an introduction anyway — we keep them on file and come back to people when something opens up.",
+      "We currently welcome applications in Sales, Marketing and Graphic Design, as well as general applications from people who want to contribute.",
   },
 
   cta: {
     eyebrow: "05 — Apply",
     title: "Tell us about yourself.",
     description:
-      "Send an enquiry with a short introduction and we will come back to you.",
+      "Submit your application and CV. Suitable applicants will receive access to the mandatory Pramiva Academy assessment.",
+    action: { label: "Apply now", href: "/careers/apply" },
   },
 } as const;

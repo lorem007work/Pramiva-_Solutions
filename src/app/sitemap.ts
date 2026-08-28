@@ -25,5 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services/`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/careers/`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact/`, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${base}/privacy/`, changeFrequency: "yearly", priority: 0.3 },
   ];
 }

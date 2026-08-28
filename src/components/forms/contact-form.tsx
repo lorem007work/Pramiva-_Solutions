@@ -243,6 +243,17 @@ export function ContactForm({ copy, fallbackEmail }: ContactFormProps) {
         error={errors.message}
       />
 
+      <p className="text-sm text-[color:var(--tone-muted)]">
+        {copy.privacyNotice.before}{" "}
+        <a
+          className="font-medium underline underline-offset-2"
+          href={copy.privacyNotice.href}
+        >
+          {copy.privacyNotice.linkLabel}
+        </a>{" "}
+        {copy.privacyNotice.after}
+      </p>
+
       <div
         aria-hidden="true"
         className="sr-only"

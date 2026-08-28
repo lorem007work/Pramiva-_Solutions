@@ -36,7 +36,7 @@ import { isPlaceholder } from "@/lib/utils";
  *    a hierarchy that does not exist.
  *  - `Service` / `hasOfferCatalog`. Listing the catalogue as structured offers
  *    asserts commercial availability, and one of the six is explicitly a
- *    future direction rather than something sold today.
+ *    next direction rather than something sold today.
  *  - `foundingDate` is included because 2025 is confirmed, but note it is a
  *    year only — schema.org accepts a bare year for Date.
  */

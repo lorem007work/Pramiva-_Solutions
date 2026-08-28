@@ -2,9 +2,9 @@
  * Service catalogue.
  *
  * TITLES are CONFIRMED (2026-08-24) and match the approved list exactly. Do
- * not reword them — "Google and Facebook paid advertising" is the approved
- * phrasing, not "paid advertising"; "Customer service through calls, text and
- * email" is the approved phrasing, not "multi-channel customer service".
+ * not reword them — "Google and Facebook Paid Advertising" is the approved
+ * phrasing, not "paid advertising"; "Customer Service Through Calls, Text and
+ * Email" is the approved phrasing, not "multi-channel customer service".
  *
  * Back-office administration was removed: it is not on the confirmed list, and
  * the wording describes how work is divided with clients, which is
@@ -36,10 +36,10 @@ export type ServiceGroup = {
 
 export const serviceGroups: ServiceGroup[] = [
   {
-    heading: "Digital marketing",
+    heading: "Digital Marketing",
     services: [
       {
-        title: "Search and content marketing",
+        title: "Search and Content Marketing",
         audience:
           "Businesses looking to establish or improve their online presence and attract customers through search engines.",
         icon: "search",
@@ -53,7 +53,7 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        title: "Social media management",
+        title: "Social Media Management",
         audience:
           "Companies seeking to build brand awareness, engage with customers, and drive sales through social media channels.",
         icon: "social",
@@ -67,7 +67,7 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        title: "Google and Facebook paid advertising",
+        title: "Google and Facebook Paid Advertising",
         audience:
           "Businesses looking to scale their customer acquisition through targeted digital advertising.",
         icon: "advertising",
@@ -83,10 +83,10 @@ export const serviceGroups: ServiceGroup[] = [
     ],
   },
   {
-    heading: "Customer systems and service",
+    heading: "Customer Service and Systems",
     services: [
       {
-        title: "Customer-system setup and management",
+        title: "Customer-System Setup and Management",
         audience:
           "Growing businesses that need to organise their customer data and automate their sales processes.",
         icon: "systems",
@@ -100,7 +100,7 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        title: "Customer service through calls, text and email",
+        title: "Customer Service Through Calls, Text and Email",
         audience:
           "Companies that need to provide excellent customer service but want to reduce operational costs.",
         icon: "support",
@@ -116,15 +116,15 @@ export const serviceGroups: ServiceGroup[] = [
     ],
   },
   {
-    heading: "Future direction",
+    heading: "Next Direction",
     services: [
       {
-        title: "AI and automation solutions",
+        title: "AI and Automation Solutions",
         audience:
           "Forward-thinking businesses looking to leverage AI for competitive advantage.",
         icon: "automation",
         description:
-          "A future service direction focused on practical AI and automation for suitable business tasks.",
+          "The next service direction, focused on practical AI and Automation for suitable business tasks.",
       },
     ],
   },

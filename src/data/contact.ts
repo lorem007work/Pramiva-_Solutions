@@ -32,6 +32,12 @@ export const contact = {
     },
     /** Empty first option. The field is optional, so it must be selectable. */
     interestPlaceholder: "Select an area",
+    privacyNotice: {
+      before: "Your enquiry is emailed to us and is not stored on this website. See our",
+      linkLabel: "privacy notice",
+      href: "/privacy",
+      after: "for the full detail.",
+    },
     submitLabel: "Send enquiry",
     submittingLabel: "Sending…",
     validationMessage: "Check the highlighted fields and try again.",

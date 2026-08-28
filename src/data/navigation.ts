@@ -78,15 +78,17 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
      */
     heading: "Services",
     links: [
-      { label: "Digital marketing", href: "/services" },
-      { label: "Customer systems and service", href: "/services" },
-      { label: "AI and automation", href: "/services" },
+      { label: "Digital Marketing", href: "/services" },
+      { label: "Customer Service and Systems", href: "/services" },
+      { label: "AI and Automation", href: "/services" },
     ],
   },
   {
     heading: "Legal",
-    // [BLOCKED] Q21 — routes are not created until management confirms these
-    // pages are required and supplies the copy.
-    links: [],
+    // Q21 answered for /privacy only: the application form collects a name,
+    // address, phone number and CV, so a notice explaining what happens to
+    // them is not optional. Terms and a cookie policy remain [BLOCKED] — the
+    // first has no confirmed content, the second has nothing to describe.
+    links: [{ label: "Privacy", href: "/privacy" }],
   },
 ];

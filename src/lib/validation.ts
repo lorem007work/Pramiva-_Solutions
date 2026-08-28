@@ -19,11 +19,11 @@ export const contactLimits = {
  * server does not trust this file, it re-checks against its own copy.
  */
 export const contactInterests = [
-  "Digital marketing",
-  "Customer systems and service",
-  "AI and automation",
+  "Digital Marketing",
+  "Customer Service and Systems",
+  "AI and Automation",
   "Careers",
-  "Something else",
+  "Something Else",
 ] as const;
 
 export type ContactInterest = (typeof contactInterests)[number];

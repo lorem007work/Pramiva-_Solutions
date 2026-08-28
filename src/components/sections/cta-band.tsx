@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { ctas } from "@/data/navigation";
+import type { NavLink } from "@/data/navigation";
 
 type CtaBandProps = {
   /** Unique per page — the band is the labelled region of its own section. */
@@ -10,6 +11,8 @@ type CtaBandProps = {
   eyebrow?: string;
   title: string;
   description: string;
+  /** Override the shared contact action for a page-specific next step. */
+  action?: NavLink;
 };
 
 /**
@@ -35,7 +38,13 @@ type CtaBandProps = {
  * page has read everything and is choosing whether to engage, not looking for
  * the contact route.
  */
-export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
+export function CtaBand({
+  id,
+  eyebrow,
+  title,
+  description,
+  action = ctas.closing,
+}: CtaBandProps) {
   return (
     <Section
       tone="ink"
@@ -64,11 +73,11 @@ export function CtaBand({ id, eyebrow, title, description }: CtaBandProps) {
       {/* Full width on a phone: a centred pill on a narrow screen is a small
           target floating in a wide band, and this is the page's last chance. */}
       <Button
-        href={ctas.closing.href}
+        href={action.href}
         variant="inverse"
         className="mt-block w-full sm:w-auto"
       >
-        {ctas.closing.label}
+        {action.label}
         <span aria-hidden="true">→</span>
       </Button>
     </Section>

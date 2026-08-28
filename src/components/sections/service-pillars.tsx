@@ -30,7 +30,7 @@ import { serviceGroups } from "@/data/services";
  *
  * THE THIRD CARD
  *
- * AI and automation is not sold today. It carries a visible "Future direction"
+ * AI and Automation is not sold today. It carries a visible "Next Direction"
  * badge and a quieter icon treatment so the layout says so as clearly as the
  * words do. Presenting it as an equal third of the offer would generate
  * enquiries the company cannot fulfil, which is a worse outcome than the card

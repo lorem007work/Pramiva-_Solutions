@@ -18,11 +18,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 // src/lib/validation.ts — the client's copy is never trusted, it is re-checked
 // here, so the two drifting apart shows up as a rejected valid submission.
 const INTEREST_OPTIONS = [
-    'Digital marketing',
-    'Customer systems and service',
-    'AI and automation',
+    'Digital Marketing',
+    'Customer Service and Systems',
+    'AI and Automation',
     'Careers',
-    'Something else',
+    'Something Else',
 ];
 
 header('Content-Type: application/json; charset=utf-8');

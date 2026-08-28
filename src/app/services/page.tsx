@@ -80,7 +80,7 @@ export default function ServicesPage() {
 
                   The groups hold 3, 2 and 1 services. In the previous
                   two-column card grid that left the third card of group 01
-                  alone on its own row and "Future direction" sitting beside a
+                  alone on its own row and "Next Direction" sitting beside a
                   large void, so the page read as though a card were missing.
 
                   Full-width rows cannot go ragged at any group size, and they

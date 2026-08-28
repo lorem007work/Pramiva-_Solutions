@@ -83,4 +83,18 @@ export const brands: Brand[] = [
     sector: "Flooring supply and installation",
     logo: { src: "/images/brands/gorkha-flooring.webp", width: 298, height: 97 },
   },
+  {
+    /* Supplied 2026-08-27. Two items here still need confirming:
+       - the trading name. "Nice and Clean" is taken from the supplied
+         filename, not from the mark, because the file is the icon on its own
+         with no wordmark. It is the alt text, so it is what a screen reader
+         announces — get it checked before this ships.
+       - the sector line, which is read off the mark (house, foliage, decking)
+         rather than supplied. Descriptive only, same as the other eight.
+       Consent basis is the same owner ruling that covers the rest of the list;
+       the written citation at the top of this file is still outstanding. */
+    name: "Nice and Clean",
+    sector: "Home and exterior cleaning",
+    logo: { src: "/images/brands/nice-and-clean.webp", width: 384, height: 242 },
+  },
 ];

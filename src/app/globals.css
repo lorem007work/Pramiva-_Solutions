@@ -315,6 +315,119 @@ html {
 }
 
 /* ---------------------------------------------------------------------------
+   Brand rail — the continuous logo marquee.
+
+   HOW THE LOOP IS SEAMLESS
+
+   The set is rendered twice and the track slides left by exactly one set width
+   plus one gap, at which point set two sits precisely where set one started
+   and the animation restarts on an identical frame. That offset is
+   `-50% - var(--rail-gap) / 2`: the track is two sets and one gap wide, so
+   half of it is one set plus half a gap, and the missing half gap is what the
+   subtraction adds back. Get this wrong by a pixel and the rail visibly jumps
+   once per cycle.
+
+   SPEED IS PER BRAND, NOT PER CYCLE
+
+   Duration is `--rail-count * --rail-seconds-per-brand`, and the component
+   sets --rail-count from brands.length. Adding a ninth logo therefore makes
+   the cycle longer rather than making every logo travel faster — the rail
+   reads at the same pace no matter how the list grows, and no one has to
+   retune a hardcoded duration.
+
+   Only `transform` animates. It is compositor-only, so this costs no layout
+   or paint work and stays smooth on a mid-range phone.
+   --------------------------------------------------------------------------- */
+
+.brand-rail {
+  --rail-gap: 1rem;
+  --rail-fade: 2rem;
+  --rail-seconds-per-brand: 4s;
+  overflow: hidden;
+  /* Fades the marks into the ground at both ends. Without it the rail ends in
+     a hard vertical slice through whichever logo is mid-exit, which reads as
+     a clipping bug rather than as motion. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--rail-fade),
+    #000 calc(100% - var(--rail-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--rail-fade),
+    #000 calc(100% - var(--rail-fade)),
+    transparent
+  );
+}
+
+@media (min-width: 640px) {
+  .brand-rail {
+    --rail-gap: 1.25rem;
+    --rail-fade: 5rem;
+  }
+}
+
+.brand-rail-track {
+  display: flex;
+  width: max-content;
+  gap: var(--rail-gap);
+  animation: brand-rail-scroll
+    calc(var(--rail-count, 8) * var(--rail-seconds-per-brand)) linear infinite;
+}
+
+.brand-rail-set {
+  display: flex;
+  gap: var(--rail-gap);
+}
+
+@keyframes brand-rail-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - (var(--rail-gap) / 2)));
+  }
+}
+
+/* A pointer or a keyboard focus anywhere in the rail stops it, so a visitor
+   who wants to read a mark can, instead of chasing it across the band. */
+.brand-rail:hover .brand-rail-track,
+.brand-rail:focus-within .brand-rail-track {
+  animation-play-state: paused;
+}
+
+/* Reduced motion gets the wrapped, centred rows this section used before the
+   rail existed — not a paused marquee, which would strand half the set off
+   the side of the screen. The duplicate set is display:none there, so it is
+   out of the layout as well as out of the accessibility tree. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-rail {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .brand-rail-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brand-rail-set {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brand-rail-set[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
    Native select chevron.
 
    Lives here rather than on the component because the marker is an inline SVG

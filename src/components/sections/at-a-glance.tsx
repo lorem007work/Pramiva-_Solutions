@@ -25,8 +25,8 @@ import { site } from "@/data/site";
  * under the wrong noun, and it invited the reading "we have clients called
  * Nepal & international". It is now "Markets".
  *
- * "Services — 6" counted AI and automation, which the same page marks as a
- * future direction. Advertising six services and then labelling one of them as
+ * "Services — 6" counted AI and Automation, which the same page marks as a
+ * next direction. Advertising six services and then labelling one of them as
  * not-yet-offered is a contradiction a visitor can spot. "Capabilities" is the
  * honest noun for a set that includes one not yet sold.
  */

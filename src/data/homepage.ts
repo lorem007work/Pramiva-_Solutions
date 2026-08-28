@@ -63,7 +63,7 @@ export const homepage = {
     description:
       "We support businesses in Nepal and internationally through digital marketing and customer solutions.",
     /** Structural label applied to the pillar that is not sold today. */
-    futureLabel: "Future direction",
+    futureLabel: "Next Direction",
   },
 
   /**

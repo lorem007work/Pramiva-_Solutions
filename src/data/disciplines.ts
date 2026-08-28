@@ -7,42 +7,42 @@ export type Discipline = {
 
 export const disciplines: Discipline[] = [
   {
-    title: "Search and website",
+    title: "Search and Website",
     description:
       "Search and content specialists who keep client websites findable and readable.",
   },
   {
-    title: "Digital marketing",
+    title: "Digital Marketing",
     description:
       "Marketing specialists running content, social and paid campaigns across Google and Facebook.",
   },
   {
-    title: "Social media",
+    title: "Social Media",
     description:
       "Content creators and community managers who keep client accounts active and answered.",
   },
   {
-    title: "Customer service",
+    title: "Customer Service",
     description:
       "Customer service officers handling enquiries through calls, text and email.",
   },
   {
-    title: "Call executives",
+    title: "Call Executives",
     description:
       "Voice specialists handling inbound and outbound calls on behalf of clients.",
   },
   {
-    title: "Software development",
+    title: "Software Development",
     description:
       "Developers building and integrating the systems that support client operations.",
   },
   {
-    title: "Graphic design",
+    title: "Graphic Design",
     description:
       "Designers producing brand and marketing material, and keeping it visually consistent.",
   },
   {
-    title: "Operations and management",
+    title: "Operations and Management",
     description:
       "Country and business management coordinating delivery and client relationships.",
   },
