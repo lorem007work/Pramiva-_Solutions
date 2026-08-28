@@ -41,7 +41,7 @@ import { isPlaceholder } from "@/lib/utils";
  *    year only — schema.org accepts a bare year for Date.
  */
 
-type JsonLdValue = string | number | boolean | JsonLd | JsonLd[];
+type JsonLdValue = string | number | boolean | JsonLd | JsonLd[] | readonly string[];
 type JsonLd = { [key: string]: JsonLdValue };
 
 /** Drops keys whose value is undefined, so optional gaps vanish from output. */
@@ -65,6 +65,8 @@ export function buildHomeJsonLd() {
     "@id": organizationId,
     name: site.name,
     legalName: site.legalName,
+    // The abbreviation people actually search for — see site.alternateNames.
+    alternateName: site.alternateNames,
     url: `${base}/`,
     description: site.description,
     foundingDate: String(site.founded),

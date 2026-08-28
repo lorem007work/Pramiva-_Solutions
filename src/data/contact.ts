@@ -35,7 +35,7 @@ export const contact = {
     privacyNotice: {
       before: "Your enquiry is emailed to us and is not stored on this website. See our",
       linkLabel: "privacy notice",
-      href: "/privacy",
+      href: "/privacy/",
       after: "for the full detail.",
     },
     submitLabel: "Send enquiry",

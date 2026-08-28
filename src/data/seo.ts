@@ -67,7 +67,10 @@ export const seo = {
   contact: {
     path: "/contact/",
     title: "Contact",
-    description: "Send an enquiry or find our contact details.",
+    // 44 chars was well under the ~70 floor, and it named neither the company
+    // nor the city. Composed from confirmed atoms only, like seo.home above —
+    // no new claim, and the original sentence is kept verbatim on the end.
+    description: `Contact ${site.name}, a business and operations company in ${site.location}. Send an enquiry or find our contact details.`,
   },
   privacy: {
     path: "/privacy/",

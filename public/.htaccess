@@ -12,13 +12,33 @@
 # listing their contents publicly.
 Options -Indexes
 
-# --- Force HTTPS ------------------------------------------------------------
+# --- Canonical host and HTTPS -----------------------------------------------
 RewriteEngine On
+
+# www and apex both answered 200 with identical HTML, so every URL on the site
+# was crawlable under two hostnames. The canonical tag pointed at the apex and
+# was papering over it; this makes the server say so.
+#
+# The host is matched and rebuilt rather than hard-coded, so a staging domain
+# strips its own www instead of being redirected to production.
+#
+# This runs BEFORE the HTTPS rule and already sends https://, so an
+# http://www request is corrected on both axes in ONE hop rather than being
+# bounced to https://www first and redirected again.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # --- Custom error page ------------------------------------------------------
 ErrorDocument 404 /404.html
+
+# --- Character set -----------------------------------------------------------
+# LiteSpeed serves "Content-Type: text/html" with no charset, so the encoding
+# is only declared in the <meta> tag — which a parser reads AFTER it has already
+# started guessing. The header wins over the tag and settles it up front.
+AddDefaultCharset UTF-8
 
 # --- Caching ----------------------------------------------------------------
 # Next.js content-hashes asset filenames, so they can be cached indefinitely.

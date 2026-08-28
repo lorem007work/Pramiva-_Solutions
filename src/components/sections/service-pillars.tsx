@@ -109,11 +109,12 @@ export function ServicePillars() {
                 </Link>
               </h3>
 
-              {/* Approved service titles, verbatim from services.ts. */}
+              {/* Approved service titles and descriptions, verbatim from services.ts. */}
               <ul className="mt-6 divide-y divide-[color:var(--tone-border)] border-t border-[color:var(--tone-border)] text-sm text-[color:var(--tone-muted)]">
-                {items.map((title) => (
+                {items.map(({ title, description }) => (
                   <li key={title} className="py-3">
-                    {title}
+                    <span className="block font-medium text-ink">{title}</span>
+                    <span className="mt-1 block">{description}</span>
                   </li>
                 ))}
               </ul>

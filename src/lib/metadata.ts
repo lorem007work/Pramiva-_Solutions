@@ -14,7 +14,13 @@ export function createPageMetadata(route: RouteSeo): Metadata {
   return {
     title: route.title,
     description: route.description,
-    alternates: { canonical: route.path },
+    // Self-referencing hreflang. The site is monolingual, so this tells
+    // Google nothing it does not already read from <html lang>; it is here
+    // because auditors score its absence, and it costs one link tag.
+    alternates: {
+      canonical: route.path,
+      languages: { en: route.path },
+    },
     // No title here: template applies to `title` only, so an explicit one
     // shipped og:title="About" unbranded. Omitted, it inherits the full title.
     openGraph: {

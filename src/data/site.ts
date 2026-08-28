@@ -18,6 +18,13 @@ export const site = {
   /** CONFIRMED 2026-08-25 by the owner. Used for legal pages and JSON-LD. */
   legalName: "Pramiva Solutions Private Limited",
 
+  /**
+   * The confirmed legal name abbreviated — not new information. People search
+   * "Pramiva Solutions Pvt Ltd" and that string appears nowhere on the site,
+   * so Google returns it with "Missing: Pvt Ltd". JSON-LD alternateName only.
+   */
+  alternateNames: ["Pramiva Solutions Pvt. Ltd.", "Pramiva Solutions Pvt Ltd"],
+
   /** CONFIRMED 2026-08-26 by the owner. */
   founder: "Saradha Neupane",
 

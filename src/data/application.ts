@@ -51,7 +51,7 @@ export const application = {
       before:
         "Your details and CV are emailed to our recruitment team and are not stored on this website. If you are unsuccessful, they are deleted after six months. See our",
       linkLabel: "privacy notice",
-      href: "/privacy",
+      href: "/privacy/",
       after: "for the full detail.",
     },
     submitLabel: "Submit application",
