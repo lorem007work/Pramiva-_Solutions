@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Partnership } from "@/components/sections/partnership";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { seo } from "@/data/seo";
+import { servicePagePaths } from "@/data/service-pages";
 import { serviceGroups } from "@/data/services";
 import { servicesPage } from "@/data/services-page";
 import { createPageMetadata } from "@/lib/metadata";
@@ -73,6 +75,15 @@ export default function ServicesPage() {
                   <h3 id={groupId} className="mt-4 text-h2">
                     {group.heading}
                   </h3>
+                  {servicePagePaths[group.heading] ? (
+                    <Link
+                      href={servicePagePaths[group.heading]}
+                      className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-brand underline-offset-4 hover:underline"
+                    >
+                      More on this service
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ) : null}
                 </div>
 
                 {/*

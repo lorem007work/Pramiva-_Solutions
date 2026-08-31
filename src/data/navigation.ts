@@ -6,11 +6,21 @@
 export type NavLink = {
   label: string;
   href: string;
+  children?: NavLink[];
 };
+
+export const servicePageLinks: NavLink[] = [
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  {
+    label: "Customer Service and Systems",
+    href: "/services/customer-service-systems",
+  },
+  { label: "AI and Automation", href: "/services/ai-and-automation" },
+];
 
 export const mainNav: NavLink[] = [
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services", children: servicePageLinks },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
@@ -64,31 +74,12 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { label: "Services", href: "/services" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
+      // Q21: privacy only. Terms and cookie policy remain [BLOCKED].
+      { label: "Privacy", href: "/privacy" },
     ],
   },
   {
-    /**
-     * The three capability areas, matching the homepage pillars.
-     *
-     * Labels are the Q5-approved group headings, copied from services.ts
-     * rather than reworded. Every one points at /services — there are no
-     * per-service pages, and a footer link that lands somewhere generic is
-     * worse than no link, so these are deliberately the three groups rather
-     * than the six services.
-     */
     heading: "Services",
-    links: [
-      { label: "Digital Marketing", href: "/services" },
-      { label: "Customer Service and Systems", href: "/services" },
-      { label: "AI and Automation", href: "/services" },
-    ],
-  },
-  {
-    heading: "Legal",
-    // Q21 answered for /privacy only: the application form collects a name,
-    // address, phone number and CV, so a notice explaining what happens to
-    // them is not optional. Terms and a cookie policy remain [BLOCKED] — the
-    // first has no confirmed content, the second has nothing to describe.
-    links: [{ label: "Privacy", href: "/privacy" }],
+    links: servicePageLinks,
   },
 ];

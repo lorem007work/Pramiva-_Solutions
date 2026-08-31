@@ -22,11 +22,8 @@ export function Footer() {
             <p className="mt-4 max-w-sm text-canvas/70">{site.tagline}</p>
           </div>
 
-          {/* Three groups now that Services has its own column: Company,
-              Services, Contact. At sm they fit three across; below that they
-              stack, which keeps each link list scannable rather than squeezing
-              three columns onto a 360px screen. */}
-          <div className="grid gap-10 sm:grid-cols-3 md:col-span-7">
+          {/* Company, Services, Contact — a fourth group wraps the row. */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:col-span-7">
             {footerNav
               .filter((group) => group.links.length > 0)
               .map((group) => (
@@ -49,7 +46,7 @@ export function Footer() {
                 </nav>
               ))}
 
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <Eyebrow>Contact</Eyebrow>
               <dl className="mt-5 space-y-4 text-sm">
                 <div>
@@ -68,6 +65,17 @@ export function Footer() {
                   </dd>
                 </div>
                 <div>
+                  <dt className="text-[color:var(--tone-muted)]">Phone</dt>
+                  <dd className="mt-1 text-canvas/80">
+                    <a
+                      href={`tel:${site.phone.replace(/\s/g, "")}`}
+                      className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-canvas"
+                    >
+                      {site.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div>
                   <dt className="text-[color:var(--tone-muted)]">Address</dt>
                   <dd className="mt-1 break-words text-canvas/80">
                     {site.address}
@@ -78,7 +86,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 text-sm text-[color:var(--tone-muted)]">
+        <div className="pt-6 text-center text-sm text-[color:var(--tone-muted)]">
           <p>
             &copy; {new Date().getFullYear()} {site.name}
           </p>

@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
-import { serviceGroups } from "@/data/services";
+import { servicePagePaths } from "@/data/service-pages";
 
 /**
  * Three capability pillars, replacing six equal service cards.
@@ -64,11 +64,7 @@ export function ServicePillars() {
       <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3 md:grid-rows-[auto_auto_auto] md:gap-y-0">
         {pillars.map((pillar, index) => {
           const items = pillarServices(pillar);
-          // Anchor index derived from serviceGroups so reordering cannot break it.
-          const groupIndex = serviceGroups.findIndex(
-            (group) => group.heading === pillar.group,
-          );
-          const href = `/services/#service-group-${groupIndex + 1}`;
+          const href = servicePagePaths[pillar.group] ?? "/services";
 
           return (
             <li

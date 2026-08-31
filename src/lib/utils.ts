@@ -24,6 +24,13 @@ export function isCurrentPath(pathname: string, href: string) {
   return normalise(pathname) === normalise(href);
 }
 
+export function isCurrentSection(pathname: string, href: string) {
+  const normalise = (value: string) => value.replace(/\/+$/, "") || "/";
+  const base = normalise(href);
+  const current = normalise(pathname);
+  return base !== "/" && (current === base || current.startsWith(`${base}/`));
+}
+
 /**
  * Stops a hyphenated word being split across two lines.
  *

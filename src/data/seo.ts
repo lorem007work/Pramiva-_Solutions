@@ -8,10 +8,8 @@ import { site } from "@/data/site";
  * Everything here is built from the confirmed description set; nothing
  * describes benefits, results or how work is performed.
  *
- * Organization JSON-LD is still NOT defined here. The legal name and location
- * are now confirmed, but the address, phone and email are not, and structured
- * data asserting a false contact point gets indexed and republished into
- * knowledge panels. Add it once Q7, Q8 and Q27 are answered.
+ * Organization JSON-LD is defined separately in lib/structured-data.ts, where
+ * every contact value comes from the confirmed company data in site.ts.
  */
 
 export type RouteSeo = {
@@ -37,20 +35,38 @@ export const seo = {
       Composed from `site.name` rather than typed, so the unresolved spelling
       still lives in exactly one file (CLAUDE.md rule 5).
     */
-    title: `${site.name} — business and operations company`,
-    // 154 chars. site.description is 213, so services fell past Google's ~155 cut.
-    description: `Digital marketing and customer solutions from a business and operations company in ${site.location}. Supporting businesses internationally.`,
+    title: `${site.name} — Digital marketing and customer operations`,
+    description:
+      "SEO, content, social media, paid advertising, CRM setup and customer service from Pramiva Solutions in Lalitpur, Nepal.",
   },
   about: {
     path: "/about/",
     title: "About",
-    description: `A business and operations company based in ${site.location}, working with businesses in Nepal and internationally.`,
+    description: `Learn about ${site.name}, a marketing and customer operations company based in ${site.location}.`,
   },
   services: {
     path: "/services/",
     title: "Services",
     description:
-      "Digital marketing and customer solutions for businesses in Nepal and internationally.",
+      "Explore SEO, content, social media, paid advertising, CRM setup and customer service from Pramiva Solutions.",
+  },
+  servicesDigitalMarketing: {
+    path: "/services/digital-marketing/",
+    title: "Digital Marketing",
+    description:
+      "SEO and content marketing, social media management and paid advertising on Google and Facebook, from Pramiva Solutions in Lalitpur, Nepal.",
+  },
+  servicesCustomerService: {
+    path: "/services/customer-service-systems/",
+    title: "Customer Service and Systems",
+    description:
+      "CRM setup and integration, and customer service by phone, text and email, from Pramiva Solutions in Lalitpur, Nepal.",
+  },
+  servicesAiAutomation: {
+    path: "/services/ai-and-automation/",
+    title: "AI and Automation",
+    description:
+      "The next service direction for Pramiva Solutions in Lalitpur, Nepal: practical AI and automation for suitable business tasks. Not currently offered as a service.",
   },
   careers: {
     path: "/careers/",
