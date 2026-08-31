@@ -1,5 +1,6 @@
 import { Faq } from "@/components/sections/faq";
 import { CtaBand } from "@/components/sections/cta-band";
+import { HeroScroll } from "@/components/ui/hero-scroll";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { nextDirectionPage } from "@/data/next-direction";
@@ -18,13 +19,15 @@ export default function AiAndAutomationPage() {
         backgroundImage="/images/brand/vision-bg.webp"
         aria-labelledby="next-direction-title"
       >
-        <SectionHeading
-          id="next-direction-title"
-          level="h1"
-          eyebrow={hero.eyebrow}
-          title={hero.title}
-          description={hero.lead}
-        />
+        <HeroScroll>
+          <SectionHeading
+            id="next-direction-title"
+            level="h1"
+            eyebrow={hero.eyebrow}
+            title={hero.title}
+            description={hero.lead}
+          />
+        </HeroScroll>
       </Section>
 
       {sections.map((section, index) => {

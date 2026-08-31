@@ -2,6 +2,7 @@ import { Faq } from "@/components/sections/faq";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Partnership } from "@/components/sections/partnership";
 import { Button } from "@/components/ui/button";
+import { HeroScroll } from "@/components/ui/hero-scroll";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ServiceIcon } from "@/components/ui/service-icon";
@@ -13,7 +14,7 @@ import { serviceGroups } from "@/data/services";
 export function ServiceGroupPage({ content }: { content: ServicePageContent }) {
   const group = serviceGroups.find((entry) => entry.heading === content.group);
   const services = group?.services ?? [];
-  const { hero, overview, included, why, faq, cta } = content;
+  const { hero, overview, included, how, why, faq, cta } = content;
 
   return (
     <main id="main">
@@ -29,19 +30,21 @@ export function ServiceGroupPage({ content }: { content: ServicePageContent }) {
         backgroundImage="/images/brand/services-bg.webp"
         aria-labelledby="service-page-title"
       >
-        <SectionHeading
-          id="service-page-title"
-          level="h1"
-          eyebrow={content.group}
-          title={hero.title}
-          description={hero.lead}
-        />
-        <div className="mt-block flex flex-col gap-4 sm:flex-row">
-          <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
-          <Button href={ctas.heroSecondary.href} variant="outline-inverse">
-            {ctas.heroSecondary.label}
-          </Button>
-        </div>
+        <HeroScroll>
+          <SectionHeading
+            id="service-page-title"
+            level="h1"
+            eyebrow={content.group}
+            title={hero.title}
+            description={hero.lead}
+          />
+          <div className="mt-block flex flex-col gap-4 sm:flex-row">
+            <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
+            <Button href={ctas.heroSecondary.href} variant="outline-inverse">
+              {ctas.heroSecondary.label}
+            </Button>
+          </div>
+        </HeroScroll>
       </Section>
 
       <Section tone="canvas" reveal aria-labelledby="service-overview-title">
@@ -149,6 +152,32 @@ export function ServiceGroupPage({ content }: { content: ServicePageContent }) {
           })}
         </div>
       </Section>
+
+      {how ? (
+        <Section tone="soft" reveal aria-labelledby="service-how-title">
+          <SectionHeading
+            id="service-how-title"
+            eyebrow={how.eyebrow}
+            title={how.title}
+          />
+          <ol className="mt-section-sm grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {how.steps.map((step, index) => (
+              <li
+                key={step.label}
+                className="border-t-2 border-ink pt-6"
+              >
+                <span aria-hidden="true" className="text-sm font-semibold text-brand">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-4 text-h3">{step.label}</h3>
+                <p className="mt-3 text-sm text-[color:var(--tone-muted)]">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      ) : null}
 
       <Section tone="ink" reveal aria-labelledby="service-why-title">
         <SectionHeading
