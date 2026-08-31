@@ -118,7 +118,7 @@ export const serviceGroups: ServiceGroup[] = [
       {
         title: "AI and Automation Solutions",
         audience:
-          "Forward-thinking businesses looking to leverage AI for competitive advantage.",
+          "For businesses thinking about where AI could fit their routine work.",
         icon: "automation",
         description:
           "The next service direction, focused on practical AI and Automation for suitable business tasks.",

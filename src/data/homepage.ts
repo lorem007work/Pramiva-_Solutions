@@ -55,7 +55,7 @@ export const homepage = {
     accessibleTitle:
       "We help businesses with SEO and content, social media and paid advertising, CRM systems and customer service.",
     /** APPROVED 2026-08-30 by the owner. */
-    lead: "From our Lalitpur office, we manage SEO, content, social media, paid advertising and customer enquiries for businesses in Nepal and overseas.",
+    lead: "From our Lalitpur office, we manage SEO, content, social media, paid advertising and customer enquiries for businesses in Nepal and abroad.",
   },
 
   positioning: {
@@ -70,7 +70,7 @@ export const homepage = {
     title: "Core services.",
     /** CONFIRMED — the approved high-level description of the offer. */
     description:
-      "We provide SEO and content marketing, social media management, paid advertising, CRM setup and customer service for businesses in Nepal and overseas.",
+      "We provide SEO and content marketing, social media management, paid advertising, CRM setup and customer service for businesses in Nepal and abroad.",
     /** Structural label applied to the pillar that is not sold today. */
     futureLabel: "Next Direction",
   },

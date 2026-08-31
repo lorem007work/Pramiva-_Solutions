@@ -5,6 +5,8 @@ import { site } from "@/data/site";
 
 export type ServicePageFaqItem = { question: string; answer: string };
 
+export type ServicePageStep = { label: string; body: string };
+
 export type ServicePageContent = {
   group: string;
   path: `/${string}`;
@@ -15,6 +17,7 @@ export type ServicePageContent = {
   };
   overview: { eyebrow: string; title: string; paragraphs: readonly string[] };
   included: { eyebrow: string; title: string };
+  how?: { eyebrow: string; title: string; steps: readonly ServicePageStep[] };
   why: { eyebrow: string; title: string };
   faq: { eyebrow: string; title: string; items: readonly ServicePageFaqItem[] };
   cta: { eyebrow: string; title: string; description: string };
@@ -66,7 +69,7 @@ export const digitalMarketingPage: ServicePageContent = {
 
   hero: {
     title: "Getting your business found online.",
-    lead: "We handle SEO and content, social media and paid advertising on Google and Facebook, for businesses in Nepal and overseas.",
+    lead: "We handle SEO and content, social media and paid advertising on Google and Facebook, for businesses in Nepal and abroad.",
     primaryCta: { label: "Discuss your marketing", href: "/contact" },
   },
 
@@ -125,7 +128,8 @@ export const customerServicePage: ServicePageContent = {
   path: servicePagePaths["Customer Service and Systems"],
 
   hero: {
-    title: "Answered, recorded, followed up.",
+    /** Wording specified in the task brief, 2026-08-31. */
+    title: "Create a more organised customer experience.",
     lead: "We set up the systems that hold your customer information, and we handle the enquiries that come in by phone, text and email.",
     primaryCta: { label: "Discuss your requirements", href: "/contact" },
   },
@@ -141,10 +145,34 @@ export const customerServicePage: ServicePageContent = {
 
   included: { eyebrow: "02 — What's included", title: "Two services, one record." },
 
-  why: { eyebrow: "05 — Why Pramiva", title: "Why work with us." },
+  /** Steps verbatim from the task brief, 2026-08-31. Client-facing only. */
+  how: {
+    eyebrow: "05 — How we work",
+    title: "How we work.",
+    steps: [
+      {
+        label: "Discover.",
+        body: "Understand the business, existing systems, customer journey and operational requirements.",
+      },
+      {
+        label: "Plan.",
+        body: "Identify the right systems, workflows and customer service processes around the business needs.",
+      },
+      {
+        label: "Set up and execute.",
+        body: "Configure systems, organise customer information, implement processes and begin customer service operations where required.",
+      },
+      {
+        label: "Measure and improve.",
+        body: "Review processes, identify gaps and continuously improve the system and customer experience.",
+      },
+    ],
+  },
+
+  why: { eyebrow: "06 — Why Pramiva", title: "Why work with us." },
 
   faq: {
-    eyebrow: "06 — Questions",
+    eyebrow: "07 — Questions",
     title: "Common questions.",
     items: [
       {
@@ -153,11 +181,31 @@ export const customerServicePage: ServicePageContent = {
           "Two services: CRM setup and integration, and customer service by phone, text and email. Each is described in detail on this page.",
       },
       {
+        question: "Can you help us set up a CRM from scratch?",
+        answer:
+          "Yes. System selection and setup is part of the service, so we can help you choose a system that fits and set it up from the beginning.",
+      },
+      {
         question: "Do you handle our existing customer data?",
         answer:
           "Yes. CRM setup and integration includes data migration, so existing customer information is brought into the system as part of the work.",
       },
+      {
+        question: "Do you provide CRM training for our team?",
+        answer:
+          "Yes. Team training and process development is included, so your team learns the system and the processes that go with it.",
+      },
+      {
+        question: "Can you provide ongoing support?",
+        answer:
+          "Yes. Ongoing optimisation and support is part of the CRM service, and customer enquiry handling is an ongoing service by nature.",
+      },
       sharedFaq.international,
+      {
+        question: "How long does CRM setup take?",
+        answer:
+          "It depends on the system, the state of your existing customer information and how much needs migrating. We can give you a timeframe after seeing what is involved.",
+      },
       {
         question: "How quickly can you start?",
         answer:
@@ -172,9 +220,9 @@ export const customerServicePage: ServicePageContent = {
   },
 
   cta: {
-    eyebrow: "07 — Start a conversation",
-    title: "Tell us what needs handling.",
+    eyebrow: "08 — Start a conversation",
+    title: "Need a better way to manage your customers?",
     description:
-      "Describe the enquiries you receive and the systems you use today, and we will come back with a practical next step.",
+      "Let's build a customer service and systems setup that works around how your business actually operates.",
   },
 };
