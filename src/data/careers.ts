@@ -20,32 +20,29 @@ export const careers = {
     title: "Fit and curiosity, before credentials.",
     paragraphs: [
       `${site.name} looks for people who share our values and want to contribute to the work we do.`,
-      "We weigh cultural fit, learning agility and a customer-first mindset above purely technical qualifications.",
+      "We look for people who communicate clearly, learn from feedback and take responsibility for their work. Experience matters, but it is not the only thing we consider.",
     ],
     qualitiesLabel: "Essential qualities",
     qualities: [
       {
         name: "Customer-first mindset",
-        description: "Genuine commitment to client success and satisfaction.",
+        description: "A genuine commitment to helping customers and clients.",
       },
       {
         name: "Data-driven approach",
-        description:
-          "Comfort with analytics and evidence-based decision making.",
+        description: "Comfort with using information to make sound decisions.",
       },
       {
         name: "Learning agility",
-        description:
-          "Demonstrated ability to acquire new skills quickly and adapt to change.",
+        description: "A willingness to learn new skills and adapt to change.",
       },
       {
         name: "Collaborative spirit",
-        description: "Strong teamwork and communication skills.",
+        description: "Clear communication and a willingness to work with others.",
       },
       {
         name: "Bold and agile thinking",
-        description:
-          "Willingness to take calculated risks and adapt quickly.",
+        description: "Confidence to try new approaches and adapt when needed.",
       },
     ],
     competenciesLabel: "Role-specific competencies",
@@ -108,7 +105,7 @@ export const careers = {
         points: [
           "Company history, mission, vision and values",
           "An overview of our services and how the company works",
-          "Tools, accounts and workspace set up",
+          "Tool, account and workspace setup",
         ],
       },
       {
@@ -135,7 +132,7 @@ export const careers = {
         points: [
           "Structured performance reviews at each milestone",
           "Progress assessed against the goals you set",
-          "Additional training identified, and career development planned",
+          "Additional training needs identified and career development planned",
         ],
       },
     ],

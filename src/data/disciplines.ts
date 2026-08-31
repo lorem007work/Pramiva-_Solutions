@@ -7,7 +7,7 @@ export type Discipline = {
 
 export const disciplines: Discipline[] = [
   {
-    title: "Search and Website",
+    title: "SEO and Website Content",
     description:
       "Search and content specialists who keep client websites findable and readable.",
   },
@@ -19,7 +19,7 @@ export const disciplines: Discipline[] = [
   {
     title: "Social Media",
     description:
-      "Content creators and community managers who keep client accounts active and answered.",
+      "Content creators and community managers who keep client social channels active and responsive.",
   },
   {
     title: "Customer Service",
@@ -44,6 +44,6 @@ export const disciplines: Discipline[] = [
   {
     title: "Operations and Management",
     description:
-      "Country and business management coordinating delivery and client relationships.",
+      "Operations managers coordinating delivery and client relationships.",
   },
 ];

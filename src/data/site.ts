@@ -67,6 +67,9 @@ export const site = {
    */
   email: "support@pramivasolutions.com.np",
 
+  /** CONFIRMED 2026-08-30 by the owner. International format for dialing. */
+  phone: "+977 976 859 1459",
+
   /**
    * Q27 answered 2026-08-24 from the company's Google Business Profile.
    *

@@ -29,7 +29,7 @@ export const privacy = {
     {
       heading: "Information you send us",
       paragraphs: [
-        "There are two forms on this website, and neither collects anything you do not type in yourself.",
+        "There are two forms on this website. They collect the information you enter and, for job applications, the CV you upload.",
       ],
       groups: [
         {
@@ -56,7 +56,7 @@ export const privacy = {
       heading: "Where it goes",
       paragraphs: [
         "Both forms send an email. That is the whole mechanism — this website has no database, no user accounts and no stored records.",
-        "Your CV is attached to that email and is never written to the website's server or placed in any folder that could be reached from the internet. It exists in our email inbox and nowhere else.",
+        "Your CV is attached to that email. The website does not intentionally retain a separate copy after it is delivered to our recruitment inbox.",
       ],
     },
 
@@ -64,7 +64,7 @@ export const privacy = {
       heading: "Who reads it",
       paragraphs: [
         "Enquiries are read by the team who can answer them. Job applications are read by the person responsible for recruitment.",
-        "If your application is successful, we create an account for you on Pramiva Academy, our training platform, so you can take the assessment. Only your name and email address are used for that — your CV is not passed on.",
+        "If you progress to the assessment stage, we create an account for you on Pramiva Academy, our training platform. Only your name and email address are used for that — your CV is not passed on.",
         "Pramiva Academy runs at academy.hardtrex.com, on infrastructure shared with an associated business. Your Academy login email will arrive from that address, and it is genuine.",
       ],
     },

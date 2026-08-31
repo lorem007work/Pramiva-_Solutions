@@ -25,7 +25,7 @@ export const servicesPage = {
     title: "Grouped by the part of the business they support.",
     /** [CONFIRMED] Q5 — approved 2026-08-24. */
     description:
-      "Practical support across Digital Marketing, Customer Service and Systems, and customer communication, with AI and Automation as the next direction.",
+      "We provide SEO and content marketing, social media management, paid advertising, CRM setup and customer service. AI and automation are a future direction.",
     audienceLabel: "Who it is for",
   },
 

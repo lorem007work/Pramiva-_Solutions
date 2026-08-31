@@ -9,17 +9,17 @@ export const values: Value[] = [
   {
     name: "Customer-first",
     description:
-      "We put client success first, and judge each decision by what it does for the people we work for.",
+      "We put client success first and judge each decision by what it does for the people we work for.",
   },
   {
     name: "Data-driven",
     description:
-      "We base our decisions on concrete data and measurable results rather than assumption.",
+      "We base our decisions on concrete data and measurable results rather than assumptions.",
   },
   {
     name: "Always learning",
     description:
-      "We keep improving, and stay curious about new tools, methods and ways of working.",
+      "We keep improving and stay curious about new tools, methods and ways of working.",
   },
   {
     name: "Bold and agile",
@@ -29,6 +29,6 @@ export const values: Value[] = [
   {
     name: "Collaborative excellence",
     description:
-      "We work as a team, and treat different perspectives as the thing that makes the outcome better.",
+      "We work as a team and use different perspectives to improve the result.",
   },
 ];

@@ -255,8 +255,8 @@ export function ContactForm({ copy, fallbackEmail }: ContactFormProps) {
       </p>
 
       <div
+        hidden
         aria-hidden="true"
-        className="sr-only"
       >
         <label htmlFor="contact-website">Website</label>
         <input

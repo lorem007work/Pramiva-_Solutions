@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { HeroItem, HeroSequence } from "@/components/ui/hero-motion";
+import { HeroServiceRotator } from "@/components/ui/hero-service-rotator";
+import { HeroBackgroundMotion } from "@/components/ui/hero-background-motion";
 import { Section } from "@/components/ui/section";
-import { ServiceIcon } from "@/components/ui/service-icon";
 import { ctas } from "@/data/navigation";
 import { homepage } from "@/data/homepage";
-import { pillars } from "@/data/pillars";
 
-// Dark premium fold: ink ground with the brand arcs artwork, display tagline.
+// Dark premium fold: ink ground with the brand arcs artwork and clear offer.
 export function HeroSplit() {
   const { hero } = homepage;
 
@@ -15,12 +15,14 @@ export function HeroSplit() {
     <HeroSequence>
       <Section
         tone="ink"
+        spacing="compact"
         backgroundImage="/images/brand/hero-bg.webp"
         backgroundPosition="right center"
         aria-labelledby="home-hero-title"
         className="relative overflow-hidden"
       >
-        <div className="relative">
+        <HeroBackgroundMotion />
+        <div className="relative z-10">
           <HeroItem>
             <Eyebrow className="text-accent">{hero.eyebrow}</Eyebrow>
           </HeroItem>
@@ -28,9 +30,17 @@ export function HeroSplit() {
           <HeroItem>
             <h1
               id="home-hero-title"
-              className="mt-6 max-w-[16ch] text-display font-semibold"
+              className="mt-5 font-semibold sm:mt-6"
             >
-              {hero.title}
+              <span className="sr-only">{hero.accessibleTitle}</span>
+              <span aria-hidden="true" className="block">
+                <span className="block max-w-[24ch] font-bold tracking-tight text-h1">
+                  {hero.title}
+                </span>
+                <span className="mt-2 block">
+                  <HeroServiceRotator services={hero.rotatingServices} />
+                </span>
+              </span>
             </h1>
           </HeroItem>
 
@@ -41,7 +51,7 @@ export function HeroSplit() {
                   aria-hidden="true"
                   className="mb-7 block h-0.5 w-16 bg-accent"
                 />
-                <p className="max-w-lead text-lead text-[color:var(--tone-muted)]">
+                <p className="max-w-lead text-base text-[color:var(--tone-muted)] sm:text-lead">
                   {hero.lead}
                 </p>
               </HeroItem>
@@ -64,34 +74,6 @@ export function HeroSplit() {
                 </Button>
               </HeroItem>
 
-              <HeroItem>
-                <ul className="mt-block flex flex-wrap gap-x-5 gap-y-6 border-t border-[color:var(--tone-border)] pt-8">
-                  {pillars.map((pillar, index) => (
-                    <li
-                      key={pillar.group}
-                      className="flex items-center gap-3 border-[color:var(--tone-border)] lg:pr-5 lg:not-last:border-r"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-[color:var(--tone-border)] text-accent"
-                      >
-                        <ServiceIcon name={pillar.icon} className="size-5" />
-                      </span>
-                      <span className="flex flex-col">
-                        <span
-                          aria-hidden="true"
-                          className="text-xs font-semibold text-accent"
-                        >
-                          0{index + 1}
-                        </span>
-                        <span className="text-sm font-medium">
-                          {pillar.title}
-                        </span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </HeroItem>
             </div>
 
           </div>

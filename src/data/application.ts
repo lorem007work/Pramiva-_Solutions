@@ -16,12 +16,12 @@ export const application = {
       {
         title: "Academy assessment",
         description:
-          "Suitable applicants receive Academy access. You must pass within the Academy's existing three-attempt limit to continue.",
+          "Suitable applicants receive access to Pramiva Academy and have up to three attempts to pass the assessment.",
       },
       {
         title: "Shortlist and interviews",
         description:
-          "Passing makes you eligible for shortlisting. It does not guarantee employment.",
+          "Passing the assessment makes you eligible for the interview shortlist, but does not guarantee employment.",
       },
     ],
   },

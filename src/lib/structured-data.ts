@@ -10,7 +10,7 @@ import { isPlaceholder } from "@/lib/utils";
  * because "structured data asserting a false contact point gets indexed and
  * republished into knowledge panels". The reasoning is right and it still
  * governs this file. What changed is the inputs: Q7 (email) and Q27 (address)
- * are answered and confirmed in site.ts. Only Q8 (phone) is outstanding.
+ * are all answered and confirmed in site.ts.
  *
  * `telephone` is an optional property. Omitting it emits valid, complete
  * markup that asserts nothing false — which is a different thing from emitting
@@ -20,10 +20,8 @@ import { isPlaceholder } from "@/lib/utils";
  *
  * Nothing is typed here. Every value is read from site.ts, and every optional
  * value is passed through `isPlaceholder` first, so a field that is still an
- * unanswered gap is dropped from the graph rather than published. If Q8 is
- * answered by editing site.ts, the phone appears with no change here; if it is
- * never answered, nothing false is ever emitted. The failure mode is a missing
- * property, never a wrong one.
+ * unanswered gap is dropped from the graph rather than published. The failure
+ * mode is a missing property, never a wrong one.
  *
  * DELIBERATELY NOT INCLUDED
  *
@@ -71,6 +69,7 @@ export function buildHomeJsonLd() {
     description: site.description,
     foundingDate: String(site.founded),
     email: confirmed(site.email),
+    telephone: confirmed(site.phone),
     // The logo a search engine shows beside the site. Absolute URL required.
     logo: compact({
       "@type": "ImageObject",

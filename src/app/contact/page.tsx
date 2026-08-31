@@ -55,6 +55,9 @@ export default function ContactPage() {
           <p className="mt-4 max-w-copy text-[color:var(--tone-muted)]">
             {form.introduction}
           </p>
+          <p className="mt-3 text-sm font-medium text-ink">
+            {form.responseTime}
+          </p>
 
           <div className="mt-block">
             <ContactForm
@@ -92,6 +95,20 @@ export default function ContactPage() {
                     {site.email}
                   </a>
                 )}
+              </dd>
+            </div>
+
+            <div className="border-t border-line-strong pt-5">
+              <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+                {details.labels.phone}
+              </dt>
+              <dd className="mt-2">
+                <a
+                  href={`tel:${site.phone.replace(/\s/g, "")}`}
+                  className="inline-flex min-h-11 items-center text-ink transition-colors duration-150 hover:text-brand"
+                >
+                  {site.phone}
+                </a>
               </dd>
             </div>
 

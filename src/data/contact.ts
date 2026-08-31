@@ -2,8 +2,8 @@
  * Contact page copy.
  *
  * The contact DETAILS are not here — email, phone and address live in
- * `site.ts` as placeholders (Q7, Q8, Q27) and are read straight from there, so
- * one answer from management updates the footer and this page together.
+ * `site.ts` and are read straight from there, so one confirmed change updates
+ * the footer, structured data and this page together.
  *
  * The enquiry form is implemented in Phase 7. Delivery remains fail-safe until
  * the private cPanel mail configuration and destination inbox (Q10) exist.
@@ -22,6 +22,7 @@ export const contact = {
     heading: "Send an enquiry",
     introduction:
       "Share a few details and we will respond using the contact information you provide.",
+    responseTime: "We usually reply within one business day.",
     fields: {
       name: "Name",
       email: "Email",
@@ -53,7 +54,7 @@ export const contact = {
     eyebrow: "Before you write",
     title: "What to include.",
     description:
-      "A few lines on each of these makes the first reply a useful one rather than a request for more detail.",
+      "A few lines on each of these make the first reply a useful one rather than a request for more detail.",
     points: [
       {
         title: "The work",
@@ -81,6 +82,7 @@ export const contact = {
     /** Labels only; every value comes from `site.ts`. */
     labels: {
       email: "Email",
+      phone: "Phone",
       address: "Address",
     },
   },

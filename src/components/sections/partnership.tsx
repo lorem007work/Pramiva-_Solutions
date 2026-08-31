@@ -94,11 +94,7 @@ function BrandSet({ duplicate = false }: { duplicate?: boolean }) {
       {brands.map((brand) => (
         <li
           key={brand.name}
-          /* bg-canvas, not bg-surface: several marks were supplied with an
-             opaque white background baked in, which showed as a lighter box
-             inside a #fafafa tile. Matching the tile to that white makes the
-             artifact invisible and leaves the border to define the chip. */
-          className="flex h-24 w-40 shrink-0 items-center justify-center rounded-2xl border border-line bg-canvas p-4 transition-colors duration-300 hover:border-brand/40 sm:h-28 sm:w-48 sm:p-5 lg:h-32 lg:w-56 lg:p-6"
+          className="flex h-24 w-40 shrink-0 items-center justify-center p-4 transition-transform duration-300 hover:scale-[1.03] sm:h-28 sm:w-48 sm:p-5 lg:h-32 lg:w-56 lg:p-6"
         >
           <Image
             src={brand.logo.src}

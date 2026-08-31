@@ -43,10 +43,19 @@ export const homepage = {
   hero: {
     /** CONFIRMED — business type and location, assembled from confirmed facts. */
     eyebrow: site.descriptor,
-    /** CONFIRMED — the company tagline, verbatim. Public on the logo already. */
-    title: site.tagline,
-    /** CONFIRMED 2026-08-26 by the owner. */
-    lead: "Digital marketing and customer solutions — in Nepal and internationally.",
+    /** APPROVED 2026-08-30 by the owner. */
+    title: "We help businesses with",
+    rotatingServices: [
+      "SEO and Content",
+      "Social Media",
+      "Paid Advertising",
+      "CRM Systems",
+      "Customer Service",
+    ],
+    accessibleTitle:
+      "We help businesses with SEO and content, social media and paid advertising, CRM systems and customer service.",
+    /** APPROVED 2026-08-30 by the owner. */
+    lead: "From our Lalitpur office, we manage SEO, content, social media, paid advertising and customer enquiries for businesses in Nepal and overseas.",
   },
 
   positioning: {
@@ -58,10 +67,10 @@ export const homepage = {
   /** Framing for the three capability pillars. The pillars are in pillars.ts. */
   services: {
     eyebrow: "What we do",
-    title: "Areas we support.",
+    title: "Core services.",
     /** CONFIRMED — the approved high-level description of the offer. */
     description:
-      "We support businesses in Nepal and internationally through digital marketing and customer solutions.",
+      "We provide SEO and content marketing, social media management, paid advertising, CRM setup and customer service for businesses in Nepal and overseas.",
     /** Structural label applied to the pillar that is not sold today. */
     futureLabel: "Next Direction",
   },

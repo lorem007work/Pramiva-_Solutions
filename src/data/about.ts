@@ -22,7 +22,7 @@ export const about = {
     paragraphs: [
       `We are a business and operations company, founded in ${site.founded} and based in ${site.location}.`,
       "We work with businesses in Nepal and internationally, supporting them through digital marketing and customer solutions.",
-      "AI and Automation Solutions are the next direction for the company rather than something we offer today.",
+      "AI and automation are a future direction for the company, not a service we offer today.",
     ],
   },
 
@@ -31,8 +31,8 @@ export const about = {
     title: "How the company started.",
     /** CONFIRMED 2026-08-26 by the owner. */
     paragraphs: [
-      `${site.name} was founded on August 5, 2025, by ${site.founder} with a vision to bridge the gap between businesses in developed countries and cost-effective, high-quality backend solutions.`,
-      "The company was established based on practical experience in growing businesses from startup to multi-million dollar operations across multiple countries.",
+      `${site.name} was founded on 5 August 2025 by ${site.founder} to connect businesses with cost-effective, high-quality back-office support.`,
+      "The company was built on practical experience helping businesses grow from start-ups into multimillion-dollar operations across several countries.",
     ],
   },
 

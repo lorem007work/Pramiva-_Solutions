@@ -1,10 +1,7 @@
 /**
  * Service catalogue.
  *
- * TITLES are CONFIRMED (2026-08-24) and match the approved list exactly. Do
- * not reword them — "Google and Facebook Paid Advertising" is the approved
- * phrasing, not "paid advertising"; "Customer Service Through Calls, Text and
- * Email" is the approved phrasing, not "multi-channel customer service".
+ * TITLES were updated and approved by the owner on 2026-08-30.
  *
  * Back-office administration was removed: it is not on the confirmed list, and
  * the wording describes how work is divided with clients, which is
@@ -39,12 +36,12 @@ export const serviceGroups: ServiceGroup[] = [
     heading: "Digital Marketing",
     services: [
       {
-        title: "Search and Content Marketing",
+        title: "SEO and Content Marketing",
         audience:
-          "Businesses looking to establish or improve their online presence and attract customers through search engines.",
+          "For businesses that want more people to find them through search.",
         icon: "search",
         description:
-          "Create useful, search-friendly content that helps people discover and understand a business online.",
+          "We research what your customers search for, improve your website pages and create useful content that helps people find and understand your business.",
         details: [
           "Keyword research and strategy",
           "On-page and technical SEO optimisation",
@@ -55,10 +52,10 @@ export const serviceGroups: ServiceGroup[] = [
       {
         title: "Social Media Management",
         audience:
-          "Companies seeking to build brand awareness, engage with customers, and drive sales through social media channels.",
+          "For businesses that want to stay active on social media without managing it all themselves.",
         icon: "social",
         description:
-          "Plan, publish and manage social content that keeps a business active and connected with its audience.",
+          "We plan and publish social content, respond to comments and messages, and keep your accounts active and organised.",
         details: [
           "Strategy development and content calendars",
           "Daily content creation and posting",
@@ -67,17 +64,17 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        title: "Google and Facebook Paid Advertising",
+        title: "Paid Advertising on Google and Facebook",
         audience:
-          "Businesses looking to scale their customer acquisition through targeted digital advertising.",
+          "For businesses that want help planning and managing paid campaigns.",
         icon: "advertising",
         description:
-          "Set up and manage targeted advertising campaigns across Google and Facebook to reach relevant audiences.",
+          "We set up and manage campaigns on Google and Facebook, from audience targeting and ad creative to budget tracking and reporting.",
         details: [
           "Campaign strategy and audience targeting",
           "Ad creative development",
           "Budget management and optimisation",
-          "Return on ad spend tracking and reporting",
+          "Campaign performance tracking and reporting",
         ],
       },
     ],
@@ -86,12 +83,12 @@ export const serviceGroups: ServiceGroup[] = [
     heading: "Customer Service and Systems",
     services: [
       {
-        title: "Customer-System Setup and Management",
+        title: "CRM Setup and Integration",
         audience:
-          "Growing businesses that need to organise their customer data and automate their sales processes.",
+          "For businesses that need their customer information and follow-up in one place.",
         icon: "systems",
         description:
-          "Set up and maintain customer systems so contact details, conversations and follow-up information stay organised.",
+          "We set up and connect CRM systems so customer details, conversations and follow-up tasks stay in one organised place.",
         details: [
           "System selection and setup",
           "Data migration and integration",
@@ -100,12 +97,12 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        title: "Customer Service Through Calls, Text and Email",
+        title: "Customer Service by Phone, Text and Email",
         audience:
-          "Companies that need to provide excellent customer service but want to reduce operational costs.",
+          "For businesses that need someone to handle regular customer enquiries.",
         icon: "support",
         description:
-          "Handle customer enquiries through calls, text and email with clear, professional communication.",
+          "We handle customer enquiries by phone, text and email, and keep clear records for follow-up.",
         details: [
           "Inbound and outbound call handling",
           "Email management and response",
