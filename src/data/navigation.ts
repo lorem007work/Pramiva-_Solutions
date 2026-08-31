@@ -74,8 +74,6 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { label: "Services", href: "/services" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/contact" },
-      // Q21: privacy only. Terms and cookie policy remain [BLOCKED].
-      { label: "Privacy", href: "/privacy" },
     ],
   },
   {
@@ -83,3 +81,6 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
     links: servicePageLinks,
   },
 ];
+
+// Q21: privacy only. Terms and cookie policy remain [BLOCKED].
+export const legalNav: NavLink[] = [{ label: "Privacy", href: "/privacy" }];

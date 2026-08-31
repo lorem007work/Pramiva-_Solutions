@@ -22,43 +22,33 @@ const paths: Record<string, React.ReactNode> = {
     <>
       <circle cx="11" cy="11" r="6" />
       <path d="m20 20-4.5-4.5" />
-      <path d="M8.5 11h5M11 8.5v5" />
     </>
   ),
-  social: (
-    <>
-      <path d="M4 6h16v10H9l-5 4V6Z" />
-      <path d="M9 10h6M9 13h4" />
-    </>
-  ),
+  social: <path d="M4 6h16v10H9l-5 4V6Z" />,
   advertising: (
     <>
       <circle cx="12" cy="12" r="8" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="12" cy="12" r="1" />
+      <circle cx="12" cy="12" r="3" />
     </>
   ),
   systems: (
     <>
       <ellipse cx="12" cy="6" rx="7" ry="3" />
-      <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
-      <path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" />
+      <path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
     </>
   ),
   support: (
     <>
       <path d="M4 13a8 8 0 0 1 16 0" />
-      <path d="M4 13v3a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 2Z" />
-      <path d="M20 13v3a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2Z" />
-      <path d="M12 21h3" />
+      <rect x="4" y="12" width="3" height="6" rx="1.5" />
+      <rect x="17" y="12" width="3" height="6" rx="1.5" />
     </>
   ),
   automation: (
     <>
-      <rect x="7" y="8" width="10" height="10" rx="2" />
-      <path d="M12 3v5M9 3v2M15 3v2" />
-      <path d="M3 12h4M17 12h4" />
-      <path d="M10.5 12.5h3" />
+      <rect x="6" y="9" width="12" height="10" rx="2" />
+      <path d="M12 4v5" />
+      <path d="M10 13.5h.01M14 13.5h.01" />
     </>
   ),
 
@@ -71,7 +61,6 @@ const paths: Record<string, React.ReactNode> = {
     <>
       <path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z" />
       <path d="M17 9.5a3.5 3.5 0 0 1 0 5" />
-      <path d="M19.5 7a7 7 0 0 1 0 10" />
     </>
   ),
 

@@ -1,46 +1,16 @@
 import { Section } from "@/components/ui/section";
-import { serviceGroups } from "@/data/services";
+import { ServiceIcon } from "@/components/ui/service-icon";
 import { site } from "@/data/site";
 
 /**
- * The facts band — this site's version of a theme's "stat counter" row.
- *
- * Every corporate template has one, and it is normally filled with growth
- * percentages, client counts and satisfaction scores. None of those exist here
- * in verified form (Q23 is unanswered, Q19 has no testimonials), and inventing
- * them is the one thing this project cannot do.
- *
- * So the row carries facts instead of performance claims. Every value is
- * derived from data published elsewhere on the site rather than asserted fresh
- * here, so nothing in this component can drift out of step with what has been
- * approved.
- *
- * It reads as confident rather than thin because facts stated plainly do. A
- * fabricated "98% client satisfaction" would look stronger for exactly as long
- * as it took someone to ask for the evidence.
- *
- * TWO LABELS CHANGED IN THE REDESIGN
- *
- * "Clients — Nepal & international" was not a metric; it was geography filed
- * under the wrong noun, and it invited the reading "we have clients called
- * Nepal & international". It is now "Markets".
- *
- * "Services — 6" counted AI and Automation, which the same page marks as a
- * next direction. Advertising six services and then labelling one of them as
- * not-yet-offered is a contradiction a visitor can spot. "Capabilities" is the
- * honest noun for a set that includes one not yet sold.
+ * The facts band. Facts instead of a template's fake stat counters — nothing
+ * here is a performance claim, and every value reads from site.ts.
  */
 export function AtAGlance() {
-  const capabilityCount = serviceGroups.reduce(
-    (total, group) => total + group.services.length,
-    0,
-  );
-
   const facts = [
-    { value: String(site.founded), label: "Founded" },
-    { value: site.location, label: "Based in" },
-    { value: "Nepal & international", label: "Markets" },
-    { value: String(capabilityCount), label: "Capabilities" },
+    { icon: "calendar", label: "Founded", value: String(site.founded) },
+    { icon: "pin", label: "Based in", value: site.location },
+    { icon: "globe", label: "Markets", value: "Nepal & international" },
   ];
 
   return (
@@ -50,22 +20,31 @@ export function AtAGlance() {
       reveal
       aria-label="Company at a glance"
     >
-      {/* Each fact carries its own top rule, so the set reads as columns at
-          every breakpoint rather than needing axis-switching dividers. */}
-      <dl className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 lg:grid-cols-4">
+      <dl className="grid grid-cols-3 gap-3 sm:gap-8">
         {facts.map((fact, index) => (
           <div
             key={fact.label}
             data-stagger
             style={{ "--stagger-index": index } as React.CSSProperties}
-            className="flex flex-col-reverse gap-1 border-t-2 border-ink pt-5"
+            className="flex flex-col items-center gap-2 text-center sm:flex-row sm:gap-4 sm:text-left"
           >
-            <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
-              {fact.label}
-            </dt>
-            <dd className="text-h3 font-semibold text-balance text-brand-deep sm:text-h2 lg:text-h3">
-              {fact.value}
-            </dd>
+            <span
+              aria-hidden="true"
+              className="ground ground-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full sm:h-12 sm:w-12"
+            >
+              <ServiceIcon
+                name={fact.icon}
+                className="h-5 w-5 text-accent-text sm:h-6 sm:w-6"
+              />
+            </span>
+            <div>
+              <dt className="text-eyebrow uppercase text-[color:var(--tone-eyebrow)]">
+                {fact.label}
+              </dt>
+              <dd className="mt-1 text-sm font-semibold text-balance text-brand-deep sm:text-h3">
+                {fact.value}
+              </dd>
+            </div>
           </div>
         ))}
       </dl>

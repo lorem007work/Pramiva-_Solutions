@@ -62,18 +62,11 @@ export const pillars: Pillar[] = [
   },
 ];
 
-export type PillarService = { title: string; description: string };
+export type PillarService = { title: string; icon: string };
 
-/**
- * Joins each pillar to its approved services. Throws nothing away.
- *
- * The description comes back with the title now. Both are approved wording in
- * services.ts — the card is not summarising anything, it is showing the
- * sentence the service already ships with on /services.
- */
 export function pillarServices(pillar: Pillar): PillarService[] {
   const group = serviceGroups.find((entry) => entry.heading === pillar.group);
   return group
-    ? group.services.map(({ title, description }) => ({ title, description }))
+    ? group.services.map(({ title, icon }) => ({ title, icon }))
     : [];
 }

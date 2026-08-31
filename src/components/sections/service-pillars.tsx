@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ServiceIcon } from "@/components/ui/service-icon";
 import { homepage } from "@/data/homepage";
 import { ctas } from "@/data/navigation";
 import { pillars, pillarServices } from "@/data/pillars";
@@ -30,11 +31,9 @@ import { servicePagePaths } from "@/data/service-pages";
  *
  * THE THIRD CARD
  *
- * AI and Automation is not sold today. It carries a visible "Next Direction"
- * badge and a quieter icon treatment so the layout says so as clearly as the
- * words do. Presenting it as an equal third of the offer would generate
- * enquiries the company cannot fulfil, which is a worse outcome than the card
- * looking less impressive.
+ * AI and Automation is not sold today. The "Next Direction" badge carries that
+ * status; the card otherwise matches its siblings — the team chose visual
+ * parity (2026-08-31) over the earlier muted treatment.
  */
 export function ServicePillars() {
   const { services } = homepage;
@@ -61,7 +60,7 @@ export function ServicePillars() {
         </div>
       </div>
 
-      <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3 md:grid-rows-[auto_auto_auto] md:gap-y-0">
+      <ul className="mt-section-sm grid gap-x-8 gap-y-12 md:grid-cols-3 md:grid-rows-[auto_auto_auto_auto] md:gap-y-0">
         {pillars.map((pillar, index) => {
           const items = pillarServices(pillar);
           const href = servicePagePaths[pillar.group] ?? "/services";
@@ -71,29 +70,27 @@ export function ServicePillars() {
               key={pillar.group}
               data-stagger
               style={{ "--stagger-index": index + 2 } as React.CSSProperties}
-              className={`relative border-t-2 pt-6 transition-colors duration-300 md:row-span-3 md:grid md:grid-rows-subgrid ${
-                pillar.future
-                  ? "border-line-strong"
-                  : "border-ink hover:border-brand focus-within:border-brand"
-              }`}
+              className="group relative border-t border-ink pt-6 transition-colors duration-300 hover:border-brand focus-within:border-brand md:row-span-4 md:grid md:grid-rows-subgrid"
             >
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex items-center justify-between gap-3">
                 <span
                   aria-hidden="true"
-                  className={`text-sm font-semibold ${
-                    pillar.future
-                      ? "text-[color:var(--tone-eyebrow)]"
-                      : "text-brand"
-                  }`}
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-accent-text transition-colors duration-200 group-hover:bg-brand/15"
                 >
-                  0{index + 1}
+                  <ServiceIcon name={pillar.icon} className="h-6 w-6" />
                 </span>
 
-                {pillar.future ? (
-                  <Eyebrow as="span" className="text-right">
-                    {services.futureLabel}
-                  </Eyebrow>
-                ) : null}
+                <div className="flex flex-col items-end gap-2">
+                  <span aria-hidden="true" className="text-sm font-semibold text-brand">
+                    0{index + 1}
+                  </span>
+
+                  {pillar.future ? (
+                    <Eyebrow as="span" className="text-right">
+                      {services.futureLabel}
+                    </Eyebrow>
+                  ) : null}
+                </div>
               </div>
 
               <h3 className="mt-5 text-h3">
@@ -105,15 +102,27 @@ export function ServicePillars() {
                 </Link>
               </h3>
 
-              {/* Approved service titles and descriptions, verbatim from services.ts. */}
-              <ul className="mt-6 divide-y divide-[color:var(--tone-border)] border-t border-[color:var(--tone-border)] text-sm text-[color:var(--tone-muted)]">
-                {items.map(({ title, description }) => (
-                  <li key={title} className="py-3">
-                    <span className="block font-medium text-ink">{title}</span>
-                    <span className="mt-1 block">{description}</span>
+              <ul className="mt-6 space-y-3 text-sm text-[color:var(--tone-muted)]">
+                {items.map(({ title, icon }) => (
+                  <li key={title} className="flex items-center gap-3">
+                    <ServiceIcon
+                      name={icon}
+                      className="h-5 w-5 shrink-0 text-accent-text"
+                    />
+                    <span>{title}</span>
                   </li>
                 ))}
               </ul>
+
+              <p
+                aria-hidden="true"
+                className="mt-6 self-start text-sm font-medium text-brand"
+              >
+                Learn more{" "}
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                  →
+                </span>
+              </p>
             </li>
           );
         })}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { footerNav } from "@/data/navigation";
+import { footerNav, legalNav } from "@/data/navigation";
 import { site } from "@/data/site";
 import { isPlaceholder } from "@/lib/utils";
 
@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="ground ground-ink text-canvas">
       <Container className="py-section-sm">
         <div className="grid gap-12 border-b border-[color:var(--tone-border)] pb-section-sm md:grid-cols-12">
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <Link
               href="/"
               aria-label={`${site.name} home`}
@@ -23,7 +23,7 @@ export function Footer() {
           </div>
 
           {/* Company, Services, Contact — a fourth group wraps the row. */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:col-span-7">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:col-span-8">
             {footerNav
               .filter((group) => group.links.length > 0)
               .map((group) => (
@@ -36,7 +36,7 @@ export function Footer() {
                       <li key={`${group.heading}-${link.label}`}>
                         <Link
                           href={link.href}
-                          className="inline-flex min-h-11 items-center text-canvas/80 transition-colors duration-150 hover:text-canvas"
+                          className="inline-flex min-h-11 items-center text-canvas/80 transition-colors duration-150 hover:text-canvas md:min-h-0 md:py-1"
                         >
                           {link.label}
                         </Link>
@@ -48,7 +48,7 @@ export function Footer() {
 
             <div className="col-span-2 sm:col-span-1">
               <Eyebrow>Contact</Eyebrow>
-              <dl className="mt-5 space-y-4 text-sm">
+              <dl className="mt-4 space-y-4 text-sm">
                 <div>
                   <dt className="text-[color:var(--tone-muted)]">Email</dt>
                   <dd className="mt-1 break-words text-canvas/80">
@@ -57,9 +57,12 @@ export function Footer() {
                     ) : (
                       <a
                         href={`mailto:${site.email}`}
-                        className="inline-flex min-h-11 max-w-full items-center break-all transition-colors duration-150 hover:text-canvas"
+                        className="inline-flex min-h-11 max-w-full items-center transition-colors duration-150 hover:text-canvas md:min-h-0"
                       >
-                        {site.email}
+                        <span className="break-words">
+                          {site.email.split("@")[0]}@<wbr />
+                          {site.email.split("@")[1]}
+                        </span>
                       </a>
                     )}
                   </dd>
@@ -69,7 +72,7 @@ export function Footer() {
                   <dd className="mt-1 text-canvas/80">
                     <a
                       href={`tel:${site.phone.replace(/\s/g, "")}`}
-                      className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-canvas"
+                      className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-canvas md:min-h-0"
                     >
                       {site.phone}
                     </a>
@@ -78,7 +81,14 @@ export function Footer() {
                 <div>
                   <dt className="text-[color:var(--tone-muted)]">Address</dt>
                   <dd className="mt-1 break-words text-canvas/80">
-                    {site.address}
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-150 hover:text-canvas"
+                    >
+                      {site.address}
+                    </a>
                   </dd>
                 </div>
               </dl>
@@ -86,10 +96,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 text-center text-sm text-[color:var(--tone-muted)]">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 pt-6 text-center text-sm text-[color:var(--tone-muted)]">
           <p>
             &copy; {new Date().getFullYear()} {site.name}
           </p>
+          {legalNav.map((link) => (
+            <span key={link.href} className="flex items-center gap-3">
+              <span aria-hidden="true">&middot;</span>
+              <Link
+                href={link.href}
+                className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-canvas md:min-h-0"
+              >
+                {link.label}
+              </Link>
+            </span>
+          ))}
         </div>
       </Container>
     </footer>
